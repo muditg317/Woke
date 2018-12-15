@@ -2,7 +2,8 @@
 <resources>
     <color name="colorPrimaryWhite">#FFFFFF</color>
     <color name="colorPrimaryBlue">#004CFF</color>
-    <color name="colorSecondaryBlue">#006DFF</color>
+    <color name="colorSecondaryBlue">#0041DB</color>
+    <color name="colorTertiaryBlue">#006DFF</color>
     <color name="colorPrimaryDarkGradientEnd">#62A5FF</color>
     <color name="colorAccent">#979797</color>
     <color name="colorBackground">#FFFFFF</color>

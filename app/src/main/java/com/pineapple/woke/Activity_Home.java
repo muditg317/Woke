@@ -8,15 +8,15 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 public class Activity_Home extends AppCompatActivity {
-    ImageButton imgButton;
+    ImageButton imgButton_start;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        imgButton =(ImageButton)findViewById(R.id.imageButton_buttonStudy);
-        imgButton.setOnClickListener(new View.OnClickListener() {
+        imgButton_start =(ImageButton)findViewById(R.id.imageButton_buttonStudy);
+        imgButton_start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startStudying();
