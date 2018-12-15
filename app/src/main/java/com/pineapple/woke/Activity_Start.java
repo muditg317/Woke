@@ -1,6 +1,7 @@
 package com.pineapple.woke;
 
 import android.content.Intent;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Display;
@@ -31,23 +32,35 @@ public class Activity_Start extends AppCompatActivity {
 
 
         final Animation alphaAnim_text = new AlphaAnimation(0.00f, 1.00f);
-        alphaAnim_text.setDuration(600);
+        alphaAnim_text.setDuration(1200);
         alphaAnim_text.setAnimationListener(new Animation.AnimationListener() {
             public void onAnimationStart(Animation animation) {}
             public void onAnimationEnd(Animation animation) {
-                getStarted();
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        getStarted();
+                    }
+                }, 2000);
             }
             public void onAnimationRepeat(Animation animation) {}
         });
 
-        final Animation transAnim_rect = new TranslateAnimation(0,0,screen.getHeight(),0);
-        transAnim_rect.setDuration(300);
+        final Animation transAnim_rect = new AlphaAnimation(0.00f, 1.00f);
+        transAnim_rect.setDuration(800);
         transAnim_rect.setAnimationListener(new Animation.AnimationListener() {
-            public void onAnimationStart(Animation animation) {}
-            public void onAnimationEnd(Animation animation) {
-                gsmstTextView.setVisibility(View.VISIBLE);
-                gsmstTextView.startAnimation(alphaAnim_text);
+            public void onAnimationStart(Animation animation) {
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        gsmstTextView.setVisibility(View.VISIBLE);
+                        gsmstTextView.startAnimation(alphaAnim_text);
+                    }
+                }, 600);
             }
+            public void onAnimationEnd(Animation animation) {}
             public void onAnimationRepeat(Animation animation) {}
         });
 
