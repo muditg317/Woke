@@ -8,4 +8,14 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="titleText">
+        <item name="android:textColor"> @color/colorPrimary </item>
+        <item name="android:textAlignment"> center </item>
+        <item name="android:shadowColor"> @color/colorShadow </item>
+        <item name="android:shadowDx"> 2 </item>
+        <item name="android:shadowDy"> 4 </item>
+        <item name="android:shadowRadius"> 20 </item>
+        <item name="android:textStyle"> bold </item>
+    </style>
+
 </resources>
