@@ -29,25 +29,26 @@
         android:layout_marginStart="30dp"
         android:layout_marginTop="63dp"/>
     
-    <ImageView
-        android:id="@+id/imageView_buttonStudy"
+    <ImageButton
+        android:id="@+id/imageButton_buttonStudy"
+        android:contentDescription="@string/start_studying"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/shape_button1"
+        android:background="@drawable/selector_button1"
         android:layout_marginStart="30dp"
         android:layout_marginTop="113dp"/>
 
     <TextView
-        android:id="@+id/textView_buttonStudy"
+        android:id="@+id/textView_buttonStop"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/imageView_buttonStudy"
-        android:layout_alignTop="@+id/imageView_buttonStudy"
-        android:layout_alignEnd="@+id/imageView_buttonStudy"
-        android:layout_alignBottom="@+id/imageView_buttonStudy"
+        android:layout_alignStart="@+id/imageButton_buttonStudy"
+        android:layout_alignTop="@+id/imageButton_buttonStudy"
+        android:layout_alignEnd="@+id/imageButton_buttonStudy"
+        android:layout_alignBottom="@+id/imageButton_buttonStudy"
         android:layout_margin="1dp"
         android:gravity="center"
-        android:text="Start studying"
+        android:text="@string/start_studying"
         android:textAppearance="@style/text1_white"/>
 
 

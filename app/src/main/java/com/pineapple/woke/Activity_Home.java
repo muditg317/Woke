@@ -3,13 +3,26 @@ package com.pineapple.woke;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageButton;
+import android.widget.Toast;
 
 public class Activity_Home extends AppCompatActivity {
+    ImageButton imgButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        imgButton =(ImageButton)findViewById(R.id.imageButton_buttonStudy);
+        imgButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startStudying();
+                Toast.makeText(getApplicationContext(),"Study session started",Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
     private void startStudying() {
