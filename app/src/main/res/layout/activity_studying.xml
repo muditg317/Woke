@@ -63,10 +63,11 @@
     <ImageButton
         android:id="@+id/imageButton_buttonPause"
         android:contentDescription="Pause"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/selector_button2"
         android:layout_marginStart="54dp"
+        android:layout_marginEnd="54dp"
         android:layout_marginTop="420dp"/>
 
     <TextView
@@ -85,10 +86,11 @@
     <ImageButton
         android:id="@+id/imageButton_buttonResume"
         android:contentDescription="Pause"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/selector_button3"
         android:layout_marginStart="54dp"
+        android:layout_marginEnd="54dp"
         android:layout_marginTop="420dp"/>
 
     <TextView
@@ -107,10 +109,11 @@
     <ImageButton
         android:id="@+id/imageButton_buttonStop"
         android:contentDescription="Pause"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/selector_button2"
         android:layout_marginStart="54dp"
+        android:layout_marginEnd="54dp"
         android:layout_marginTop="480dp"/>
 
     <TextView
