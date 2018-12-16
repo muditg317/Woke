@@ -8,13 +8,12 @@ import android.view.Display;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
-import android.view.animation.TranslateAnimation;
 import android.widget.TextView;
 
 public class Activity_Start extends AppCompatActivity {
 
-    View gradientRect;
-    TextView gsmstTextView;
+    View rectangle_background;
+    TextView textView_appName;
 
 
     @Override
@@ -25,10 +24,10 @@ public class Activity_Start extends AppCompatActivity {
         Display screen = getWindowManager().getDefaultDisplay();
 
 
-        gradientRect = (View) findViewById(R.id.gradientRectangle);
+        rectangle_background = (View) findViewById(R.id.rectangle_background);
 
-        gsmstTextView = (TextView) findViewById(R.id.gsmstTextView);
-        gsmstTextView.setVisibility(View.INVISIBLE);
+        textView_appName = (TextView) findViewById(R.id.textView_appName);
+        textView_appName.setVisibility(View.INVISIBLE);
 
 
         final Animation alphaAnim_text = new AlphaAnimation(0.00f, 1.00f);
@@ -47,16 +46,16 @@ public class Activity_Start extends AppCompatActivity {
             public void onAnimationRepeat(Animation animation) {}
         });
 
-        final Animation transAnim_rect = new AlphaAnimation(0.00f, 1.00f);
-        transAnim_rect.setDuration(800);
-        transAnim_rect.setAnimationListener(new Animation.AnimationListener() {
+        final Animation alphaAnim_rect = new AlphaAnimation(0.00f, 1.00f);
+        alphaAnim_rect.setDuration(800);
+        alphaAnim_rect.setAnimationListener(new Animation.AnimationListener() {
             public void onAnimationStart(Animation animation) {
                 Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        gsmstTextView.setVisibility(View.VISIBLE);
-                        gsmstTextView.startAnimation(alphaAnim_text);
+                        textView_appName.setVisibility(View.VISIBLE);
+                        textView_appName.startAnimation(alphaAnim_text);
                     }
                 }, 600);
             }
@@ -64,7 +63,7 @@ public class Activity_Start extends AppCompatActivity {
             public void onAnimationRepeat(Animation animation) {}
         });
 
-        gradientRect.startAnimation(transAnim_rect);
+        rectangle_background.startAnimation(alphaAnim_rect);
 
     }
 

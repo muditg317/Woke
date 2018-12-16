@@ -9,7 +9,7 @@
     tools:context=".Activity_Start">
 
     <View
-        android:id="@+id/gradientRectangle"
+        android:id="@+id/rectangle_background"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentStart="true"
@@ -22,7 +22,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/gsmstTextView"
+        android:id="@+id/textView_appName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
