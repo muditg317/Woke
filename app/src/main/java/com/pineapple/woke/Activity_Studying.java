@@ -58,21 +58,21 @@ public class Activity_Studying extends AppCompatActivity {
         imgButton_pause.setVisibility(View.INVISIBLE);
         imgButton_resume.setVisibility(View.VISIBLE);
         textView_resume.setVisibility(View.VISIBLE);
-        Toast.makeText(getApplicationContext(),"Study session paused",Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(),"Study session paused",Toast.LENGTH_SHORT).show();
     }
 
     private void stopStudying() {
+        Toast.makeText(getApplicationContext(),"Study session finished",Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(this, Activity_Home.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
         startActivity(intent);
-        //finish();
-        Toast.makeText(getApplicationContext(),"Study session finished",Toast.LENGTH_LONG).show();
+        finish();
     }
 
     private void resumeStudying() {
         imgButton_pause.setVisibility(View.VISIBLE);
         imgButton_resume.setVisibility(View.INVISIBLE);
         textView_resume.setVisibility(View.INVISIBLE);
-        Toast.makeText(getApplicationContext(),"Study session resumed",Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(),"Study session resumed",Toast.LENGTH_SHORT).show();
     }
 }
