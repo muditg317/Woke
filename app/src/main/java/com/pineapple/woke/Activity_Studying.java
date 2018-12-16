@@ -36,7 +36,6 @@ public class Activity_Studying extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 pauseStudying();
-                Toast.makeText(getApplicationContext(),"Study session paused",Toast.LENGTH_LONG).show();
             }
         });
 
@@ -44,7 +43,6 @@ public class Activity_Studying extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 stopStudying();
-                Toast.makeText(getApplicationContext(),"Study session finished",Toast.LENGTH_LONG).show();
             }
         });
 
@@ -52,7 +50,6 @@ public class Activity_Studying extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 resumeStudying();
-                Toast.makeText(getApplicationContext(),"Study session resumed",Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -61,6 +58,7 @@ public class Activity_Studying extends AppCompatActivity {
         imgButton_pause.setVisibility(View.INVISIBLE);
         imgButton_resume.setVisibility(View.VISIBLE);
         textView_resume.setVisibility(View.VISIBLE);
+        Toast.makeText(getApplicationContext(),"Study session paused",Toast.LENGTH_LONG).show();
     }
 
     private void stopStudying() {
@@ -68,11 +66,13 @@ public class Activity_Studying extends AppCompatActivity {
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
         startActivity(intent);
         //finish();
+        Toast.makeText(getApplicationContext(),"Study session finished",Toast.LENGTH_LONG).show();
     }
 
     private void resumeStudying() {
         imgButton_pause.setVisibility(View.VISIBLE);
         imgButton_resume.setVisibility(View.INVISIBLE);
         textView_resume.setVisibility(View.INVISIBLE);
+        Toast.makeText(getApplicationContext(),"Study session resumed",Toast.LENGTH_LONG).show();
     }
 }
