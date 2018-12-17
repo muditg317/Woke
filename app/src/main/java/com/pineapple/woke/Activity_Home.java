@@ -8,6 +8,8 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.pineapple.woke.resources.Singleton;
+
 public class Activity_Home extends AppCompatActivity {
     ImageButton imgButton_start;
     TextView textView_welcome;
@@ -17,7 +19,8 @@ public class Activity_Home extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        textView_welcome.setText("Welcome ");
+        String welcomeText = "Welcome " + Singleton.getInstance().getCurrUser().getName();
+        textView_welcome.setText(welcomeText);
 
         imgButton_start =(ImageButton)findViewById(R.id.imageButton_buttonStudy);
         imgButton_start.setOnClickListener(new View.OnClickListener() {

@@ -9,15 +9,17 @@ import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
+import android.widget.EditText;
 import android.widget.TextView;
 
+import com.pineapple.woke.resources.Singleton;
 import com.pineapple.woke.resources.User;
 
 public class Activity_Start extends AppCompatActivity {
 
     View rectangle_background;
     TextView textView_appName;
-
+    EditText editText_userName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,34 +29,53 @@ public class Activity_Start extends AppCompatActivity {
         Display screen = getWindowManager().getDefaultDisplay();
         rectangle_background = (View) findViewById(R.id.rectangle_background);
         textView_appName = (TextView) findViewById(R.id.textView_appName);
+        editText_userName = findViewById(R.id.editText_userName);
         textView_appName.setVisibility(View.INVISIBLE);
+        editText_userName.setVisibility(View.INVISIBLE);
 
-        final Animation transAnim_text2 = new TranslateAnimation(0.00f, 1.00f, 0.0f, 1.0f);
-        transAnim_text2.setDuration(1200);
-        transAnim_text2.setAnimationListener(new Animation.AnimationListener() {
+        final Animation alphaAnim_editText1 = new AlphaAnimation(0.0f, 1.0f);
+        alphaAnim_editText1.setDuration(1200);
+        alphaAnim_editText1.setAnimationListener(new Animation.AnimationListener() {
             public void onAnimationStart(Animation animation) {}
             public void onAnimationEnd(Animation animation) {
                 Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        getStarted();
+
                     }
                 }, 2000);
             }
             public void onAnimationRepeat(Animation animation) {}
         });
 
-        final Animation alphaAnim_text2 = new AlphaAnimation(0.00f, 1.00f);
-        alphaAnim_text2.setDuration(1200);
-        alphaAnim_text2.setAnimationListener(new Animation.AnimationListener() {
+        final Animation transAnim_text1 = new TranslateAnimation(0.00f, 1.00f, 0.0f, 1.0f);
+        transAnim_text1.setDuration(1200);
+        transAnim_text1.setAnimationListener(new Animation.AnimationListener() {
             public void onAnimationStart(Animation animation) {}
             public void onAnimationEnd(Animation animation) {
                 Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        textView_appName.startAnimation(transAnim_text2);
+                        editText_userName.setVisibility(View.VISIBLE);
+                        editText_userName.startAnimation(alphaAnim_editText1);
+                    }
+                }, 2000);
+            }
+            public void onAnimationRepeat(Animation animation) {}
+        });
+
+        final Animation alphaAnim_text1 = new AlphaAnimation(0.00f, 1.00f);
+        alphaAnim_text1.setDuration(1200);
+        alphaAnim_text1.setAnimationListener(new Animation.AnimationListener() {
+            public void onAnimationStart(Animation animation) {}
+            public void onAnimationEnd(Animation animation) {
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        textView_appName.startAnimation(transAnim_text1);
                     }
                 }, 2000);
             }
@@ -70,7 +91,7 @@ public class Activity_Start extends AppCompatActivity {
                     @Override
                     public void run() {
                         textView_appName.setVisibility(View.VISIBLE);
-                        textView_appName.startAnimation(alphaAnim_text2);
+                        textView_appName.startAnimation(alphaAnim_text1);
                     }
                 }, 600);
             }
@@ -83,8 +104,7 @@ public class Activity_Start extends AppCompatActivity {
     }
 
     private void getStarted() {
-
-        User test = new User("mudit");
+        Singleton.getInstance().setCurrUser(new User("mudit"));
 
         Intent intent = new Intent(this, Activity_Home.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
