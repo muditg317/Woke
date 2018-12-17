@@ -22,10 +22,10 @@ public class Activity_Studying extends AppCompatActivity {
         setContentView(R.layout.activity_studying);
 
         textView_pause = (TextView)findViewById(R.id.textView_buttonPause);
-        textView_stop = (TextView)findViewById(R.id.textView_buttonSubmit);
+        textView_stop = (TextView)findViewById(R.id.textView_buttonStop);
         textView_resume = (TextView)findViewById(R.id.textView_buttonResume);
         imgButton_pause =(ImageButton)findViewById(R.id.imageButton_buttonPause);
-        imgButton_stop =(ImageButton)findViewById(R.id.imageButton_buttonSubmit);
+        imgButton_stop =(ImageButton)findViewById(R.id.imageButton_buttonStop);
         imgButton_resume =(ImageButton)findViewById(R.id.imageButton_buttonResume);
 
         imgButton_resume.setVisibility(View.INVISIBLE);

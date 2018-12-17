@@ -3,6 +3,7 @@ package com.pineapple.woke;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -19,7 +20,9 @@ public class Activity_Home extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        textView_welcome = findViewById(R.id.textView_welcome);
         String welcomeText = "Welcome " + Singleton.getInstance().getCurrUser().getName();
+        Log.d("DEBUG", welcomeText);
         textView_welcome.setText(welcomeText);
 
         imgButton_start =(ImageButton)findViewById(R.id.imageButton_buttonStudy);

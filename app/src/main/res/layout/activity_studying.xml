@@ -107,7 +107,7 @@
         android:textAppearance="@style/header1_white"/>
 
     <ImageButton
-        android:id="@+id/imageButton_buttonSubmit"
+        android:id="@+id/imageButton_buttonStop"
         android:contentDescription="Stop"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -117,13 +117,13 @@
         android:layout_marginTop="480dp"/>
 
     <TextView
-        android:id="@+id/textView_buttonSubmit"
+        android:id="@+id/textView_buttonStop"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/imageButton_buttonSubmit"
-        android:layout_alignTop="@+id/imageButton_buttonSubmit"
-        android:layout_alignEnd="@+id/imageButton_buttonSubmit"
-        android:layout_alignBottom="@+id/imageButton_buttonSubmit"
+        android:layout_alignStart="@+id/imageButton_buttonStop"
+        android:layout_alignTop="@+id/imageButton_buttonStop"
+        android:layout_alignEnd="@+id/imageButton_buttonStop"
+        android:layout_alignBottom="@+id/imageButton_buttonStop"
         android:layout_margin="1dp"
         android:gravity="center"
         android:text="Stop"

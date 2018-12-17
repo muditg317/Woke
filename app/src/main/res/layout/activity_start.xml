@@ -25,8 +25,9 @@
         android:id="@+id/textView_appName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="140dp"
         android:text="@string/app_name"
         android:textAppearance="@style/title_white"
         android:textSize="48sp"
@@ -41,20 +42,42 @@
         android:id="@+id/editText_userName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="120dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="Enter your name"
-        android:textColorHint="@color/colorPrimaryWhite"
-        android:textColor="@color/colorPrimaryWhite"
-        android:textStyle="bold"
+        android:layout_alignBottom="@+id/textView_appName"
+        android:layout_centerHorizontal="true"
         android:backgroundTint="@color/colorPrimaryWhite"
+        android:ems="10"
+        android:hint="Enter your name"
+        android:inputType="textPersonName"
+        android:textColor="@color/colorPrimaryWhite"
+        android:textColorHint="@color/colorPrimaryWhite"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/rectangle_background" />
+
+    <ImageButton
+        android:id="@+id/imageButton_buttonSubmit"
+        android:contentDescription="Submit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/selector_button2"
+        android:layout_marginStart="54dp"
+        android:layout_marginEnd="54dp"
+        android:layout_marginTop="480dp"/>
+
+    <TextView
+        android:id="@+id/textView_buttonSubmit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/imageButton_buttonSubmit"
+        android:layout_alignTop="@+id/imageButton_buttonSubmit"
+        android:layout_alignEnd="@+id/imageButton_buttonSubmit"
+        android:layout_alignBottom="@+id/imageButton_buttonSubmit"
+        android:layout_margin="1dp"
+        android:gravity="center"
+        android:text="Submit"
+        android:textAppearance="@style/header1_black"/>
 
 
 </RelativeLayout>
