@@ -9,11 +9,14 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.pineapple.woke.resources.Constants;
 import com.pineapple.woke.resources.Singleton;
 
 public class Activity_Home extends AppCompatActivity {
     ImageButton imgButton_start;
     TextView textView_welcome;
+
+    private final int studySessionRC = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +33,6 @@ public class Activity_Home extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startStudying();
-                Toast.makeText(getApplicationContext(),"Study session started",Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -38,7 +40,17 @@ public class Activity_Home extends AppCompatActivity {
     private void startStudying() {
         Intent intent = new Intent(this, Activity_Studying.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-        startActivity(intent);
+        Toast.makeText(getApplicationContext(),"Study session started",Toast.LENGTH_LONG).show();
+        startActivityForResult(intent,studySessionRC);//wait for returned study session length
         //finish();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == studySessionRC) {
+            int millisSession = data.getIntExtra(Constants.studySessionMillis,0);
+            //TODO: save this somewhere
+        }
     }
 }
