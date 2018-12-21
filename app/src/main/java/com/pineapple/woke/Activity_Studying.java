@@ -61,12 +61,12 @@ public class Activity_Studying extends AppCompatActivity {
         wokeNotifs = 0;
 
 
-        textView_pause = (TextView)findViewById(R.id.textView_buttonPause);
-        textView_stop = (TextView)findViewById(R.id.textView_buttonStop);
-        textView_resume = (TextView)findViewById(R.id.textView_buttonResume);
-        imgButton_pause =(ImageButton)findViewById(R.id.imageButton_buttonPause);
-        imgButton_stop =(ImageButton)findViewById(R.id.imageButton_buttonStop);
-        imgButton_resume =(ImageButton)findViewById(R.id.imageButton_buttonResume);
+        textView_pause = findViewById(R.id.textView_buttonPause);
+        textView_stop = findViewById(R.id.textView_buttonStop);
+        textView_resume = findViewById(R.id.textView_buttonResume);
+        imgButton_pause = findViewById(R.id.imageButton_buttonPause);
+        imgButton_stop = findViewById(R.id.imageButton_buttonStop);
+        imgButton_resume = findViewById(R.id.imageButton_buttonResume);
         textView_time = findViewById(R.id.textView_time);
         textView_next = findViewById(R.id.textView_next);
 
@@ -94,11 +94,8 @@ public class Activity_Studying extends AppCompatActivity {
             }
         });
 
-
-
         //startService(new Intent(this, BroadcastService.class));
         //Log.i(TAG, "Started service");
-
 
         ticker = new CountDownTimer((int)(wokeMinutes*60*1000), 100) {
             public void onTick(long millisUntilFinished) {
@@ -150,6 +147,7 @@ public class Activity_Studying extends AppCompatActivity {
     public void onStop() {
         super.onStop();
     }
+
     @Override
     public void onDestroy() {
         Intent intent = new Intent();
