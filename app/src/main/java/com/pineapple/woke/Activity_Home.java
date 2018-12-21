@@ -49,7 +49,7 @@ public class Activity_Home extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == studySessionRC) {
-            int millisSession = data.getIntExtra(Constants.studySessionMillis,0);
+            //int millisSession = data.getIntExtra(Constants.studySessionMillis,0);
             //TODO: save this somewhere
         }
     }

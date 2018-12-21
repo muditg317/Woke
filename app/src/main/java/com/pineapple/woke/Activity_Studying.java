@@ -20,13 +20,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.pineapple.woke.resources.Constants;
+import com.pineapple.woke.resources.Singleton;
+import com.pineapple.woke.resources.StudySession;
 
 import java.util.Calendar;
 
 public class Activity_Studying extends AppCompatActivity {
 
     private final static String TAG = "Activity_Studying";
-
 
     ImageButton imgButton_pause;
     ImageButton imgButton_stop;
@@ -36,30 +37,12 @@ public class Activity_Studying extends AppCompatActivity {
     TextView textView_resume;
     TextView textView_time;
     TextView textView_next;
-
-
-    double wokeMinutes = 0.05;
-    long millisLastUpdate;
-    long millisElapsed;
-    long millisElapsedToWoke;
-    long displayWokeTime;
-    boolean studying;
-    int wokeNotifs;
-
-    CountDownTimer ticker;
+    StudySession s;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_studying);
-
-        millisLastUpdate = Calendar.getInstance().getTimeInMillis();
-        millisElapsed = 0;
-        millisElapsedToWoke = 0;
-        displayWokeTime = 0;
-        studying = true;
-        wokeNotifs = 0;
-
 
         textView_pause = findViewById(R.id.textView_buttonPause);
         textView_stop = findViewById(R.id.textView_buttonStop);
@@ -97,45 +80,15 @@ public class Activity_Studying extends AppCompatActivity {
         //startService(new Intent(this, BroadcastService.class));
         //Log.i(TAG, "Started service");
 
-        ticker = new CountDownTimer((int)(wokeMinutes*60*1000), 100) {
-            public void onTick(long millisUntilFinished) {
-                long currTime = Calendar.getInstance().getTimeInMillis();
-                millisElapsed += (currTime-millisLastUpdate);
-                millisElapsedToWoke += (currTime-millisLastUpdate);
-                if(textView_next.getText().toString().contains("GET WOKE")) {
-                    displayWokeTime += (currTime-millisLastUpdate);
-                }
-                int minutes = (int)(millisElapsed/1000/60);
-                int seconds = (int)(millisElapsed%(60*1000))/1000;
-                if(millisElapsedToWoke >= (int)(wokeMinutes*60*1000)) {
-                    wokeNotifs++;
-                    textView_next.setText("GET WOKE: "+wokeNotifs);
-                    millisElapsedToWoke = 0;
-                    displayWokeTime = 0;
-                }
-                if(displayWokeTime >= 1000) {
-                    textView_next.setText("Next Woke notification in " + wokeMinutes + " minutes");
-                }
-                textView_time.setText((minutes<10?"0":"")+minutes+":"+(seconds<10?"0":"")+seconds);
-                millisLastUpdate = currTime;
-            }
+        s = new StudySession(textView_next, textView_time);
 
-            public void onFinish() {
-                //continueTimer();
-                ticker.start();
-            }
-        };
     }
 
 
     @Override
     public void onResume() {
         super.onResume();
-        if(studying) {
-            ticker.start();
-        }
-        //registerReceiver(br, new IntentFilter(BroadcastService.COUNTDOWN_BR));
-        //Log.i(TAG, "Registered broacast receiver");
+        s.onResume();
     }
 
     @Override
@@ -151,10 +104,9 @@ public class Activity_Studying extends AppCompatActivity {
     @Override
     public void onDestroy() {
         Intent intent = new Intent();
-        ticker.cancel();
-        ticker.onTick(100);
-        studying = false;
-        intent.putExtra(Constants.studySessionMillis,millisElapsed);
+        s.onDestroy();
+        //intent.putExtra(Constants.studySessionMillis,s.getMillisElapsed());
+        Singleton.getInstance().getCurrUser().addStudySession(s);
         setResult(0,intent);
         //startActivity(intent);
         finish();
@@ -165,9 +117,7 @@ public class Activity_Studying extends AppCompatActivity {
         imgButton_pause.setVisibility(View.INVISIBLE);
         imgButton_resume.setVisibility(View.VISIBLE);
         textView_resume.setVisibility(View.VISIBLE);
-        ticker.cancel();
-        ticker.onTick(100);
-        studying = false;
+        s.pauseStudying();
         Toast.makeText(getApplicationContext(),"Study session paused",Toast.LENGTH_SHORT).show();
     }
 
@@ -176,10 +126,9 @@ public class Activity_Studying extends AppCompatActivity {
 //        Intent intent = new Intent(this, Activity_Home.class);
 //        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
         Intent intent = new Intent();
-        ticker.cancel();
-        ticker.onTick(100);
-        studying = false;
-        intent.putExtra(Constants.studySessionMillis,millisElapsed);
+        s.stopStudying();
+        //intent.putExtra(Constants.studySessionMillis,s.getMillisElapsed());
+        Singleton.getInstance().getCurrUser().addStudySession(s);
         setResult(0,intent);
         //startActivity(intent);
         finish();
@@ -189,9 +138,7 @@ public class Activity_Studying extends AppCompatActivity {
         imgButton_pause.setVisibility(View.VISIBLE);
         imgButton_resume.setVisibility(View.INVISIBLE);
         textView_resume.setVisibility(View.INVISIBLE);
-        studying = true;
-        millisLastUpdate = Calendar.getInstance().getTimeInMillis();
-        ticker.start();
+        s.resumeStudying();
         Toast.makeText(getApplicationContext(),"Study session resumed",Toast.LENGTH_SHORT).show();
     }
 }
