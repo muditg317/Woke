@@ -2,21 +2,22 @@ package com.pineapple.woke.resources;
 
 import android.util.Log;
 
+import com.pineapple.woke.StudySession.SavedSession;
+import com.pineapple.woke.StudySession.StudySession;
+
 import java.util.ArrayList;
 
 public class User {
 
     private String name;
-    private double notifInterval;
-    private ArrayList<StudySession> studySessions;
+    private double wokeInterval;
+    private ArrayList<SavedSession> studySessions;
 
-    public User(){
-        name = null;
-    }
-    public User(String n, double min){
-        name = n;
-        notifInterval = min;
-        studySessions = new ArrayList<StudySession>();
+    public User(){ }
+    public User(String name, double wokeInterval){
+        this.name = name;
+        this.wokeInterval = wokeInterval;
+        studySessions = new ArrayList<>();
     }
 
     public String getName() {
@@ -26,19 +27,19 @@ public class User {
         this.name = name;
     }
 
-    public double getNotifInterval() {
-        return notifInterval;
+    public double getWokeInterval() {
+        return wokeInterval;
     }
-    public void setNotifInterval(double notifInterval) {
-        this.notifInterval = notifInterval;
+    public void setWokeInterval(double wokeInterval) {
+        this.wokeInterval = wokeInterval;
     }
 
-    public ArrayList<StudySession> getStudySessions() {
+    public ArrayList<SavedSession> getStudySessions() {
         return studySessions;
     }
-    public void addStudySession(StudySession s){
+    public void addStudySession(SavedSession s){
         studySessions.add(s);
-        Log.d("User", "Study Session added to user");
-        Log.d("User", "Study Session duration: " + Long.toString(s.getMillisElapsed()));
+        Log.d("User", "Study Session added to: "+name);
+        Log.d("User", "Study Session duration: " + Long.toString(s.getDuration()));
     }
 }

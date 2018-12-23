@@ -1,29 +1,20 @@
 package com.pineapple.woke;
 
-import android.app.AlarmManager;
+import android.app.Notification;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
-import android.graphics.Color;
-import android.opengl.Visibility;
-import android.os.CountDownTimer;
-import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.pineapple.woke.resources.Constants;
+import com.pineapple.woke.resources.MyCallback;
 import com.pineapple.woke.resources.Singleton;
-import com.pineapple.woke.resources.StudySession;
-
-import java.util.Calendar;
+import com.pineapple.woke.StudySession.StudySession;
 
 public class Activity_Studying extends AppCompatActivity {
 
@@ -37,7 +28,9 @@ public class Activity_Studying extends AppCompatActivity {
     TextView textView_resume;
     TextView textView_time;
     TextView textView_next;
-    StudySession s;
+    StudySession session;
+
+    NotificationManager notificationManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +48,8 @@ public class Activity_Studying extends AppCompatActivity {
 
         imgButton_resume.setVisibility(View.INVISIBLE);
         textView_resume.setVisibility(View.INVISIBLE);
+
+        notificationManager=(NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
 
         imgButton_pause.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,18 +72,31 @@ public class Activity_Studying extends AppCompatActivity {
             }
         });
 
-        //startService(new Intent(this, BroadcastService.class));
-        //Log.i(TAG, "Started service");
-
-        s = new StudySession(textView_next, textView_time);
-
+        session = new StudySession(textView_next, textView_time,Singleton.getInstance().getCurrUser().getWokeInterval());
+        session.setNotifyCallback(new MyCallback<Integer>() {
+            @Override
+            public void accept(Integer integer) {
+                Notification notify = new Notification.Builder(getApplicationContext())
+                        .setWhen(System.currentTimeMillis())
+                        .setSmallIcon(android.R.drawable.stat_notify_more)
+                        .setTicker("GET WOKE!")
+                        .setContentTitle("GET WOKE!")
+                        .setContentText("It's been: "+(session.getWokeInterval()/1000/60)+" minutes!")
+                        .setContentIntent(PendingIntent.getActivity(getApplicationContext(), 0, new Intent(), 0))
+                        .build();
+                notify.notify();
+            }
+        });
+        Singleton.getInstance().getCurrUser().addStudySession(session.getSaveState());
     }
 
 
     @Override
     public void onResume() {
         super.onResume();
-        s.onResume();
+        if(session.isStudying()) {
+            session.start();
+        }
     }
 
     @Override
@@ -104,9 +112,9 @@ public class Activity_Studying extends AppCompatActivity {
     @Override
     public void onDestroy() {
         Intent intent = new Intent();
-        s.onDestroy();
-        //intent.putExtra(Constants.studySessionMillis,s.getMillisElapsed());
-        Singleton.getInstance().getCurrUser().addStudySession(s);
+        session.finish();
+        //intent.putExtra(Constants.studySessionMillis,session.getMillisElapsed());
+
         setResult(0,intent);
         //startActivity(intent);
         finish();
@@ -117,20 +125,16 @@ public class Activity_Studying extends AppCompatActivity {
         imgButton_pause.setVisibility(View.INVISIBLE);
         imgButton_resume.setVisibility(View.VISIBLE);
         textView_resume.setVisibility(View.VISIBLE);
-        s.pauseStudying();
+        session.pauseStudying();
         Toast.makeText(getApplicationContext(),"Study session paused",Toast.LENGTH_SHORT).show();
     }
 
     private void stopStudying() {
         Toast.makeText(getApplicationContext(),"Study session finished",Toast.LENGTH_SHORT).show();
-//        Intent intent = new Intent(this, Activity_Home.class);
-//        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
         Intent intent = new Intent();
-        s.stopStudying();
-        //intent.putExtra(Constants.studySessionMillis,s.getMillisElapsed());
-        Singleton.getInstance().getCurrUser().addStudySession(s);
+        session.finish();
+        //Singleton.getInstance().getCurrUser().addStudySession(session.getSaveState());
         setResult(0,intent);
-        //startActivity(intent);
         finish();
     }
 
@@ -138,7 +142,7 @@ public class Activity_Studying extends AppCompatActivity {
         imgButton_pause.setVisibility(View.VISIBLE);
         imgButton_resume.setVisibility(View.INVISIBLE);
         textView_resume.setVisibility(View.INVISIBLE);
-        s.resumeStudying();
+        session.resumeStudying();
         Toast.makeText(getApplicationContext(),"Study session resumed",Toast.LENGTH_SHORT).show();
     }
 }
