@@ -28,7 +28,18 @@
         android:textAppearance="@style/header2_black"
         android:layout_marginStart="30dp"
         android:layout_marginTop="63dp"/>
-    
+
+    <ImageButton
+        android:id="@+id/imageButton_buttonSettings"
+        android:contentDescription="Settings"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_buttonsettings_def"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_below="@+id/textView_welcome"
+        android:layout_marginTop="10dp"/>
+
     <ImageButton
         android:id="@+id/imageButton_buttonStudy"
         android:contentDescription="@string/start_studying"
