@@ -87,6 +87,23 @@ public class Activity_Studying extends AppCompatActivity {
                 notify.notify();
             }
         });
+        /**
+         *     --------- beginning of crash
+         12-23 17:49:20.041 3949-3949/com.pineapple.woke E/AndroidRuntime: FATAL EXCEPTION: main
+         Process: com.pineapple.woke, PID: 3949
+         java.lang.IllegalMonitorStateException: object not locked by thread before notify()
+         at java.lang.Object.notify(Native Method)
+         at com.pineapple.woke.Activity_Studying$4.accept(Activity_Studying.java:87)
+         at com.pineapple.woke.Activity_Studying$4.accept(Activity_Studying.java:76)
+         at com.pineapple.woke.StudySession.StudySession.onTick(StudySession.java:63)
+         at android.os.CountDownTimer$1.handleMessage(CountDownTimer.java:133)
+         at android.os.Handler.dispatchMessage(Handler.java:102)
+         at android.os.Looper.loop(Looper.java:154)
+         at android.app.ActivityThread.main(ActivityThread.java:6077)
+         at java.lang.reflect.Method.invoke(Native Method)
+         at com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run(ZygoteInit.java:866)
+         at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:756)
+         */
         Singleton.getInstance().getCurrUser().addStudySession(session.getSaveState());
     }
 
