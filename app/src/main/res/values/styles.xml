@@ -6,6 +6,7 @@
         <item name="colorPrimary">@color/colorPrimaryWhite</item>
         <item name="colorPrimaryDark">@color/colorPrimaryBlue</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowBackground">@color/colorPrimaryWhite</item>
     </style>
 
     <style name="title_white">

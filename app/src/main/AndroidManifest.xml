@@ -18,7 +18,8 @@
         </activity>
         <activity android:name=".Activity_Home" />
         <activity android:name=".Activity_Studying" />
-        <activity android:name=".Activity_Settings"></activity>
+        <activity android:name=".Activity_Settings_Home" />
+        <activity android:name=".Activity_Settings_Notifications"></activity>
     </application>
 
 </manifest>

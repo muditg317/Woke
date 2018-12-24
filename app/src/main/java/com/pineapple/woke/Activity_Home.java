@@ -9,7 +9,6 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.pineapple.woke.resources.Constants;
 import com.pineapple.woke.resources.Singleton;
 
 public class Activity_Home extends AppCompatActivity {
@@ -64,7 +63,7 @@ public class Activity_Home extends AppCompatActivity {
     }
 
     private void toSettings(){
-        Intent intent = new Intent(this, Activity_Settings.class);
+        Intent intent = new Intent(this, Activity_Settings_Home.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
         startActivity(intent);
     }
