@@ -14,6 +14,7 @@ import com.pineapple.woke.resources.Singleton;
 
 public class Activity_Home extends AppCompatActivity {
     ImageButton imgButton_start;
+    ImageButton imgButton_settings;
     TextView textView_welcome;
 
     private final int studySessionRC = 0;
@@ -28,11 +29,19 @@ public class Activity_Home extends AppCompatActivity {
         Log.d("DEBUG", welcomeText);
         textView_welcome.setText(welcomeText);
 
-        imgButton_start =(ImageButton)findViewById(R.id.imageButton_buttonStudy);
+        imgButton_start =findViewById(R.id.imageButton_buttonStudy);
         imgButton_start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startStudying();
+            }
+        });
+
+        imgButton_settings =findViewById(R.id.imageButton_buttonSettings);
+        imgButton_settings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                toSettings();
             }
         });
     }
@@ -52,5 +61,11 @@ public class Activity_Home extends AppCompatActivity {
             //int millisSession = data.getIntExtra(Constants.studySessionMillis,0);
             //TODO: update history UI
         }
+    }
+
+    private void toSettings(){
+        Intent intent = new Intent(this, Activity_Settings.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+        startActivity(intent);
     }
 }

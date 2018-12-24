@@ -26,7 +26,7 @@ public class StudySession extends CountDownTimer {
     private final TextView textView_time;
 
     private SavedSession saveState;
-    private MyCallback notifyCallback;
+    //private MyCallback notifyCallback;
 
     public StudySession(TextView textView_next, TextView textView_time, double wokeMinutes) {
         super((int)(wokeMinutes*60*1000), 100);
@@ -60,7 +60,7 @@ public class StudySession extends CountDownTimer {
             wokeNotifs++;
             Log.d(onTickTAG, "wokeNotifs: " + Integer.toString(wokeNotifs));
             textView_next.setText("GET WOKE: "+wokeNotifs);
-            notifyCallback.accept(wokeMillis);
+            //notifyCallback.accept(wokeMillis);
             millisElapsedToWoke = 0;
             displayWokeTime = 0;
         }
@@ -120,9 +120,9 @@ public class StudySession extends CountDownTimer {
         return saveState;
     }
 
-    public void setNotifyCallback(MyCallback<Integer> notifyCallback) {
+    /*public void setNotifyCallback(MyCallback<Integer> notifyCallback) {
         this.notifyCallback = notifyCallback;
-    }
+    }*/
 
     public int getWokeInterval() {
         return wokeMillis;

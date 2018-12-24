@@ -77,7 +77,7 @@
         android:layout_margin="1dp"
         android:gravity="center"
         android:text="Submit"
-        android:textAppearance="@style/header1_black"/>
+        android:textAppearance="@style/header20_black"/>
 
 
 </RelativeLayout>

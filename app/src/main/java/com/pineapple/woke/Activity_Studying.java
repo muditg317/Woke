@@ -73,7 +73,7 @@ public class Activity_Studying extends AppCompatActivity {
         });
 
         session = new StudySession(textView_next, textView_time,Singleton.getInstance().getCurrUser().getWokeInterval());
-        session.setNotifyCallback(new MyCallback<Integer>() {
+        /*session.setNotifyCallback(new MyCallback<Integer>() {
             @Override
             public void accept(Integer integer) {
                 Notification notify = new Notification.Builder(getApplicationContext())
@@ -86,7 +86,7 @@ public class Activity_Studying extends AppCompatActivity {
                         .build();
                 notify.notify();
             }
-        });
+        });*/
         /**
          *     --------- beginning of crash
          12-23 17:49:20.041 3949-3949/com.pineapple.woke E/AndroidRuntime: FATAL EXCEPTION: main

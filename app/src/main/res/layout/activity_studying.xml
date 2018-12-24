@@ -26,7 +26,7 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:text="@string/app_name"
-        android:textAppearance="@style/header1_white"
+        android:textAppearance="@style/header20_white"
         android:layout_marginStart="30dp"
         android:layout_marginTop="26dp"/>
 
@@ -38,7 +38,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="93dp"
         android:text="Currently studying"
-        android:textAppearance="@style/header2_white" />
+        android:textAppearance="@style/header30_white" />
 
     <TextView
         android:id="@+id/textView_time"
@@ -48,7 +48,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="172dp"
         android:text="0:00"
-        android:textAppearance="@style/text2_white" />
+        android:textAppearance="@style/text60_white" />
 
     <TextView
         android:id="@+id/textView_next"
@@ -58,7 +58,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="376dp"
         android:text="Next Woke notification in 10 minutes"
-        android:textAppearance="@style/text3_white" />
+        android:textAppearance="@style/text14_white" />
 
     <ImageButton
         android:id="@+id/imageButton_buttonPause"
@@ -81,7 +81,7 @@
         android:layout_margin="1dp"
         android:gravity="center"
         android:text="Pause"
-        android:textAppearance="@style/header1_black"/>
+        android:textAppearance="@style/header20_black"/>
 
     <ImageButton
         android:id="@+id/imageButton_buttonResume"
@@ -104,7 +104,7 @@
         android:layout_margin="1dp"
         android:gravity="center"
         android:text="Resume"
-        android:textAppearance="@style/header1_white"/>
+        android:textAppearance="@style/header20_white"/>
 
     <ImageButton
         android:id="@+id/imageButton_buttonStop"
@@ -127,6 +127,6 @@
         android:layout_margin="1dp"
         android:gravity="center"
         android:text="Stop"
-        android:textAppearance="@style/header1_black"/>
+        android:textAppearance="@style/header20_black"/>
 
 </RelativeLayout>
