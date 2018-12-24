@@ -68,7 +68,13 @@
 
     <style name="text18_gray">
         <item name="android:textSize"> 18sp </item>
-        <item name="android:textColor"> #606060 </item>
+        <item name="android:textColor"> @color/colorPrimaryGray </item>
+        <item name="android:textStyle"> bold </item>
+    </style>
+
+    <style name="text18_lightgray">
+        <item name="android:textSize"> 18sp </item>
+        <item name="android:textColor"> @color/colorSecondaryGray </item>
         <item name="android:textStyle"> bold </item>
     </style>
 

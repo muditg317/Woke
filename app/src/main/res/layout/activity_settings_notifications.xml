@@ -18,7 +18,7 @@
         android:layout_marginTop="26dp"/>
 
     <TextView
-        android:id="@+id/textView_settings"
+        android:id="@+id/textView_notifications"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
@@ -40,36 +40,47 @@
         android:layout_marginTop="33.5dp"/>
 
     <ImageButton
-        android:id="@+id/imageButton_notification"
-        android:contentDescription="Settings: Notifications"
+        android:id="@+id/imageButton_interval"
+        android:contentDescription="Settings: Notifications: Intervals"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/shape_button4_def"
         android:layout_marginStart="30dp"
         android:layout_marginEnd="30dp"
-        android:layout_below="@+id/textView_settings"
+        android:layout_below="@+id/textView_notifications"
         android:layout_marginTop="10dp"/>
 
     <ImageView
-        android:id="@+id/imageView_notificationIcon"
+        android:id="@+id/imageView_intervalsIcon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/shape_bell_def"
-        android:layout_alignStart="@+id/imageButton_notification"
-        android:layout_alignTop="@+id/imageButton_notification"
+        android:background="@drawable/shape_timer_def"
+        android:layout_alignStart="@+id/imageButton_interval"
+        android:layout_alignTop="@+id/imageButton_interval"
         android:layout_marginTop="20dp"
         />
 
     <TextView
-        android:id="@+id/textView_notification"
+        android:id="@+id/textView_intervals"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/imageButton_notification"
-        android:layout_alignTop="@+id/imageButton_notification"
+        android:layout_alignStart="@+id/imageButton_interval"
+        android:layout_alignTop="@+id/imageButton_interval"
         android:layout_marginTop="18dp"
         android:layout_marginStart="27dp"
-        android:text="Notifications"
+        android:text="Intervals"
         android:textAppearance="@style/text18_gray"/>
+
+    <TextView
+        android:id="@+id/textView_intervalTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/imageButton_interval"
+        android:layout_alignTop="@+id/imageButton_interval"
+        android:layout_marginTop="18dp"
+        android:layout_marginStart="27dp"
+        android:text="10 min"
+        android:textAppearance="@style/text18_lightgray"/>
 
     <ImageView
         android:id="@+id/imageView_border"
@@ -78,7 +89,7 @@
         android:background="@drawable/shape_line1_def"
         android:layout_marginStart="30dp"
         android:layout_marginEnd="30dp"
-        android:layout_alignBottom="@+id/imageButton_notification"
+        android:layout_alignBottom="@+id/imageButton_interval"
         />
 
 </RelativeLayout>

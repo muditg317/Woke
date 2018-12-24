@@ -27,6 +27,6 @@ public class Activity_Settings_Notifications extends AppCompatActivity {
         Intent intent = new Intent(this, Activity_Settings_Home.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
         startActivity(intent);
-        finish();
+        //finish();
     }
 }
