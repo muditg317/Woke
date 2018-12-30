@@ -5,13 +5,17 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationManagerCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.pineapple.woke.resources.Constants;
 import com.pineapple.woke.resources.MyCallback;
 import com.pineapple.woke.resources.Singleton;
 import com.pineapple.woke.StudySession.StudySession;
@@ -30,7 +34,7 @@ public class Activity_Studying extends AppCompatActivity {
     TextView textView_next;
     StudySession session;
 
-    NotificationManager notificationManager;
+    NotificationManagerCompat notificationManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +53,7 @@ public class Activity_Studying extends AppCompatActivity {
         imgButton_resume.setVisibility(View.INVISIBLE);
         textView_resume.setVisibility(View.INVISIBLE);
 
-        notificationManager=(NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
+        notificationManager = Singleton.getInstance().getNotificationManager();
 
         imgButton_pause.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,37 +77,25 @@ public class Activity_Studying extends AppCompatActivity {
         });
 
         session = new StudySession(textView_next, textView_time,Singleton.getInstance().getCurrUser().getWokeInterval());
-        /*session.setNotifyCallback(new MyCallback<Integer>() {
+        session.setNotifyCallback(new MyCallback<Integer>() {
             @Override
-            public void accept(Integer integer) {
-                Notification notify = new Notification.Builder(getApplicationContext())
-                        .setWhen(System.currentTimeMillis())
-                        .setSmallIcon(android.R.drawable.stat_notify_more)
-                        .setTicker("GET WOKE!")
-                        .setContentTitle("GET WOKE!")
-                        .setContentText("It's been: "+(session.getWokeInterval()/1000/60)+" minutes!")
-                        .setContentIntent(PendingIntent.getActivity(getApplicationContext(), 0, new Intent(), 0))
-                        .build();
-                notify.notify();
+            public void accept(Integer wokeInterval) {
+
+                Log.d("notify callback","creating notification");
+
+                String content = getResources().getString(R.string.notifContent)+" It's been "+wokeInterval/1000/60+" minutes!";
+
+                NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(Activity_Studying.this, Constants.CHANNEL_ID)
+                        .setSmallIcon(R.drawable.notification_icon)
+                        .setContentTitle(getString(R.string.notifTitle))
+                        .setContentText(content)
+                        .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                        .setCategory(NotificationCompat.CATEGORY_REMINDER)
+                        .setAutoCancel(true);
+                // notificationId is a unique int for each notification that you must define
+                notificationManager.notify(Constants.wokeNotificationID, mBuilder.build());
             }
-        });*/
-        /**
-         *     --------- beginning of crash
-         12-23 17:49:20.041 3949-3949/com.pineapple.woke E/AndroidRuntime: FATAL EXCEPTION: main
-         Process: com.pineapple.woke, PID: 3949
-         java.lang.IllegalMonitorStateException: object not locked by thread before notify()
-         at java.lang.Object.notify(Native Method)
-         at com.pineapple.woke.Activity_Studying$4.accept(Activity_Studying.java:87)
-         at com.pineapple.woke.Activity_Studying$4.accept(Activity_Studying.java:76)
-         at com.pineapple.woke.StudySession.StudySession.onTick(StudySession.java:63)
-         at android.os.CountDownTimer$1.handleMessage(CountDownTimer.java:133)
-         at android.os.Handler.dispatchMessage(Handler.java:102)
-         at android.os.Looper.loop(Looper.java:154)
-         at android.app.ActivityThread.main(ActivityThread.java:6077)
-         at java.lang.reflect.Method.invoke(Native Method)
-         at com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run(ZygoteInit.java:866)
-         at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:756)
-         */
+        });
         Singleton.getInstance().getCurrUser().addStudySession(session.getSaveState());
     }
 

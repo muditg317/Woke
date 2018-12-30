@@ -7,6 +7,8 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.pineapple.davinci.studentutils.Student;*/
 
+import android.support.v4.app.NotificationManagerCompat;
+
 import java.io.Serializable;
 
 /**
@@ -18,6 +20,7 @@ public class Singleton implements Serializable {
     private static volatile Singleton ourInstance;
     private boolean signedInSuccess;
     private User currUser;
+    private NotificationManagerCompat notificationManagerCompat;
     /**private GoogleSignInClient gsiClient;
     private GoogleApiClient gapiClient;
     private GoogleSignInAccount gsiAccount;
@@ -146,5 +149,13 @@ public class Singleton implements Serializable {
         this.fireUser = null;
         this.databaseRef = null;*/
         this.signedInSuccess = false;
+    }
+
+    public NotificationManagerCompat getNotificationManager() {
+        return notificationManagerCompat;
+    }
+
+    public void setNotificationManager(NotificationManagerCompat notificationManagerCompat) {
+        this.notificationManagerCompat = notificationManagerCompat;
     }
 }

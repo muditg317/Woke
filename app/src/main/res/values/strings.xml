@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">Woke</string>
     <string name="start_studying">Start studying</string>
+    <string name="channel_name">woke notifications</string>
+    <string name="channel_description">notification channel</string>
+    <string name="notifTitle">GET WOKE!</string>
+    <string name="notifContent">Wake up!</string>
 </resources>

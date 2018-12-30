@@ -10,5 +10,7 @@ import android.support.annotation.Dimension;
 public class Constants {
 
 
-    public static String studySessionMillis = "Study session duration";
+    public static final int wokeNotificationID = 0;
+    public static final String CHANNEL_ID = "woke notification channel id";
+
 }

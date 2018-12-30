@@ -22,11 +22,13 @@ public class StudySession extends CountDownTimer {
     private boolean studying;
     private int wokeNotifs;
 
+    private int missedNotifications;
+
     private final TextView textView_next;
     private final TextView textView_time;
 
     private SavedSession saveState;
-    //private MyCallback notifyCallback;
+    private MyCallback notifyCallback;
 
     public StudySession(TextView textView_next, TextView textView_time, double wokeMinutes) {
         super((int)(wokeMinutes*60*1000), 100);
@@ -37,6 +39,7 @@ public class StudySession extends CountDownTimer {
         displayWokeTime = 0;
         studying = true;
         wokeNotifs = 0;
+        missedNotifications = 0;
         this.textView_next = textView_next;
         this.textView_time = textView_time;
 
@@ -45,44 +48,44 @@ public class StudySession extends CountDownTimer {
 
     public void onTick(long millisUntilFinished) {
         String onTickTAG = "onTick(" + Long.toString(millisUntilFinished) + ")";
-        Log.d(onTickTAG, "onTick called");
+        //Log.d(onTickTAG, "onTick called");
         long currTime = Calendar.getInstance().getTimeInMillis();
-        Log.d(onTickTAG, "currTime: " + Long.toString(currTime));
+        //Log.d(onTickTAG, "currTime: " + Long.toString(currTime));
 
-        Log.d(onTickTAG, "currTime-millisLastUpdate: " + Long.toString((currTime-millisLastUpdate)));
+        //Log.d(onTickTAG, "currTime-millisLastUpdate: " + Long.toString((currTime-millisLastUpdate)));
 
         millisElapsed += (currTime-millisLastUpdate);
-        Log.d(onTickTAG, "millisElapsed: " + Long.toString(millisElapsed));
+        //Log.d(onTickTAG, "millisElapsed: " + Long.toString(millisElapsed));
         millisElapsedToWoke += (currTime-millisLastUpdate);
-        Log.d(onTickTAG, "millisElapsedToWoke: " + Long.toString(millisElapsedToWoke));
+        //Log.d(onTickTAG, "millisElapsedToWoke: " + Long.toString(millisElapsedToWoke));
 
         if(millisElapsedToWoke >= wokeMillis) {
             wokeNotifs++;
-            Log.d(onTickTAG, "wokeNotifs: " + Integer.toString(wokeNotifs));
+            //Log.d(onTickTAG, "wokeNotifs: " + Integer.toString(wokeNotifs));
             textView_next.setText("GET WOKE: "+wokeNotifs);
-            //notifyCallback.accept(wokeMillis);
+            notifyCallback.accept(wokeMillis);
             millisElapsedToWoke = 0;
             displayWokeTime = 0;
         }
 
         if(textView_next.getText().toString().contains("GET WOKE")) {
             displayWokeTime += (currTime - millisLastUpdate);
-            Log.d(onTickTAG, "displayWokeTime: " + Long.toString(displayWokeTime));
+            //Log.d(onTickTAG, "displayWokeTime: " + Long.toString(displayWokeTime));
         }
         if(displayWokeTime >= 1000) {
-            textView_next.setText("Next Woke notification in " + (millisUntilFinished/1000.0) + " seconds");
+            textView_next.setText("Next Woke notification in " + ((wokeMillis-millisElapsedToWoke)/1000.0) + " seconds");
         }
 
         int minutes = (int)(millisElapsed/1000/60);
         int seconds = (int)(millisElapsed%(60*1000))/1000;
         textView_time.setText((minutes<10?"0":"")+minutes+":"+(seconds<10?"0":"")+seconds);
         millisLastUpdate = currTime;
-        Log.d(onTickTAG, "millisLastUpdate: " + Long.toString(millisLastUpdate));
+        //Log.d(onTickTAG, "millisLastUpdate: " + Long.toString(millisLastUpdate));
     }
 
     public void onFinish() {
         start();
-        Log.d(TAG, "onFinish");
+        //Log.d(TAG, "onFinish");
     }
 
     public void updateSaveState() {
@@ -120,11 +123,12 @@ public class StudySession extends CountDownTimer {
         return saveState;
     }
 
-    /*public void setNotifyCallback(MyCallback<Integer> notifyCallback) {
+    public void setNotifyCallback(MyCallback<Integer> notifyCallback) {
         this.notifyCallback = notifyCallback;
-    }*/
+    }
 
     public int getWokeInterval() {
         return wokeMillis;
     }
+
 }
