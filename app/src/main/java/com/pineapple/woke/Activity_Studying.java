@@ -86,7 +86,7 @@ public class Activity_Studying extends AppCompatActivity {
                 String content = getResources().getString(R.string.notifContent)+" It's been "+wokeInterval/1000/60+" minutes!";
 
                 NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(Activity_Studying.this, Constants.CHANNEL_ID)
-                        .setSmallIcon(R.drawable.notification_icon)
+                        .setSmallIcon(R.drawable.shape_bell_def)
                         .setContentTitle(getString(R.string.notifTitle))
                         .setContentText(content)
                         .setPriority(NotificationCompat.PRIORITY_DEFAULT)

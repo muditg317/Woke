@@ -18,15 +18,14 @@ public class Activity_Settings_Notifications extends AppCompatActivity {
         imgButton_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                back();
+                onBackPressed();
             }
         });
     }
 
-    private void back(){
-        Intent intent = new Intent(this, Activity_Settings_Home.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-        startActivity(intent);
-        //finish();
+    @Override
+    public void onBackPressed(){
+        super.onBackPressed();
+        finish();
     }
 }

@@ -19,7 +19,7 @@ public class Activity_Settings_Home extends AppCompatActivity {
         imgButton_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                back();
+                onBackPressed();
             }
         });
 
@@ -32,11 +32,10 @@ public class Activity_Settings_Home extends AppCompatActivity {
         });
     }
 
-    private void back(){
-        Intent intent = new Intent(this, Activity_Home.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-        startActivity(intent);
-        //finish();
+    @Override
+    public void onBackPressed(){
+        super.onBackPressed();
+        finish();
     }
 
     private void toNotifications(){
