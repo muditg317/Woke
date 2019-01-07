@@ -10,11 +10,11 @@ import java.util.ArrayList;
 public class User {
 
     private String name;
-    private double wokeInterval;
+    private int wokeInterval;
     private ArrayList<SavedSession> studySessions;
 
     public User(){ }
-    public User(String name, double wokeInterval){
+    public User(String name, int wokeInterval){
         this.name = name;
         this.wokeInterval = wokeInterval;
         studySessions = new ArrayList<>();
@@ -27,10 +27,10 @@ public class User {
         this.name = name;
     }
 
-    public double getWokeInterval() {
+    public int getWokeInterval() {
         return wokeInterval;
     }
-    public void setWokeInterval(double wokeInterval) {
+    public void setWokeInterval(int wokeInterval) {
         this.wokeInterval = wokeInterval;
     }
 

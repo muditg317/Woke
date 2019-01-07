@@ -14,7 +14,7 @@
         android:text="@string/app_name"
         android:textAppearance="@style/header20_blue"
         android:layout_alignParentEnd="true"
-        android:layout_marginEnd="30dp"
+        android:layout_marginEnd="20dp"
         android:layout_marginTop="26dp"/>
 
     <TextView
@@ -25,7 +25,7 @@
         android:layout_alignParentTop="true"
         android:text="Settings"
         android:textAppearance="@style/header30_black"
-        android:layout_marginEnd="30dp"
+        android:layout_marginEnd="20dp"
         android:layout_marginTop="63dp"/>
 
     <ImageButton
@@ -36,7 +36,7 @@
         android:background="@drawable/shape_back_def"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="30dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="33.5dp"/>
 
     <ImageButton
@@ -44,9 +44,7 @@
         android:contentDescription="Settings: Notifications"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/shape_button4_def"
-        android:layout_marginStart="30dp"
-        android:layout_marginEnd="30dp"
+        android:background="@drawable/selector_button4"
         android:layout_below="@+id/textView_settings"
         android:layout_marginTop="10dp"/>
 
@@ -57,6 +55,7 @@
         android:background="@drawable/shape_bell_def"
         android:layout_alignStart="@+id/imageButton_notification"
         android:layout_alignTop="@+id/imageButton_notification"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         />
 
@@ -67,18 +66,10 @@
         android:layout_alignStart="@+id/imageButton_notification"
         android:layout_alignTop="@+id/imageButton_notification"
         android:layout_marginTop="18dp"
-        android:layout_marginStart="27dp"
+        android:layout_marginStart="50dp"
         android:text="Notifications"
         android:textAppearance="@style/text18_gray"/>
 
-    <ImageView
-        android:id="@+id/imageView_border"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/shape_line1_def"
-        android:layout_marginStart="30dp"
-        android:layout_marginEnd="30dp"
-        android:layout_alignBottom="@+id/imageButton_notification"
-        />
+
 
 </RelativeLayout>

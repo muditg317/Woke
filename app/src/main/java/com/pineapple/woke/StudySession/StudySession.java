@@ -59,6 +59,11 @@ public class StudySession extends CountDownTimer {
         millisElapsedToWoke += (currTime-millisLastUpdate);
         //Log.d(onTickTAG, "millisElapsedToWoke: " + Long.toString(millisElapsedToWoke));
 
+        if(textView_next.getText().toString().contains("GET WOKE")) {
+            displayWokeTime += (currTime - millisLastUpdate);
+            //Log.d(onTickTAG, "displayWokeTime: " + Long.toString(displayWokeTime));
+        }
+
         if(millisElapsedToWoke >= wokeMillis) {
             wokeNotifs++;
             //Log.d(onTickTAG, "wokeNotifs: " + Integer.toString(wokeNotifs));
@@ -67,14 +72,17 @@ public class StudySession extends CountDownTimer {
             millisElapsedToWoke = 0;
             displayWokeTime = 0;
         }
+        else {
+            int secs = (int)((wokeMillis-millisElapsedToWoke)/1000)+1;
+            if(secs <= 60){
+                textView_next.setText("Next Woke notification in " + secs + " seconds");
+            }
+            else {
+                textView_next.setText("Next Woke notification in " + ((secs/60)+1) + " minutes");
+            }
+        }
 
-        if(textView_next.getText().toString().contains("GET WOKE")) {
-            displayWokeTime += (currTime - millisLastUpdate);
-            //Log.d(onTickTAG, "displayWokeTime: " + Long.toString(displayWokeTime));
-        }
-        if(displayWokeTime >= 1000) {
-            textView_next.setText("Next Woke notification in " + ((wokeMillis-millisElapsedToWoke)/1000.0) + " seconds");
-        }
+
 
         int minutes = (int)(millisElapsed/1000/60);
         int seconds = (int)(millisElapsed%(60*1000))/1000;

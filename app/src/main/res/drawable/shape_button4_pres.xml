@@ -13,7 +13,7 @@
 
     <!--If your shape requires only one solid color-->
     <solid
-        android:color="@color/colorPrimaryWhite" />
+        android:color="@color/colorSecondaryGray" />
 
     <size
         android:width="360dp"

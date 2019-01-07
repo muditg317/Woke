@@ -147,7 +147,7 @@ public class Activity_Start extends AppCompatActivity {
     }
 
     private void getStarted(String name) {
-        Singleton.getInstance().setCurrUser(new User(name, 0.05));
+        Singleton.getInstance().setCurrUser(new User(name, 10));
 
         Intent intent = new Intent(this, Activity_Home.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
