@@ -16,7 +16,7 @@ public class Activity_Settings_Notifications extends AppCompatActivity {
     TextView textView_intervalTime;
     SeekBar seekBar_intervalTime;
     private static int MAX_intervalTime = 60;
-    private static int MIN_intervalTime = 2;
+    private static int MIN_intervalTime = 1;
     int minutesUser;
     boolean first;
 

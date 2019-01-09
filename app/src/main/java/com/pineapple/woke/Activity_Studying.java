@@ -87,7 +87,7 @@ public class Activity_Studying extends AppCompatActivity {
             public void accept(Integer wokeInterval) {
 
                 Log.d("notify callback","creating notification");
-
+                //TODO: doesn't this just check if the app is running? not if the app is open? might be a reason why the notification doesn't pop up outside the app
                 if(Utils.isAppRunning(Activity_Studying.this, Constants.PACKAGE_NAME)) {
                     // Create an explicit intent for an Activity in your app
                 /*Intent intent = new Intent(this, Activity_Studying.class);
@@ -125,7 +125,7 @@ public class Activity_Studying extends AppCompatActivity {
 
     private void showAlertDialog() {
         FragmentManager fm = getSupportFragmentManager();
-        DialogFragment_Notif alertDialog = DialogFragment_Notif.newInstance("Some title");
+        DialogFragment_Notif alertDialog = DialogFragment_Notif.newInstance(getString(R.string.dialog_notif_title), getString(R.string.dialog_notif_message));
         alertDialog.show(fm, "fragment_alert");
     }
 

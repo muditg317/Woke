@@ -7,6 +7,15 @@
     <string name="notifContent">Wake up!</string>
     <string name="woke">WOKE</string>
 
+    <string name="dialog_notif_title">Are you still awake?</string>
+    <string name="dialog_notif_message">
+        Don\'t let your sleepiness overtake you.
+        Keep pushing on.
+        You are in control of your body and your mind.
+        Get up and stretch.
+        Do some jumping jacks.
+        Get the blood flowing.</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

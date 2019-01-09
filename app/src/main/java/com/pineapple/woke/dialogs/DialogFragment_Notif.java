@@ -14,10 +14,11 @@ public class DialogFragment_Notif extends DialogFragment {
         // Empty constructor required for DialogFragment
     }
 
-    public static DialogFragment_Notif newInstance(String title) {
+    public static DialogFragment_Notif newInstance(String title, String message) {
         DialogFragment_Notif frag = new DialogFragment_Notif();
         Bundle args = new Bundle();
         args.putString("title", title);
+        args.putString("message", message);
         frag.setArguments(args);
         return frag;
     }
@@ -25,10 +26,12 @@ public class DialogFragment_Notif extends DialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         String title = getArguments().getString("title");
+        String message = getArguments().getString("message");
+
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity());
 
         alertDialogBuilder.setTitle(title);
-        alertDialogBuilder.setMessage("Testing dialog");
+        alertDialogBuilder.setMessage(message);
 
         // Add the buttons
         alertDialogBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
