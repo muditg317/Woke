@@ -78,11 +78,9 @@ public class StudySession extends CountDownTimer {
                 textView_next.setText("Next Woke notification in " + secs + " seconds");
             }
             else {
-                textView_next.setText("Next Woke notification in " + ((secs/60)+1) + " minutes");
+                textView_next.setText("Next Woke notification in " + ((int)Math.ceil((secs/60.0))) + " minutes");
             }
         }
-
-
 
         int minutes = (int)(millisElapsed/1000/60);
         int seconds = (int)(millisElapsed%(60*1000))/1000;

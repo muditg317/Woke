@@ -5,6 +5,7 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -15,6 +16,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.pineapple.woke.dialogs.DialogFragment_Notif;
 import com.pineapple.woke.resources.Constants;
 import com.pineapple.woke.resources.MyCallback;
 import com.pineapple.woke.resources.Singleton;
@@ -90,6 +92,8 @@ public class Activity_Studying extends AppCompatActivity {
 
                 String content = getResources().getString(R.string.notifContent)+" It's been "+wokeInterval/1000/60+" minutes!";
 
+                showAlertDialog();
+
                 NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(Activity_Studying.this, Constants.CHANNEL_ID)
                         .setSmallIcon(R.drawable.logo)
                         .setContentTitle(getString(R.string.notifTitle))
@@ -102,6 +106,12 @@ public class Activity_Studying extends AppCompatActivity {
             }
         });
         Singleton.getInstance().getCurrUser().addStudySession(session.getSaveState());
+    }
+
+    private void showAlertDialog() {
+        FragmentManager fm = getSupportFragmentManager();
+        DialogFragment_Notif alertDialog = DialogFragment_Notif.newInstance("Some title");
+        alertDialog.show(fm, "fragment_alert");
     }
 
 
