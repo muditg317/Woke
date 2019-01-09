@@ -83,10 +83,15 @@ public class Activity_Studying extends AppCompatActivity {
 
                 Log.d("notify callback","creating notification");
 
+                // Create an explicit intent for an Activity in your app
+                /*Intent intent = new Intent(this, Activity_Studying.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);*/
+
                 String content = getResources().getString(R.string.notifContent)+" It's been "+wokeInterval/1000/60+" minutes!";
 
                 NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(Activity_Studying.this, Constants.CHANNEL_ID)
-                        .setSmallIcon(R.drawable.shape_bell_def)
+                        .setSmallIcon(R.drawable.logo)
                         .setContentTitle(getString(R.string.notifTitle))
                         .setContentText(content)
                         .setPriority(NotificationCompat.PRIORITY_DEFAULT)
