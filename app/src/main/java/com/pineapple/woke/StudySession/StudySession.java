@@ -8,8 +8,6 @@ import com.pineapple.woke.resources.Constants;
 import com.pineapple.woke.resources.MyCallback;
 import com.pineapple.woke.resources.Singleton;
 
-import org.w3c.dom.Text;
-
 import java.util.Calendar;
 
 public class StudySession extends CountDownTimer {

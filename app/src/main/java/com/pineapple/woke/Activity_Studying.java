@@ -101,10 +101,7 @@ public class Activity_Studying extends AppCompatActivity {
                     PendingIntent wokePendingIntent =
                             PendingIntent.getBroadcast(Activity_Studying.this, 0, wokeIntent, 0);
 
-
                     String content = getString(R.string.notifContent) + " It's been " + wokeInterval / 1000 / 60 + " minutes!";
-
-
 
                     NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(Activity_Studying.this, Constants.CHANNEL_ID)
                             .setSmallIcon(R.drawable.logo)
