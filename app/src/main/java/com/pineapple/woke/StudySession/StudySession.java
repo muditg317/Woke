@@ -32,7 +32,7 @@ public class StudySession extends CountDownTimer {
     private MyCallback notifyCallback;
 
     public StudySession(TextView textView_next, TextView textView_time, double wokeMinutes) {
-        super((int)(wokeMinutes*60*1000), 100);
+        super((long)(wokeMinutes*60*1000), 100);
         wokeMillis = (int)(wokeMinutes*60*1000);
         millisLastUpdate = Calendar.getInstance().getTimeInMillis();
         millisElapsed = 0;

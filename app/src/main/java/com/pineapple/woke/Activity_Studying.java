@@ -1,9 +1,11 @@
 package com.pineapple.woke;
 
+import android.app.AlertDialog;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.NotificationCompat;
@@ -81,7 +83,7 @@ public class Activity_Studying extends AppCompatActivity {
             }
         });
 
-        session = new StudySession(textView_next, textView_time,Singleton.getInstance().getCurrUser().getWokeInterval());
+        session = new StudySession(textView_next, textView_time,Singleton.getInstance().getCurrUser().getWokeInterval()/10.0);
         session.setNotifyCallback(new MyCallback<Integer>() {
             @Override
             public void accept(Integer wokeInterval) {
@@ -125,8 +127,11 @@ public class Activity_Studying extends AppCompatActivity {
 
     private void showAlertDialog() {
         FragmentManager fm = getSupportFragmentManager();
-        DialogFragment_Notif alertDialog = DialogFragment_Notif.newInstance(getString(R.string.dialog_notif_title), getString(R.string.dialog_notif_message));
-        alertDialog.show(fm, "fragment_alert");
+        final DialogFragment_Notif dialogFragment_notif = DialogFragment_Notif.newInstance(getString(R.string.dialog_notif_title), getString(R.string.dialog_notif_message));
+
+        dialogFragment_notif.show(fm, "fragment_alert");
+
+        //((AlertDialog)(dialogFragment_notif.getDialog())).getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getColor(R.color.colorPrimaryBlue));
     }
 
 

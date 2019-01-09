@@ -15,9 +15,9 @@ public class Activity_Settings_Notifications extends AppCompatActivity {
     ImageButton imgButton_back;
     TextView textView_intervalTime;
     SeekBar seekBar_intervalTime;
-    private static int MAX_intervalTime = 60;
+    private static int MAX_intervalTime = 600;
     private static int MIN_intervalTime = 1;
-    int minutesUser;
+    double minutesUser;
     boolean first;
 
     @Override
@@ -36,9 +36,9 @@ public class Activity_Settings_Notifications extends AppCompatActivity {
         first = true;
 
         textView_intervalTime = findViewById(R.id.textView_intervalTime);
-        minutesUser = Singleton.getInstance().getCurrUser().getWokeInterval();
-        Log.d("INTERVAL", "User: " + Integer.toString(minutesUser));
-        String intervalTime = (minutesUser > 1? (minutesUser+" mins"):(minutesUser+" min"));
+        minutesUser = Singleton.getInstance().getCurrUser().getWokeInterval()/10.0;
+        Log.d("INTERVAL", "User: " + Double.toString(minutesUser));
+        String intervalTime = (minutesUser > 1.0? ((int)minutesUser+" mins"):((int)(minutesUser*60)+" secs"));
         textView_intervalTime.setText(intervalTime);
 
         SeekBar.OnSeekBarChangeListener seekBarChangeListener = new SeekBar.OnSeekBarChangeListener() {
@@ -47,10 +47,10 @@ public class Activity_Settings_Notifications extends AppCompatActivity {
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 // updated continuously as the user slides the thumb
                 if(!first){
-                    int minutesChange = progress+MIN_intervalTime;
-                    String intervalTime = (minutesChange > 1? (minutesChange+" mins"):(minutesChange+" min"));
+                    double minutesChange = (progress+MIN_intervalTime)/10.0;
+                    String intervalTime = (minutesChange > 1.0? ((int)minutesChange+" mins"):((int)(minutesChange*60)+" secs"));
                     textView_intervalTime.setText(intervalTime);
-                    Log.d("INTERVAL", "NewChange: " + Integer.toString(minutesChange));
+                    Log.d("INTERVAL", "NewChange: " + Double.toString(minutesChange));
                 }
                 else{
                     first = false;
@@ -65,16 +65,16 @@ public class Activity_Settings_Notifications extends AppCompatActivity {
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
                 // called after the user finishes moving the SeekBar
-                Log.d("INTERVAL", "NewStop: " + Integer.toString(seekBar.getProgress()+MIN_intervalTime));
+                Log.d("INTERVAL", "NewStop: " + Double.toString((seekBar.getProgress()+MIN_intervalTime)/10.0));
                 Singleton.getInstance().getCurrUser().setWokeInterval(seekBar.getProgress()+MIN_intervalTime);
             }
         };
 
         seekBar_intervalTime = findViewById(R.id.seekBar_intervalTime);
-        seekBar_intervalTime.setProgress(minutesUser-MIN_intervalTime);
+        seekBar_intervalTime.setProgress(((int)(minutesUser*10))-MIN_intervalTime);
         seekBar_intervalTime.setOnSeekBarChangeListener(seekBarChangeListener);
         seekBar_intervalTime.setMax(MAX_intervalTime - MIN_intervalTime);
-        Log.d("INTERVAL", "SetProgress: " + Integer.toString(minutesUser));
+        Log.d("INTERVAL", "SetProgress: " + Double.toString(minutesUser));
     }
 
     @Override
