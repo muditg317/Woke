@@ -5,6 +5,7 @@
     <string name="channel_description">notification channel</string>
     <string name="notifTitle">GET WOKE!</string>
     <string name="notifContent">Wake up!</string>
+    <string name="woke">WOKE</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

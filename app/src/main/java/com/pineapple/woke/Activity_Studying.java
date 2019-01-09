@@ -21,6 +21,9 @@ import com.pineapple.woke.resources.Constants;
 import com.pineapple.woke.resources.MyCallback;
 import com.pineapple.woke.resources.Singleton;
 import com.pineapple.woke.StudySession.StudySession;
+import com.pineapple.woke.resources.Utils;
+
+import static android.app.Notification.EXTRA_NOTIFICATION_ID;
 
 public class Activity_Studying extends AppCompatActivity {
 
@@ -85,26 +88,41 @@ public class Activity_Studying extends AppCompatActivity {
 
                 Log.d("notify callback","creating notification");
 
-                // Create an explicit intent for an Activity in your app
+                if(Utils.isAppRunning(Activity_Studying.this, Constants.PACKAGE_NAME)) {
+                    // Create an explicit intent for an Activity in your app
                 /*Intent intent = new Intent(this, Activity_Studying.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);*/
+                    showAlertDialog();
+                } else {
+                    Intent wokeIntent = new Intent(Activity_Studying.this, MyBroadcastReceiver.class);
+                    wokeIntent.setAction(Constants.ACTION_WOKE);
+                    wokeIntent.putExtra(EXTRA_NOTIFICATION_ID, 0);
+                    PendingIntent wokePendingIntent =
+                            PendingIntent.getBroadcast(Activity_Studying.this, 0, wokeIntent, 0);
 
-                String content = getResources().getString(R.string.notifContent)+" It's been "+wokeInterval/1000/60+" minutes!";
 
-                showAlertDialog();
+                    String content = getString(R.string.notifContent) + " It's been " + wokeInterval / 1000 / 60 + " minutes!";
 
-                NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(Activity_Studying.this, Constants.CHANNEL_ID)
-                        .setSmallIcon(R.drawable.logo)
-                        .setContentTitle(getString(R.string.notifTitle))
-                        .setContentText(content)
-                        .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-                        .setCategory(NotificationCompat.CATEGORY_REMINDER)
-                        .setAutoCancel(true);
-                // notificationId is a unique int for each notification that you must define
-                notificationManager.notify(Constants.wokeNotificationID, mBuilder.build());
+
+
+                    NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(Activity_Studying.this, Constants.CHANNEL_ID)
+                            .setSmallIcon(R.drawable.logo)
+                            .setContentTitle(getString(R.string.notifTitle))
+                            .setContentText(content)
+                            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                            .setCategory(NotificationCompat.CATEGORY_REMINDER)
+                            .addAction(R.drawable.ic_notification_button, getString(R.string.woke),
+                                    wokePendingIntent)
+                            .setAutoCancel(true);
+                    // notificationId is a unique int for each notification that you must define
+                    notificationManager.notify(Constants.wokeNotificationID, mBuilder.build());
+                }
+
+
             }
         });
+        Singleton.getInstance().getCurrUser().setCurrStudySession(session);
         Singleton.getInstance().getCurrUser().addStudySession(session.getSaveState());
     }
 

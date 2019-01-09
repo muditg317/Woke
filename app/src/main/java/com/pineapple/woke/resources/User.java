@@ -12,6 +12,7 @@ public class User {
     private String name;
     private int wokeInterval;
     private ArrayList<SavedSession> studySessions;
+    private StudySession currStudySession;
 
     public User(){ }
     public User(String name, int wokeInterval){
@@ -38,8 +39,16 @@ public class User {
         return studySessions;
     }
     public void addStudySession(SavedSession s){
-        studySessions.add(s);
+        studySessions.add(0,s);
         Log.d("User", "Study Session added to: "+name);
         Log.d("User", "Study Session duration: " + Long.toString(s.getDuration()));
+    }
+
+    public StudySession getCurrStudySession() {
+        return currStudySession;
+    }
+
+    public void setCurrStudySession(StudySession currStudySession) {
+        this.currStudySession = currStudySession;
     }
 }

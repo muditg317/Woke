@@ -4,7 +4,9 @@ import android.os.CountDownTimer;
 import android.util.Log;
 import android.widget.TextView;
 
+import com.pineapple.woke.resources.Constants;
 import com.pineapple.woke.resources.MyCallback;
+import com.pineapple.woke.resources.Singleton;
 
 import org.w3c.dom.Text;
 
@@ -21,6 +23,7 @@ public class StudySession extends CountDownTimer {
     private long displayWokeTime;
     private boolean studying;
     private int wokeNotifs;
+    private boolean notified;
 
     private int missedNotifications;
 
@@ -39,6 +42,7 @@ public class StudySession extends CountDownTimer {
         displayWokeTime = 0;
         studying = true;
         wokeNotifs = 0;
+        notified = false;
         missedNotifications = 0;
         this.textView_next = textView_next;
         this.textView_time = textView_time;
@@ -59,16 +63,20 @@ public class StudySession extends CountDownTimer {
         millisElapsedToWoke += (currTime-millisLastUpdate);
         //Log.d(onTickTAG, "millisElapsedToWoke: " + Long.toString(millisElapsedToWoke));
 
-        if(textView_next.getText().toString().contains("GET WOKE")) {
+        if(notified) {
             displayWokeTime += (currTime - millisLastUpdate);
             //Log.d(onTickTAG, "displayWokeTime: " + Long.toString(displayWokeTime));
         }
 
+        if(notified && displayWokeTime >= Constants.missedNotificationSeconds * 1000) {
+            missedNotifications += 1;
+            notified = false;
+        }
+
         if(millisElapsedToWoke >= wokeMillis) {
-            wokeNotifs++;
+            triggerWokeNotification();
             //Log.d(onTickTAG, "wokeNotifs: " + Integer.toString(wokeNotifs));
-            textView_next.setText("GET WOKE: "+wokeNotifs);
-            notifyCallback.accept(wokeMillis);
+            //textView_next.setText("GET WOKE: "+wokeNotifs);
             millisElapsedToWoke = 0;
             displayWokeTime = 0;
         }
@@ -82,11 +90,22 @@ public class StudySession extends CountDownTimer {
             }
         }
 
+
         int minutes = (int)(millisElapsed/1000/60);
         int seconds = (int)(millisElapsed%(60*1000))/1000;
         textView_time.setText((minutes<10?"0":"")+minutes+":"+(seconds<10?"0":"")+seconds);
         millisLastUpdate = currTime;
         //Log.d(onTickTAG, "millisLastUpdate: " + Long.toString(millisLastUpdate));
+    }
+
+    private void triggerWokeNotification() {
+        if(missedNotifications < 1) {//TODO: add to User property
+            wokeNotifs++;
+            notifyCallback.accept(wokeMillis);
+            notified = true;
+        } else {
+            //TODO: send an alarm
+        }
     }
 
     public void onFinish() {
@@ -110,6 +129,7 @@ public class StudySession extends CountDownTimer {
 
     public void finish() {
         pauseStudying();
+        Singleton.getInstance().getCurrUser().setCurrStudySession(null);
         //updateSaveState();
     }
 
@@ -135,6 +155,10 @@ public class StudySession extends CountDownTimer {
 
     public int getWokeInterval() {
         return wokeMillis;
+    }
+
+    public void dismissWokeNotification() {
+        notified = false;
     }
 
 }
