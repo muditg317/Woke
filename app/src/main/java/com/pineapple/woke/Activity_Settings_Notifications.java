@@ -1,6 +1,5 @@
 package com.pineapple.woke;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -35,7 +34,7 @@ public class Activity_Settings_Notifications extends AppCompatActivity {
 
         first = true;
 
-        textView_intervalTime = findViewById(R.id.textView_intervalTime);
+        textView_intervalTime = findViewById(R.id.textView_intervals_time);
         minutesUser = Singleton.getInstance().getCurrUser().getWokeInterval()/10.0;
         Log.d("INTERVAL", "User: " + Double.toString(minutesUser));
         String intervalTime = (minutesUser > 1.0? ((int)minutesUser+" mins"):((int)(minutesUser*60)+" secs"));
@@ -70,7 +69,7 @@ public class Activity_Settings_Notifications extends AppCompatActivity {
             }
         };
 
-        seekBar_intervalTime = findViewById(R.id.seekBar_intervalTime);
+        seekBar_intervalTime = findViewById(R.id.seekBar_intervals);
         seekBar_intervalTime.setProgress(((int)(minutesUser*10))-MIN_intervalTime);
         seekBar_intervalTime.setOnSeekBarChangeListener(seekBarChangeListener);
         seekBar_intervalTime.setMax(MAX_intervalTime - MIN_intervalTime);

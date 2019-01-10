@@ -26,7 +26,7 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:text="@string/app_name"
-        android:textAppearance="@style/header20_white"
+        android:textAppearance="@style/header20_bold_white"
         android:layout_marginStart="30dp"
         android:layout_marginTop="26dp"/>
 
@@ -38,7 +38,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="93dp"
         android:text="Currently studying"
-        android:textAppearance="@style/header30_white" />
+        android:textAppearance="@style/header30_bold_white" />
 
     <TextView
         android:id="@+id/textView_time"
@@ -48,7 +48,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="172dp"
         android:text="0:00"
-        android:textAppearance="@style/text60_white" />
+        android:textAppearance="@style/text60_bold_white" />
 
     <TextView
         android:id="@+id/textView_next"
@@ -81,7 +81,7 @@
         android:layout_margin="1dp"
         android:gravity="center"
         android:text="Pause"
-        android:textAppearance="@style/header20_black"/>
+        android:textAppearance="@style/header20_bold_black"/>
 
     <ImageButton
         android:id="@+id/imageButton_buttonResume"
@@ -104,7 +104,7 @@
         android:layout_margin="1dp"
         android:gravity="center"
         android:text="Resume"
-        android:textAppearance="@style/header20_white"/>
+        android:textAppearance="@style/header20_bold_white"/>
 
     <ImageButton
         android:id="@+id/imageButton_buttonStop"
@@ -127,6 +127,6 @@
         android:layout_margin="1dp"
         android:gravity="center"
         android:text="Stop"
-        android:textAppearance="@style/header20_black"/>
+        android:textAppearance="@style/header20_bold_black"/>
 
 </RelativeLayout>

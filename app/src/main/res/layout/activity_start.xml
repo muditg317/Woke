@@ -29,7 +29,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="140dp"
         android:text="@string/app_name"
-        android:textAppearance="@style/title_white"
+        android:textAppearance="@style/title_bold_white"
         android:textSize="48sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -77,7 +77,7 @@
         android:layout_margin="1dp"
         android:gravity="center"
         android:text="Submit"
-        android:textAppearance="@style/header20_black"/>
+        android:textAppearance="@style/header20_bold_black"/>
 
 
 </RelativeLayout>
