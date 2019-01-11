@@ -1,11 +1,6 @@
 package com.pineapple.woke;
 
-import android.app.AlertDialog;
-import android.app.Notification;
-import android.app.NotificationManager;
 import android.app.PendingIntent;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.NotificationCompat;
@@ -83,7 +78,7 @@ public class Activity_Studying extends AppCompatActivity {
             }
         });
 
-        session = new StudySession(textView_next, textView_time,Singleton.getInstance().getCurrUser().getWokeInterval()/10.0);
+        session = new StudySession(textView_next, textView_time,Singleton.getInstance().getCurrUser().getNotif_interval()/10.0);
         session.setNotifyCallback(new MyCallback<Integer>() {
             @Override
             public void accept(Integer wokeInterval) {

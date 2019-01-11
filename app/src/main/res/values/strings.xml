@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Woke</string>
     <string name="start_studying">Start studying</string>
+
     <string name="channel_name">woke notifications</string>
     <string name="channel_description">notification channel</string>
     <string name="notifTitle">GET WOKE!</string>
@@ -15,6 +16,11 @@
         Get up and stretch.
         Do some jumping jacks.
         Get the blood flowing.</string>
+
+    <string name="notif_interval_desc">Set the time in between Woke notifications</string>
+    <string name="notif_frequency_desc">Set the number of missed Woke notifications before alarm is triggered</string>
+    <string name="notif_delay_desc">Set the delay (nap time) before alarm is triggered</string>
+
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

@@ -39,66 +39,218 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="33.5dp"/>
 
-    <ImageButton
-        android:id="@+id/imageButton_intervals"
-        android:contentDescription="Settings: Notifications: Intervals"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/shape_button5_def"
-        android:layout_below="@+id/textView_notifications"
-        android:layout_marginTop="10dp"/>
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_below="@id/textView_notifications"
+        android:layout_marginTop="10dp">
 
-    <ImageView
-        android:id="@+id/imageView_intervals_icon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/shape_timer_def"
-        android:layout_alignStart="@+id/imageButton_intervals"
-        android:layout_alignTop="@+id/imageButton_intervals"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        />
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/textView_intervals"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/imageButton_intervals"
-        android:layout_alignTop="@+id/imageButton_intervals"
-        android:layout_marginTop="18dp"
-        android:layout_marginStart="50dp"
-        android:text="Intervals"
-        android:textAppearance="@style/text18_gray"/>
+            <ImageButton
+                android:id="@+id/imageButton_intervals"
+                android:contentDescription="Intervals"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_button5_def"/>
 
-    <TextView
-        android:id="@+id/textView_intervals_desc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView_intervals"
-        android:layout_alignStart="@+id/textView_intervals"
-        android:layout_marginTop="2dp"
-        android:text="This is a description"
-        android:textAppearance="@style/text14_lightgray"/>
+            <ImageView
+                android:id="@+id/imageView_intervals_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_timer_def"
+                android:layout_alignStart="@+id/imageButton_intervals"
+                android:layout_alignTop="@+id/imageButton_intervals"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"/>
 
-    <TextView
-        android:id="@+id/textView_intervals_time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/imageButton_intervals"
-        android:layout_alignTop="@+id/imageButton_intervals"
-        android:layout_marginTop="18dp"
-        android:layout_marginEnd="20dp"
-        android:text="10 min"
-        android:textAppearance="@style/text18_lightgray"/>
+            <TextView
+                android:id="@+id/textView_intervals"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/imageButton_intervals"
+                android:layout_alignTop="@+id/imageButton_intervals"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="50dp"
+                android:text="Intervals"
+                android:textAppearance="@style/text18_gray"/>
 
-    <SeekBar
-        android:id="@+id/seekBar_intervals"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@id/imageButton_intervals"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="20dp"
-        />
+            <TextView
+                android:id="@+id/textView_intervals_desc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textView_intervals"
+                android:layout_alignStart="@+id/textView_intervals"
+                android:layout_marginEnd="60dp"
+                android:text="@string/notif_interval_desc"
+                android:textAppearance="@style/text14_lightgray"/>
+
+            <TextView
+                android:id="@+id/textView_intervals_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignEnd="@+id/imageButton_intervals"
+                android:layout_alignTop="@+id/imageButton_intervals"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="20dp"
+                android:text="10m"
+                android:textAppearance="@style/text14_lightgray"/>
+
+            <SeekBar
+                android:id="@+id/seekBar_intervals"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/imageButton_intervals"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:layout_below="@id/textView_intervals_desc"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageButton
+                android:id="@+id/imageButton_frequency"
+                android:contentDescription="Frequency"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_button5_def"/>
+
+            <ImageView
+                android:id="@+id/imageView_frequency_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_dots_def"
+                android:layout_alignStart="@+id/imageButton_frequency"
+                android:layout_alignTop="@+id/imageButton_frequency"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"/>
+
+            <TextView
+                android:id="@+id/textView_frequency"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/imageButton_frequency"
+                android:layout_alignTop="@+id/imageButton_frequency"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="50dp"
+                android:text="Frequency"
+                android:textAppearance="@style/text18_gray"/>
+
+            <TextView
+                android:id="@+id/textView_frequency_desc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textView_frequency"
+                android:layout_alignStart="@+id/textView_frequency"
+                android:layout_marginEnd="60dp"
+                android:text="@string/notif_frequency_desc"
+                android:textAppearance="@style/text14_lightgray"/>
+
+            <TextView
+                android:id="@+id/textView_frequency_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignEnd="@+id/imageButton_frequency"
+                android:layout_alignTop="@+id/imageButton_frequency"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="20dp"
+                android:text="2"
+                android:textAppearance="@style/text14_lightgray"/>
+
+            <SeekBar
+                android:id="@+id/seekBar_frequency"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/imageButton_frequency"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:layout_below="@id/textView_frequency_desc"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageButton
+                android:id="@+id/imageButton_delay"
+                android:contentDescription="Delay"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_button5_def"/>
+
+            <ImageView
+                android:id="@+id/imageView_delay_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_bed_def"
+                android:layout_alignStart="@+id/imageButton_delay"
+                android:layout_alignTop="@+id/imageButton_delay"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="9dp"/>
+
+            <TextView
+                android:id="@+id/textView_delay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/imageButton_delay"
+                android:layout_alignTop="@+id/imageButton_delay"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="50dp"
+                android:text="Delay"
+                android:textAppearance="@style/text18_gray"/>
+
+            <TextView
+                android:id="@+id/textView_delay_desc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textView_delay"
+                android:layout_alignStart="@+id/textView_delay"
+                android:layout_marginEnd="60dp"
+                android:text="This is a description"
+                android:textAppearance="@style/text14_lightgray"/>
+
+            <TextView
+                android:id="@+id/textView_delay_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignEnd="@+id/imageButton_delay"
+                android:layout_alignTop="@+id/imageButton_delay"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="20dp"
+                android:text="45m"
+                android:textAppearance="@style/text14_lightgray"/>
+
+            <SeekBar
+                android:id="@+id/seekBar_delay"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/imageButton_delay"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:layout_below="@id/textView_delay_desc"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+
+
 
 </RelativeLayout>
