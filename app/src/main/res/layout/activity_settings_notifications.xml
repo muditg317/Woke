@@ -50,20 +50,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
-            <ImageButton
-                android:id="@+id/imageButton_intervals"
-                android:contentDescription="Intervals"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/shape_button5_def"/>
-
             <ImageView
                 android:id="@+id/imageView_intervals_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/shape_timer_def"
-                android:layout_alignStart="@+id/imageButton_intervals"
-                android:layout_alignTop="@+id/imageButton_intervals"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp"/>
 
@@ -71,8 +64,8 @@
                 android:id="@+id/textView_intervals"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignStart="@+id/imageButton_intervals"
-                android:layout_alignTop="@+id/imageButton_intervals"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
                 android:layout_marginTop="8dp"
                 android:layout_marginStart="50dp"
                 android:text="Intervals"
@@ -92,8 +85,8 @@
                 android:id="@+id/textView_intervals_value"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignEnd="@+id/imageButton_intervals"
-                android:layout_alignTop="@+id/imageButton_intervals"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentTop="true"
                 android:layout_marginTop="12dp"
                 android:layout_marginEnd="20dp"
                 android:text="10m"
@@ -103,7 +96,6 @@
                 android:id="@+id/seekBar_intervals"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignBottom="@id/imageButton_intervals"
                 android:layout_marginStart="15dp"
                 android:layout_marginEnd="15dp"
                 android:layout_below="@id/textView_intervals_desc"
@@ -117,20 +109,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
-            <ImageButton
-                android:id="@+id/imageButton_frequency"
-                android:contentDescription="Frequency"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/shape_button5_def"/>
-
             <ImageView
                 android:id="@+id/imageView_frequency_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/shape_dots_def"
-                android:layout_alignStart="@+id/imageButton_frequency"
-                android:layout_alignTop="@+id/imageButton_frequency"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp"/>
 
@@ -138,8 +123,8 @@
                 android:id="@+id/textView_frequency"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignStart="@+id/imageButton_frequency"
-                android:layout_alignTop="@+id/imageButton_frequency"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
                 android:layout_marginTop="8dp"
                 android:layout_marginStart="50dp"
                 android:text="Frequency"
@@ -159,8 +144,8 @@
                 android:id="@+id/textView_frequency_value"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignEnd="@+id/imageButton_frequency"
-                android:layout_alignTop="@+id/imageButton_frequency"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentTop="true"
                 android:layout_marginTop="12dp"
                 android:layout_marginEnd="20dp"
                 android:text="2"
@@ -170,7 +155,6 @@
                 android:id="@+id/seekBar_frequency"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignBottom="@id/imageButton_frequency"
                 android:layout_marginStart="15dp"
                 android:layout_marginEnd="15dp"
                 android:layout_below="@id/textView_frequency_desc"
@@ -184,20 +168,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
-            <ImageButton
-                android:id="@+id/imageButton_delay"
-                android:contentDescription="Delay"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/shape_button5_def"/>
-
             <ImageView
                 android:id="@+id/imageView_delay_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/shape_bed_def"
-                android:layout_alignStart="@+id/imageButton_delay"
-                android:layout_alignTop="@+id/imageButton_delay"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="9dp"/>
 
@@ -205,8 +182,8 @@
                 android:id="@+id/textView_delay"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignStart="@+id/imageButton_delay"
-                android:layout_alignTop="@+id/imageButton_delay"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
                 android:layout_marginTop="8dp"
                 android:layout_marginStart="50dp"
                 android:text="Delay"
@@ -219,15 +196,15 @@
                 android:layout_below="@+id/textView_delay"
                 android:layout_alignStart="@+id/textView_delay"
                 android:layout_marginEnd="60dp"
-                android:text="This is a description"
+                android:text="@string/notif_delay_desc"
                 android:textAppearance="@style/text14_lightgray"/>
 
             <TextView
                 android:id="@+id/textView_delay_value"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignEnd="@+id/imageButton_delay"
-                android:layout_alignTop="@+id/imageButton_delay"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentTop="true"
                 android:layout_marginTop="12dp"
                 android:layout_marginEnd="20dp"
                 android:text="45m"
@@ -237,7 +214,6 @@
                 android:id="@+id/seekBar_delay"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignBottom="@id/imageButton_delay"
                 android:layout_marginStart="15dp"
                 android:layout_marginEnd="15dp"
                 android:layout_below="@id/textView_delay_desc"

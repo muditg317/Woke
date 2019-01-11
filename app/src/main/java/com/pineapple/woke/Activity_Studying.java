@@ -84,7 +84,7 @@ public class Activity_Studying extends AppCompatActivity {
             public void accept(Integer wokeInterval) {
 
                 Log.d("notify callback","creating notification");
-
+                //TODO: doesn't this just check if the app is running? not if the app is open? might be a reason why the notification doesn't pop up outside the app
                 if(Utils.isAppRunning(Activity_Studying.this)) {
                     // Create an explicit intent for an Activity in your app
                 /*Intent intent = new Intent(this, Activity_Studying.class);
