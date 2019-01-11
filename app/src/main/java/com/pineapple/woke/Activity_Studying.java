@@ -1,6 +1,5 @@
 package com.pineapple.woke;
 
-import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.media.MediaPlayer;
@@ -41,6 +40,9 @@ public class Activity_Studying extends AppCompatActivity {
     StudySession session;
 
     NotificationManagerCompat notificationManager;
+    MediaPlayer mp_notify;
+    MediaPlayer mp_alarm;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -112,15 +114,16 @@ public class Activity_Studying extends AppCompatActivity {
                             .setPriority(NotificationCompat.PRIORITY_HIGH)
                             .addAction(R.drawable.ic_notification_button, getString(R.string.woke),
                                     wokePendingIntent)
+                            .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
+                            .setVibrate(new long[]{1000, 500, 1000, 500, 1000})
                             .setAutoCancel(true);
                     // notificationId is a unique int for each notification that you must define
                     notificationManager.notify(Constants.wokeNotificationID, mBuilder.build());
+                    mp_notify.start();
                 }
 
                 if(alarm) {
-                    Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-                    MediaPlayer mp = MediaPlayer.create(getApplicationContext(), notification);
-                    mp.start();
+                    mp_alarm.start();
                 }
 
 
@@ -128,6 +131,11 @@ public class Activity_Studying extends AppCompatActivity {
         });
         Singleton.getInstance().getCurrUser().setCurrStudySession(session);
         Singleton.getInstance().getCurrUser().addStudySession(session.getSaveState());
+
+        Uri r_notify = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+        mp_notify = MediaPlayer.create(getApplicationContext(), r_notify);
+        Uri r_alarm = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
+        mp_alarm = MediaPlayer.create(getApplicationContext(), r_alarm);
     }
 
     private void showAlertDialog() {
@@ -136,6 +144,7 @@ public class Activity_Studying extends AppCompatActivity {
 
         dialogFragment_notif.show(fm, "fragment_alert");
 
+        mp_notify.start();
         //((AlertDialog)(dialogFragment_notif.getDialog())).getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getColor(R.color.colorPrimaryBlue));
     }
 

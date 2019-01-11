@@ -102,10 +102,12 @@ public class StudySession extends CountDownTimer {
     private void triggerWokeNotification() {
         if(missedNotifications < Singleton.getInstance().getCurrUser().getNotif_frequency()) {
             wokeNotifs++;
+            Log.d("STUDYSESSION", Integer.toString(wokeNotifs));
             notifyCallback.accept(false);
             notified = true;
         } else {
             wokeNotifs++;
+            Log.d("STUDYSESSION", Integer.toString(wokeNotifs));
             notifyCallback.accept(true);
             notified = true;
 
@@ -163,6 +165,8 @@ public class StudySession extends CountDownTimer {
 
     public void dismissWokeNotification() {
         notified = false;
+        missedNotifications = 0;
+        Log.d("NOTIF", "dismissed notification");
     }
 
 }
