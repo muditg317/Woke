@@ -20,6 +20,12 @@
         <activity android:name=".Activity_Studying" />
         <activity android:name=".Activity_Settings_Home" />
         <activity android:name=".Activity_Settings_Notifications"></activity>
+        <receiver android:name=".MyBroadcastReceiver" >
+            <intent-filter>
+                <action android:name="NotificationClicked" >
+                </action>
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

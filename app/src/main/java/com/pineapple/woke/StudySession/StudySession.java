@@ -69,7 +69,7 @@ public class StudySession extends CountDownTimer {
             //Log.d(onTickTAG, "displayWokeTime: " + Long.toString(displayWokeTime));
         }
 
-        if(notified && displayWokeTime >= Constants.missedNotificationSeconds * 1000) {
+        if(notified && displayWokeTime >= wokeMillis - 1000) {
             missedNotifications += 1;
             notified = false;
         }
@@ -100,7 +100,7 @@ public class StudySession extends CountDownTimer {
     }
 
     private void triggerWokeNotification() {
-        if(missedNotifications < Singleton.getInstance().getCurrUser().getNotif_frequency()) {//TODO: add to User property
+        if(missedNotifications < Singleton.getInstance().getCurrUser().getNotif_frequency()) {
             wokeNotifs++;
             notifyCallback.accept(false);
             notified = true;

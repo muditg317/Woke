@@ -95,7 +95,7 @@ public class Activity_Studying extends AppCompatActivity {
                 PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);*/
                     showAlertDialog();
                 } else {
-                    Intent wokeIntent = new Intent(Activity_Studying.this, MyBroadcastReceiver.class);
+                    Intent wokeIntent = new Intent("NotificationClicked");
                     wokeIntent.setAction(Constants.ACTION_WOKE);
                     wokeIntent.putExtra(EXTRA_NOTIFICATION_ID, 0);
                     PendingIntent wokePendingIntent =
