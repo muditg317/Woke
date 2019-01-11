@@ -19,9 +19,9 @@ public class User {
     public User(){ }
     public User(String name){
         this.name = name;
-        this.notif_interval = 1;
-        this.notif_frequency = 2;
-        this.notif_delay = 0;
+        this.notif_interval = Constants.DEFAULT_NOTIF_INTERVAL;
+        this.notif_frequency = Constants.DEFAULT_NOTIF_FREQUENCY;
+        this.notif_delay = Constants.DEFAULT_NOTIF_DELAY;
         studySessions = new ArrayList<>();
     }
 
@@ -32,8 +32,8 @@ public class User {
         this.name = name;
     }
 
-    public int getNotif_interval() {
-        return notif_interval;
+    public double getNotif_interval() {
+        return notif_interval/10.0;
     }
     public void setNotif_interval(int notif_interval) {
         this.notif_interval = notif_interval;

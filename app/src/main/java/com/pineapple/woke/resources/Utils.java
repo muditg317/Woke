@@ -30,18 +30,7 @@ public class Utils {
     }
 
 
-    public static boolean isAppRunning(final Context context) {//, final String packageName) {
-//        final ActivityManager activityManager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
-//        final List<ActivityManager.RunningAppProcessInfo> procInfos = activityManager.getRunningAppProcesses();
-//        if (procInfos != null)
-//        {
-//            for (final ActivityManager.RunningAppProcessInfo processInfo : procInfos) {
-//                if (processInfo.processName.contains(packageName)) {
-//                    return true;
-//                }
-//            }
-//        }
-//        return false;
+    public static boolean isAppRunning(final Context context) {
         ActivityManager.RunningAppProcessInfo myProcess = new ActivityManager.RunningAppProcessInfo();
         ActivityManager.getMyMemoryState(myProcess);
         if (myProcess.importance != ActivityManager.RunningAppProcessInfo.IMPORTANCE_FOREGROUND)

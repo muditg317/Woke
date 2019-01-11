@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 
 import com.pineapple.woke.R;
+import com.pineapple.woke.resources.Singleton;
 
 public class DialogFragment_Notif extends DialogFragment {
 
@@ -36,6 +37,7 @@ public class DialogFragment_Notif extends DialogFragment {
         // Add the buttons
         alertDialogBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
+                Singleton.getInstance().getCurrUser().getCurrStudySession().dismissWokeNotification();
                 DialogFragment_Notif.this.getDialog().dismiss();
             }
         });

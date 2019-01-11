@@ -1,7 +1,11 @@
 package com.pineapple.woke;
 
+import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Intent;
+import android.media.MediaPlayer;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
@@ -78,13 +82,12 @@ public class Activity_Studying extends AppCompatActivity {
             }
         });
 
-        session = new StudySession(textView_next, textView_time,Singleton.getInstance().getCurrUser().getNotif_interval()/10.0);
-        session.setNotifyCallback(new MyCallback<Integer>() {
+        session = new StudySession(textView_next, textView_time,Singleton.getInstance().getCurrUser().getNotif_interval());
+        session.setNotifyCallback(new MyCallback<Boolean>() {
             @Override
-            public void accept(Integer wokeInterval) {
+            public void accept(Boolean alarm) {
 
                 Log.d("notify callback","creating notification");
-                //TODO: doesn't this just check if the app is running? not if the app is open? might be a reason why the notification doesn't pop up outside the app
                 if(Utils.isAppRunning(Activity_Studying.this)) {
                     // Create an explicit intent for an Activity in your app
                 /*Intent intent = new Intent(this, Activity_Studying.class);
@@ -98,19 +101,26 @@ public class Activity_Studying extends AppCompatActivity {
                     PendingIntent wokePendingIntent =
                             PendingIntent.getBroadcast(Activity_Studying.this, 0, wokeIntent, 0);
 
-                    String content = getString(R.string.notifContent) + " It's been " + wokeInterval / 1000 / 60 + " minutes!";
+                    String content = getString(R.string.notifContent) + " It's been " + Singleton.getInstance().getCurrUser().getNotif_interval() / 1000 / 60 + " minutes!";
 
                     NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(Activity_Studying.this, Constants.CHANNEL_ID)
                             .setSmallIcon(R.drawable.logo)
                             .setContentTitle(getString(R.string.notifTitle))
                             .setContentText(content)
-                            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                             .setCategory(NotificationCompat.CATEGORY_REMINDER)
+                            .setDefaults(NotificationCompat.DEFAULT_ALL)
+                            .setPriority(NotificationCompat.PRIORITY_HIGH)
                             .addAction(R.drawable.ic_notification_button, getString(R.string.woke),
                                     wokePendingIntent)
                             .setAutoCancel(true);
                     // notificationId is a unique int for each notification that you must define
                     notificationManager.notify(Constants.wokeNotificationID, mBuilder.build());
+                }
+
+                if(alarm) {
+                    Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+                    MediaPlayer mp = MediaPlayer.create(getApplicationContext(), notification);
+                    mp.start();
                 }
 
 

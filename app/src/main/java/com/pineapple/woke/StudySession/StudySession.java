@@ -1,5 +1,8 @@
 package com.pineapple.woke.StudySession;
 
+import android.media.MediaPlayer;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.CountDownTimer;
 import android.util.Log;
 import android.widget.TextView;
@@ -80,7 +83,7 @@ public class StudySession extends CountDownTimer {
         }
         else {
             int secs = (int)((wokeMillis-millisElapsedToWoke)/1000)+1;
-            if(secs <= 60){
+            if(secs < 60){
                 textView_next.setText("Next Woke notification in " + secs + " seconds");
             }
             else {
@@ -97,12 +100,15 @@ public class StudySession extends CountDownTimer {
     }
 
     private void triggerWokeNotification() {
-        if(missedNotifications < 1) {//TODO: add to User property
+        if(missedNotifications < Singleton.getInstance().getCurrUser().getNotif_frequency()) {//TODO: add to User property
             wokeNotifs++;
-            notifyCallback.accept(wokeMillis);
+            notifyCallback.accept(false);
             notified = true;
         } else {
-            //TODO: send an alarm
+            wokeNotifs++;
+            notifyCallback.accept(true);
+            notified = true;
+
         }
     }
 
@@ -147,7 +153,7 @@ public class StudySession extends CountDownTimer {
         return saveState;
     }
 
-    public void setNotifyCallback(MyCallback<Integer> notifyCallback) {
+    public void setNotifyCallback(MyCallback<Boolean> notifyCallback) {
         this.notifyCallback = notifyCallback;
     }
 

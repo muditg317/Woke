@@ -61,7 +61,7 @@ public class Activity_Settings_Notifications extends AppCompatActivity {
 
     private void initInterval(){
         textView_intervals_num = findViewById(R.id.textView_intervals_value);
-        user_interval = Singleton.getInstance().getCurrUser().getNotif_interval()/10.0;
+        user_interval = Singleton.getInstance().getCurrUser().getNotif_interval();
         Log.d("INTERVAL", "User: " + Double.toString(user_interval));
         String str_interval = (user_interval > 1.0? ((int) user_interval +"m"):((int)(user_interval *60)+"s"));
         textView_intervals_num.setText(str_interval);
