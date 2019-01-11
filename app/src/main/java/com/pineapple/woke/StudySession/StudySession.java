@@ -111,7 +111,7 @@ public class StudySession extends CountDownTimer {
         //Log.d(TAG, "onFinish");
     }
 
-    public void updateSaveState() {
+    private void updateSaveState() {
         saveState.setDuration(millisElapsed);
         saveState.setWokeNotifs(wokeNotifs);
     }
