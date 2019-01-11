@@ -4,6 +4,7 @@ package com.pineapple.woke.resources; /**
 
 
 import android.app.ActivityManager;
+import android.app.KeyguardManager;
 import android.content.Context;
 import android.os.Handler;
 
@@ -29,17 +30,25 @@ public class Utils {
     }
 
 
-    public static boolean isAppRunning(final Context context, final String packageName) {
-        final ActivityManager activityManager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
-        final List<ActivityManager.RunningAppProcessInfo> procInfos = activityManager.getRunningAppProcesses();
-        if (procInfos != null)
-        {
-            for (final ActivityManager.RunningAppProcessInfo processInfo : procInfos) {
-                if (processInfo.processName.contains(packageName)) {
-                    return true;
-                }
-            }
-        }
-        return false;
+    public static boolean isAppRunning(final Context context) {//, final String packageName) {
+//        final ActivityManager activityManager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+//        final List<ActivityManager.RunningAppProcessInfo> procInfos = activityManager.getRunningAppProcesses();
+//        if (procInfos != null)
+//        {
+//            for (final ActivityManager.RunningAppProcessInfo processInfo : procInfos) {
+//                if (processInfo.processName.contains(packageName)) {
+//                    return true;
+//                }
+//            }
+//        }
+//        return false;
+        ActivityManager.RunningAppProcessInfo myProcess = new ActivityManager.RunningAppProcessInfo();
+        ActivityManager.getMyMemoryState(myProcess);
+        if (myProcess.importance != ActivityManager.RunningAppProcessInfo.IMPORTANCE_FOREGROUND)
+            return false;
+
+        KeyguardManager km = (KeyguardManager) context.getSystemService(Context.KEYGUARD_SERVICE);
+        // app is in foreground, but if screen is locked show notification anyway
+        return !km.inKeyguardRestrictedInputMode();
     }
 }
