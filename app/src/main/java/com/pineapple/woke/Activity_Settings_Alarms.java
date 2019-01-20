@@ -50,14 +50,14 @@ public class Activity_Settings_Alarms extends AppCompatActivity {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 // updated continuously as the user slides the thumb
-                if(!first[2]){
+                if(!first[0]){
                     int change = progress;
                     String str_delay = Integer.toString(change)+"m";
                     textView_delay_num.setText(str_delay);
                     Log.d("DELAY", "NewChange: " + Integer.toString(change));
                 }
                 else{
-                    first[2] = false;
+                    first[0] = false;
                 }
             }
 
