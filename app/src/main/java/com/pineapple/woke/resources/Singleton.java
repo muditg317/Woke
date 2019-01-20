@@ -7,6 +7,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.pineapple.davinci.studentutils.Student;*/
 
+import android.media.MediaPlayer;
 import android.support.v4.app.NotificationManagerCompat;
 
 import java.io.Serializable;
@@ -21,6 +22,8 @@ public class Singleton implements Serializable {
     private boolean signedInSuccess;
     private User currUser;
     private NotificationManagerCompat notificationManagerCompat;
+    private MediaPlayer mp_notify;
+    private MediaPlayer mp_alarm;
     /**private GoogleSignInClient gsiClient;
     private GoogleApiClient gapiClient;
     private GoogleSignInAccount gsiAccount;
@@ -61,6 +64,28 @@ public class Singleton implements Serializable {
             throw new MyException("Cannot create new profile");
         }
         this.currUser = currUser;
+    }
+
+    public void setMp_notify(MediaPlayer mp_notify) {
+        this.mp_notify = mp_notify;
+    }
+
+    public MediaPlayer getMp_notify() {
+        if(mp_notify == null) {
+            throw new MyException("There is no notify sound yet");
+        }
+        return mp_notify;
+    }
+
+    public void setMp_alarm(MediaPlayer mp_alarm) {
+        this.mp_alarm = mp_alarm;
+    }
+
+    public MediaPlayer getMp_alarm() {
+        if(mp_alarm == null) {
+            throw new MyException("There is no alarm sound yet");
+        }
+        return mp_alarm;
     }
 
     /**public GoogleSignInClient getGsiClient() {

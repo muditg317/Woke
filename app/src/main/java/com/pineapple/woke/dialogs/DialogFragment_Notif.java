@@ -15,11 +15,12 @@ public class DialogFragment_Notif extends DialogFragment {
         // Empty constructor required for DialogFragment
     }
 
-    public static DialogFragment_Notif newInstance(String title, String message) {
+    public static DialogFragment_Notif newInstance(String title, String message, String type) {
         DialogFragment_Notif frag = new DialogFragment_Notif();
         Bundle args = new Bundle();
         args.putString("title", title);
         args.putString("message", message);
+        args.putString("type", type);
         frag.setArguments(args);
         return frag;
     }
@@ -37,7 +38,7 @@ public class DialogFragment_Notif extends DialogFragment {
         // Add the buttons
         alertDialogBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
-                Singleton.getInstance().getCurrUser().getCurrStudySession().dismissWokeNotification();
+                Singleton.getInstance().getCurrUser().getCurrStudySession().dismissWokeNotification(getArguments().getString("type"));
                 DialogFragment_Notif.this.getDialog().dismiss();
             }
         });

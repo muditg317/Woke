@@ -1,5 +1,6 @@
 package com.pineapple.woke;
 
+import android.app.Activity;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.media.MediaPlayer;
@@ -89,62 +90,93 @@ public class Activity_Studying extends AppCompatActivity {
             @Override
             public void accept(Boolean alarm) {
 
-                Log.d("notify callback","creating notification");
+                String type;
+
+                if(!alarm){
+                    Log.d("notify callback","creating notify notification");
+                    type = "notify";
+                }
+                else{
+                    Log.d("notify callback","creating alarm notification");
+                    type = "alarm";
+                }
+
                 if(Utils.isAppRunning(Activity_Studying.this)) {
-                    // Create an explicit intent for an Activity in your app
-                /*Intent intent = new Intent(this, Activity_Studying.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);*/
-                    showAlertDialog();
+                    showAlertDialog(type);
                 } else {
-                    Intent wokeIntent = new Intent("NotificationClicked");
-                    wokeIntent.setAction(Constants.ACTION_WOKE);
-                    wokeIntent.putExtra(EXTRA_NOTIFICATION_ID, 0);
-                    PendingIntent wokePendingIntent =
-                            PendingIntent.getBroadcast(Activity_Studying.this, 0, wokeIntent, 0);
-
-                    String content = getString(R.string.notifContent) + " It's been " + Singleton.getInstance().getCurrUser().getNotif_interval() / 1000 / 60 + " minutes!";
-
-                    NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(Activity_Studying.this, Constants.CHANNEL_ID)
-                            .setSmallIcon(R.drawable.logo)
-                            .setContentTitle(getString(R.string.notifTitle))
-                            .setContentText(content)
-                            .setCategory(NotificationCompat.CATEGORY_REMINDER)
-                            .setDefaults(NotificationCompat.DEFAULT_ALL)
-                            .setPriority(NotificationCompat.PRIORITY_HIGH)
-                            .addAction(R.drawable.ic_notification_button, getString(R.string.woke),
-                                    wokePendingIntent)
-                            .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
-                            .setVibrate(new long[]{1000, 500, 1000, 500, 1000})
-                            .setAutoCancel(true);
-                    // notificationId is a unique int for each notification that you must define
-                    notificationManager.notify(Constants.wokeNotificationID, mBuilder.build());
-                    mp_notify.start();
+                    makeNotification(type);
                 }
-
-                if(alarm) {
-                    mp_alarm.start();
-                }
-
-
             }
         });
         Singleton.getInstance().getCurrUser().setCurrStudySession(session);
         Singleton.getInstance().getCurrUser().addStudySession(session.getSaveState());
 
         Uri r_notify = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-        mp_notify = MediaPlayer.create(getApplicationContext(), r_notify);
+        Singleton.getInstance().setMp_notify(MediaPlayer.create(getApplicationContext(), r_notify));
         Uri r_alarm = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
         mp_alarm = MediaPlayer.create(getApplicationContext(), r_alarm);
+
+        mp_notify = Singleton.getInstance().getMp_notify();
+        //mp_alarm = Singleton.getInstance().getMp_alarm();
     }
 
-    private void showAlertDialog() {
+    private void makeNotification(String type){
+        Intent wokeIntent = new Intent(Activity_Studying.this, MyBroadcastReceiver.class);
+        wokeIntent.putExtra("type", type);
+        PendingIntent wokePendingIntent = PendingIntent.getBroadcast(Activity_Studying.this, 1, wokeIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+        Boolean ongoing = false;
+        Boolean autoCancel = true;
+        Uri sound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+
+        if(type.equals("alarm")){
+            ongoing = true;
+            autoCancel = false;
+            sound = null;
+            if(!mp_alarm.isPlaying()) {
+                Log.d("mp_alarm", "start");
+                mp_alarm.start();
+            }
+        }
+
+        String content = getString(R.string.notifContent) + " It's been " + Singleton.getInstance().getCurrUser().getNotif_interval() / 1000 / 60 + " minutes!";
+
+        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(Activity_Studying.this, Constants.CHANNEL_ID)
+                .setSmallIcon(R.drawable.logo)
+                .setContentTitle(getString(R.string.notifTitle))
+                .setContentText(content)
+                .setCategory(NotificationCompat.CATEGORY_REMINDER)
+                //.setDefaults(NotificationCompat.DEFAULT_ALL)
+                .setPriority(NotificationCompat.PRIORITY_HIGH)
+                .addAction(R.drawable.ic_notification_button, getString(R.string.woke), wokePendingIntent)
+                .setSound(sound)
+                .setVibrate(new long[]{0, 1000, 500, 1000, 500})
+                .setAutoCancel(autoCancel)
+                .setOngoing(ongoing)
+                .setTimeoutAfter(1000);
+        // notificationId is a unique int for each notification that you must define
+        notificationManager.notify(Constants.wokeNotificationID, mBuilder.build());
+
+    }
+
+    private void showAlertDialog(String type) {
         FragmentManager fm = getSupportFragmentManager();
-        final DialogFragment_Notif dialogFragment_notif = DialogFragment_Notif.newInstance(getString(R.string.dialog_notif_title), getString(R.string.dialog_notif_message));
+        final DialogFragment_Notif dialogFragment_notif = DialogFragment_Notif.newInstance(getString(R.string.dialog_notif_title), getString(R.string.dialog_notif_message), type);
 
         dialogFragment_notif.show(fm, "fragment_alert");
 
-        mp_notify.start();
+        if(type.equals("notify")){
+            if(!mp_notify.isPlaying()) {
+                Log.d("mp_notify", "start");
+                mp_notify.start();
+            }
+        }
+        else if(type.equals("alarm")){
+            if(!mp_alarm.isPlaying()) {
+                Log.d("mp_alarm", "start");
+                mp_alarm.start();
+            }
+        }
         //((AlertDialog)(dialogFragment_notif.getDialog())).getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getColor(R.color.colorPrimaryBlue));
     }
 

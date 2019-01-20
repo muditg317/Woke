@@ -4,6 +4,7 @@ import android.media.MediaPlayer;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.CountDownTimer;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.widget.TextView;
 
@@ -33,6 +34,8 @@ public class StudySession extends CountDownTimer {
 
     private SavedSession saveState;
     private MyCallback notifyCallback;
+
+    MediaPlayer mp_alarm;
 
     public StudySession(TextView textView_next, TextView textView_time, double wokeMinutes) {
         super((long)(wokeMinutes*60*1000), 100);
@@ -71,6 +74,7 @@ public class StudySession extends CountDownTimer {
 
         if(notified && displayWokeTime >= wokeMillis - 1000) {
             missedNotifications += 1;
+            Log.d("StudySession","missed a notification: " + Integer.toString(missedNotifications));
             notified = false;
         }
 
@@ -163,10 +167,23 @@ public class StudySession extends CountDownTimer {
         return wokeMillis;
     }
 
-    public void dismissWokeNotification() {
-        notified = false;
-        missedNotifications = 0;
-        Log.d("NOTIF", "dismissed notification");
+    public void dismissWokeNotification(String type) {
+        Log.d("StudySession", "dismissing: " + type);
+        if(type.equals("notify")){
+            notified = false;
+            missedNotifications = 0;
+            Log.d("StudySession", "dismissed notification");
+        }
+        else if(type.equals("alarm")){
+            notified = false;
+            missedNotifications = 0;
+            Log.d("StudySession", "dismissed alarm");
+            mp_alarm = Singleton.getInstance().getMp_alarm();
+            if(mp_alarm.isPlaying()) {
+                mp_alarm.stop();
+            }
+        }
+
     }
 
 }

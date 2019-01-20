@@ -10,7 +10,7 @@ import android.support.annotation.Dimension;
 public class Constants {
 
 
-    public static final int wokeNotificationID = 0;
+    public static final int wokeNotificationID = 123;
     public static final String CHANNEL_ID = "woke notification channel id";
 
     public static final String PACKAGE_NAME = "com.pineapple.woke";
