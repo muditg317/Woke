@@ -178,6 +178,7 @@ public class StudySession extends CountDownTimer {
             notified = false;
             missedNotifications = 0;
             Log.d("StudySession", "dismissed alarm");
+            //TODO: crashes on line below saying "com.pineapple.woke.resources.MyException: There is no alarm sound yet"
             mp_alarm = Singleton.getInstance().getMp_alarm();
             if(mp_alarm.isPlaying()) {
                 mp_alarm.stop();
