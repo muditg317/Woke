@@ -1,6 +1,5 @@
 package com.pineapple.woke;
 
-import android.app.Activity;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.media.MediaPlayer;
@@ -23,8 +22,6 @@ import com.pineapple.woke.resources.MyCallback;
 import com.pineapple.woke.resources.Singleton;
 import com.pineapple.woke.StudySession.StudySession;
 import com.pineapple.woke.resources.Utils;
-
-import static android.app.Notification.EXTRA_NOTIFICATION_ID;
 
 public class Activity_Studying extends AppCompatActivity {
 
@@ -121,9 +118,15 @@ public class Activity_Studying extends AppCompatActivity {
     }
 
     private void makeNotification(String type){
+        //tap intent
+        Intent intent = new Intent(this, Activity_Studying.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        PendingIntent pendingIntent_tap = PendingIntent.getActivity(this, 0, intent, 0);
+
+        //action button intent
         Intent wokeIntent = new Intent(Activity_Studying.this, MyBroadcastReceiver.class);
         wokeIntent.putExtra("type", type);
-        PendingIntent wokePendingIntent = PendingIntent.getBroadcast(Activity_Studying.this, 1, wokeIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent pendingIntent_button = PendingIntent.getBroadcast(Activity_Studying.this, 1, wokeIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
         Boolean ongoing = false;
         Boolean autoCancel = true;
@@ -148,7 +151,8 @@ public class Activity_Studying extends AppCompatActivity {
                 .setCategory(NotificationCompat.CATEGORY_REMINDER)
                 //.setDefaults(NotificationCompat.DEFAULT_ALL)
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
-                .addAction(R.drawable.ic_notification_button, getString(R.string.woke), wokePendingIntent)
+                .setContentIntent(pendingIntent_tap)
+                .addAction(R.drawable.ic_notification_button, getString(R.string.woke), pendingIntent_button)
                 .setSound(sound)
                 .setVibrate(new long[]{0, 1000, 500, 1000, 500})
                 .setAutoCancel(autoCancel)
@@ -161,17 +165,18 @@ public class Activity_Studying extends AppCompatActivity {
 
     private void showAlertDialog(String type) {
         FragmentManager fm = getSupportFragmentManager();
-        final DialogFragment_Notif dialogFragment_notif = DialogFragment_Notif.newInstance(getString(R.string.dialog_notif_title), getString(R.string.dialog_notif_message), type);
-
-        dialogFragment_notif.show(fm, "fragment_alert");
 
         if(type.equals("notify")){
+            final DialogFragment_Notif dialogFragment_notify = DialogFragment_Notif.newInstance(getString(R.string.dialog_notify_title), getString(R.string.dialog_notify_message), type);
+            dialogFragment_notify.show(fm, "fragment_notify");
             if(!mp_notify.isPlaying()) {
                 Log.d("mp_notify", "start");
                 mp_notify.start();
             }
         }
         else if(type.equals("alarm")){
+            final DialogFragment_Notif dialogFragment_alarm = DialogFragment_Notif.newInstance(getString(R.string.dialog_alarm_title), getString(R.string.dialog_alarm_message), type);
+            dialogFragment_alarm.show(fm, "fragment_alarm");
             if(!mp_alarm.isPlaying()) {
                 Log.d("mp_alarm", "start");
                 mp_alarm.start();
@@ -221,10 +226,11 @@ public class Activity_Studying extends AppCompatActivity {
 
     private void stopStudying() {
         Toast.makeText(getApplicationContext(),"Study session finished",Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent();
         session.finish();
         //Singleton.getInstance().getCurrUser().addStudySession(session.getSaveState());
-        setResult(0,intent);
+        Intent intent = new Intent(this, Activity_Home.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+        startActivity(intent);
         finish();
     }
 

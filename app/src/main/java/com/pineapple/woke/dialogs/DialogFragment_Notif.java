@@ -21,6 +21,13 @@ public class DialogFragment_Notif extends DialogFragment {
         args.putString("title", title);
         args.putString("message", message);
         args.putString("type", type);
+        if(type.equals("notify")){
+            args.putString("button", "I'm awake");
+        }
+        else if(type.equals("alarm")){
+            args.putString("button", "Dismiss");
+        }
+
         frag.setArguments(args);
         return frag;
     }
@@ -29,6 +36,7 @@ public class DialogFragment_Notif extends DialogFragment {
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         String title = getArguments().getString("title");
         String message = getArguments().getString("message");
+        String button = getArguments().getString("button");
 
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity());
 
@@ -36,7 +44,7 @@ public class DialogFragment_Notif extends DialogFragment {
         alertDialogBuilder.setMessage(message);
 
         // Add the buttons
-        alertDialogBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+        alertDialogBuilder.setPositiveButton(button, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 Singleton.getInstance().getCurrUser().getCurrStudySession().dismissWokeNotification(getArguments().getString("type"));
                 DialogFragment_Notif.this.getDialog().dismiss();
