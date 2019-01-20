@@ -25,11 +25,6 @@ public class Activity_Settings_Notifications extends AppCompatActivity {
     private static int MIN_frequency = 1;
     int user_frequency;
 
-    TextView textView_delay_num;
-    SeekBar seekBar_delay;
-    private static int MAX_delay = 60;
-    int user_delay;
-
     boolean[] first;
 
     @Override
@@ -45,11 +40,10 @@ public class Activity_Settings_Notifications extends AppCompatActivity {
             }
         });
 
-        first = new boolean[]{true, true, true};
+        first = new boolean[]{true, true};
 
         initInterval();
         initFrequency();
-        initDelay();
 
     }
 
@@ -141,47 +135,5 @@ public class Activity_Settings_Notifications extends AppCompatActivity {
         seekBar_frequency.setOnSeekBarChangeListener(seekBarChangeListener_frequency);
         seekBar_frequency.setMax(MAX_frequency - MIN_frequency);
         Log.d("FREQUENCY", "SetProgress: " + Integer.toString(user_frequency));
-    }
-
-    private void initDelay(){
-        textView_delay_num = findViewById(R.id.textView_delay_value);
-        user_delay = Singleton.getInstance().getCurrUser().getNotif_delay();
-        Log.d("DELAY", "User: " + Integer.toString(user_delay));
-        String str_delay = user_delay +"m";
-        textView_delay_num.setText(str_delay);
-
-        SeekBar.OnSeekBarChangeListener seekBarChangeListener_delay = new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                // updated continuously as the user slides the thumb
-                if(!first[2]){
-                    int change = progress;
-                    String str_delay = Integer.toString(change)+"m";
-                    textView_delay_num.setText(str_delay);
-                    Log.d("DELAY", "NewChange: " + Integer.toString(change));
-                }
-                else{
-                    first[2] = false;
-                }
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-                // called when the user first touches the SeekBar
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-                // called after the user finishes moving the SeekBar
-                Log.d("DELAY", "NewStop: " + Integer.toString(seekBar.getProgress()));
-                Singleton.getInstance().getCurrUser().setNotif_delay(seekBar.getProgress());
-            }
-        };
-
-        seekBar_delay = findViewById(R.id.seekBar_delay);
-        seekBar_delay.setProgress(user_delay);
-        seekBar_delay.setOnSeekBarChangeListener(seekBarChangeListener_delay);
-        seekBar_delay.setMax(MAX_delay);
-        Log.d("DELAY", "SetProgress: " + Integer.toString(user_delay));
     }
 }

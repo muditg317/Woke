@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity_Settings_Notifications">
+    tools:context=".Activity_Settings_Alarms">
 
     <TextView
         android:id="@+id/textView_appName"
@@ -18,12 +18,12 @@
         android:layout_marginTop="26dp"/>
 
     <TextView
-        android:id="@+id/textView_notifications"
+        android:id="@+id/textView_alarms"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentTop="true"
-        android:text="Notifications"
+        android:text="Alarms"
         android:textAppearance="@style/header30_bold_black"
         android:layout_marginEnd="20dp"
         android:layout_marginTop="63dp"/>
@@ -43,7 +43,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:layout_below="@id/textView_notifications"
+        android:layout_below="@id/textView_alarms"
         android:layout_marginTop="10dp">
 
         <RelativeLayout
@@ -51,113 +51,54 @@
             android:layout_height="wrap_content">
 
             <ImageView
-                android:id="@+id/imageView_intervals_icon"
+                android:id="@+id/imageView_delay_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/shape_timer_def"
+                android:background="@drawable/shape_bed_def"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="10dp"/>
+                android:layout_marginTop="9dp"/>
 
             <TextView
-                android:id="@+id/textView_intervals"
+                android:id="@+id/textView_delay"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
                 android:layout_marginTop="8dp"
                 android:layout_marginStart="50dp"
-                android:text="Intervals"
+                android:text="Delay"
                 android:textAppearance="@style/text18_gray"/>
 
             <TextView
-                android:id="@+id/textView_intervals_desc"
+                android:id="@+id/textView_delay_desc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/textView_intervals"
-                android:layout_alignStart="@+id/textView_intervals"
+                android:layout_below="@+id/textView_delay"
+                android:layout_alignStart="@+id/textView_delay"
                 android:layout_marginEnd="60dp"
-                android:text="@string/notif_interval_desc"
+                android:text="@string/notif_delay_desc"
                 android:textAppearance="@style/text14_lightgray"/>
 
             <TextView
-                android:id="@+id/textView_intervals_value"
+                android:id="@+id/textView_delay_value"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentTop="true"
                 android:layout_marginTop="12dp"
                 android:layout_marginEnd="20dp"
-                android:text="10m"
+                android:text="45m"
                 android:textAppearance="@style/text14_lightgray"/>
 
             <SeekBar
-                android:id="@+id/seekBar_intervals"
+                android:id="@+id/seekBar_delay"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
                 android:layout_marginEnd="15dp"
-                android:layout_below="@id/textView_intervals_desc"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                />
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-            <ImageView
-                android:id="@+id/imageView_frequency_icon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/shape_dots_def"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="10dp"/>
-
-            <TextView
-                android:id="@+id/textView_frequency"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginTop="8dp"
-                android:layout_marginStart="50dp"
-                android:text="Frequency"
-                android:textAppearance="@style/text18_gray"/>
-
-            <TextView
-                android:id="@+id/textView_frequency_desc"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/textView_frequency"
-                android:layout_alignStart="@+id/textView_frequency"
-                android:layout_marginEnd="60dp"
-                android:text="@string/notif_frequency_desc"
-                android:textAppearance="@style/text14_lightgray"/>
-
-            <TextView
-                android:id="@+id/textView_frequency_value"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginTop="12dp"
-                android:layout_marginEnd="20dp"
-                android:text="2"
-                android:textAppearance="@style/text14_lightgray"/>
-
-            <SeekBar
-                android:id="@+id/seekBar_frequency"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginEnd="15dp"
-                android:layout_below="@id/textView_frequency_desc"
+                android:layout_below="@id/textView_delay_desc"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 />
@@ -165,9 +106,5 @@
         </RelativeLayout>
 
     </LinearLayout>
-
-
-
-
 
 </RelativeLayout>
