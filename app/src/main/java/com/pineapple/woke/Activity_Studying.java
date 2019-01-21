@@ -38,9 +38,9 @@ public class Activity_Studying extends AppCompatActivity {
     StudySession session;
 
     NotificationManagerCompat notificationManager;
+
     MediaPlayer mp_notify;
     MediaPlayer mp_alarm;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,39 +82,53 @@ public class Activity_Studying extends AppCompatActivity {
             }
         });
 
-        session = new StudySession(textView_next, textView_time,Singleton.getInstance().getCurrUser().getNotif_interval());
-        session.setNotifyCallback(new MyCallback<Boolean>() {
-            @Override
-            public void accept(Boolean alarm) {
 
-                String type;
+        if(Singleton.getInstance().getCurrUser().getCurrStudySession() == null) {
+            session = new StudySession(textView_next, textView_time, Singleton.getInstance().getCurrUser().getNotif_interval());
+            session.setNotifyCallback(new MyCallback<Boolean>() {
+                @Override
+                public void accept(Boolean alarm) {
 
-                if(!alarm){
-                    Log.d("notify callback","creating notify notification");
-                    type = "notify";
-                }
-                else{
-                    Log.d("notify callback","creating alarm notification");
-                    type = "alarm";
-                }
+                    String type;
 
-                if(Utils.isAppRunning(Activity_Studying.this)) {
-                    showAlertDialog(type);
-                } else {
-                    makeNotification(type);
+                    if (!alarm) {
+                        Log.d("notify callback", "creating notify notification");
+                        type = "notify";
+                    } else {
+                        Log.d("notify callback", "creating alarm notification");
+                        type = "alarm";
+                    }
+
+                    if (Utils.isAppRunning(Activity_Studying.this)) {
+                        showAlertDialog(type);
+                    } else {
+                        makeNotification(type);
+                    }
                 }
-            }
-        });
-        Singleton.getInstance().getCurrUser().setCurrStudySession(session);
-        Singleton.getInstance().getCurrUser().addStudySession(session.getSaveState());
+            });
+            Singleton.getInstance().getCurrUser().setCurrStudySession(session);
+            Singleton.getInstance().getCurrUser().addStudySession(session.getSaveState());
+        } else {
+            session = Singleton.getInstance().getCurrUser().getCurrStudySession();
+            session.setViews(textView_next, textView_time);
+        }
 
         Uri r_notify = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         Singleton.getInstance().setMp_notify(MediaPlayer.create(getApplicationContext(), r_notify));
         Uri r_alarm = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
-        mp_alarm = MediaPlayer.create(getApplicationContext(), r_alarm);
+        Singleton.getInstance().setMp_alarm(MediaPlayer.create(getApplicationContext(), r_alarm));
 
         mp_notify = Singleton.getInstance().getMp_notify();
-        //mp_alarm = Singleton.getInstance().getMp_alarm();
+        mp_alarm = Singleton.getInstance().getMp_alarm();
+        mp_alarm.stop();
+
+        mp_alarm.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+            @Override
+            public void onPrepared(MediaPlayer mp) {
+                mp.start();
+            }
+        });
+
     }
 
     private void makeNotification(String type){
@@ -138,7 +152,7 @@ public class Activity_Studying extends AppCompatActivity {
             sound = null;
             if(!mp_alarm.isPlaying()) {
                 Log.d("mp_alarm", "start");
-                mp_alarm.start();
+                mp_alarm.prepareAsync();
             }
         }
 
@@ -160,7 +174,6 @@ public class Activity_Studying extends AppCompatActivity {
                 .setTimeoutAfter(1000);
         // notificationId is a unique int for each notification that you must define
         notificationManager.notify(Constants.wokeNotificationID, mBuilder.build());
-
     }
 
     private void showAlertDialog(String type) {
@@ -179,7 +192,7 @@ public class Activity_Studying extends AppCompatActivity {
             dialogFragment_alarm.show(fm, "fragment_alarm");
             if(!mp_alarm.isPlaying()) {
                 Log.d("mp_alarm", "start");
-                mp_alarm.start();
+                mp_alarm.prepareAsync();
             }
         }
         //((AlertDialog)(dialogFragment_notif.getDialog())).getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getColor(R.color.colorPrimaryBlue));
@@ -227,7 +240,6 @@ public class Activity_Studying extends AppCompatActivity {
     private void stopStudying() {
         Toast.makeText(getApplicationContext(),"Study session finished",Toast.LENGTH_SHORT).show();
         session.finish();
-        //Singleton.getInstance().getCurrUser().addStudySession(session.getSaveState());
         Intent intent = new Intent(this, Activity_Home.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
         startActivity(intent);

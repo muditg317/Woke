@@ -24,7 +24,7 @@ public class Singleton implements Serializable {
     private NotificationManagerCompat notificationManagerCompat;
     private MediaPlayer mp_notify;
     private MediaPlayer mp_alarm;
-    /**private GoogleSignInClient gsiClient;
+    /*private GoogleSignInClient gsiClient;
     private GoogleApiClient gapiClient;
     private GoogleSignInAccount gsiAccount;
     private FirebaseUser fireUser;
@@ -88,7 +88,7 @@ public class Singleton implements Serializable {
         return mp_alarm;
     }
 
-    /**public GoogleSignInClient getGsiClient() {
+    /*public GoogleSignInClient getGsiClient() {
         if(gsiClient == null) {
             throw new MyException("There is no gsi account yet");
         }
@@ -168,7 +168,7 @@ public class Singleton implements Serializable {
 
     public void signOut() {
         this.currUser = null;
-        /**this.gapiClient = null;
+        /*this.gapiClient = null;
         this.gsiClient = null;
         this.gsiAccount = null;
         this.fireUser = null;

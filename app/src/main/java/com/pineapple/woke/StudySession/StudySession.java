@@ -29,13 +29,13 @@ public class StudySession extends CountDownTimer {
 
     private int missedNotifications;
 
-    private final TextView textView_next;
-    private final TextView textView_time;
+    private TextView textView_next;
+    private TextView textView_time;
 
     private SavedSession saveState;
     private MyCallback notifyCallback;
 
-    MediaPlayer mp_alarm;
+    private MediaPlayer mp_alarm;
 
     public StudySession(TextView textView_next, TextView textView_time, double wokeMinutes) {
         super((long)(wokeMinutes*60*1000), 100);
@@ -52,6 +52,11 @@ public class StudySession extends CountDownTimer {
         this.textView_time = textView_time;
 
         saveState = new SavedSession(millisLastUpdate,wokeMillis);
+    }
+
+    public void setViews(TextView textView_next, TextView textView_time) {
+        this.textView_next = textView_next;
+        this.textView_time = textView_time;
     }
 
     public void onTick(long millisUntilFinished) {
@@ -178,7 +183,6 @@ public class StudySession extends CountDownTimer {
             notified = false;
             missedNotifications = 0;
             Log.d("StudySession", "dismissed alarm");
-            //TODO: crashes on line below saying "com.pineapple.woke.resources.MyException: There is no alarm sound yet"
             mp_alarm = Singleton.getInstance().getMp_alarm();
             if(mp_alarm.isPlaying()) {
                 mp_alarm.stop();
