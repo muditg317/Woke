@@ -1,12 +1,15 @@
-package com.pineapple.woke.resources;
+package com.pineapple.woke.RoomDatabase;
 
+import android.arch.persistence.room.Entity;
 import android.util.Log;
 
 import com.pineapple.woke.StudySession.SavedSession;
 import com.pineapple.woke.StudySession.StudySession;
+import com.pineapple.woke.resources.Constants;
 
 import java.util.ArrayList;
 
+@Entity
 public class User {
 
     private String name;

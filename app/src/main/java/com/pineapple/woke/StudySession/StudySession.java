@@ -131,6 +131,7 @@ public class StudySession extends CountDownTimer {
     private void updateSaveState() {
         saveState.setDuration(millisElapsed);
         saveState.setWokeNotifs(wokeNotifs);
+        Singleton.getInstance().getAppDatabase().userDao().update(Singleton.getInstance().getCurrUser());
     }
 
     public void pauseStudying() {

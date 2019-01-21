@@ -219,14 +219,19 @@ public class Activity_Studying extends AppCompatActivity {
         FragmentManager fm = getSupportFragmentManager();
 
         if(type.equals("notify")){
-            final DialogFragment_Notif dialogFragment_notify = DialogFragment_Notif.newInstance(getString(R.string.dialog_notify_title), getString(R.string.dialog_notify_message), type);
-            dialogFragment_notify.show(fm, "fragment_notify");
+            if(fm.findFragmentByTag("fragment_notify")==null){
+                final DialogFragment_Notif dialogFragment_notify = DialogFragment_Notif.newInstance(getString(R.string.dialog_notify_title), getString(R.string.dialog_notify_message), type);
+                dialogFragment_notify.show(fm, "fragment_notify");
+            }
             if(!mp_notify.isPlaying()) {
                 Log.d("mp_notify", "start");
                 mp_notify.start();
             }
         }
-        else if(type.equals("alarm")){
+        else if(type.equals("alarm") && fm.findFragmentByTag("fragment_alarm")==null){
+            if(fm.findFragmentByTag("fragment_notify")!=null){
+                ((DialogFragment_Notif)fm.findFragmentByTag("fragment_notify")).getDialog().dismiss();
+            }
             final DialogFragment_Notif dialogFragment_alarm = DialogFragment_Notif.newInstance(getString(R.string.dialog_alarm_title), getString(R.string.dialog_alarm_message), type);
             dialogFragment_alarm.show(fm, "fragment_alarm");
             if(!mp_alarm.isPlaying()) {
