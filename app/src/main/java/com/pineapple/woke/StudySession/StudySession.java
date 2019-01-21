@@ -172,22 +172,24 @@ public class StudySession extends CountDownTimer {
         return wokeMillis;
     }
 
-    public void dismissWokeNotification(String type) {
-        Log.d("StudySession", "dismissing: " + type);
-        if(type.equals("notify")){
-            notified = false;
-            missedNotifications = 0;
+    public void dismissWokeNotification() {
+//        if(type.equals("notify")){
+//            notified = false;
+//            missedNotifications = 0;
+//            Log.d("StudySession", "dismissed notification");
+//        }
+//        else if(type.equals("alarm")){
+        notified = false;
+        missedNotifications = 0;
+        mp_alarm = Singleton.getInstance().getMp_alarm();
+        if(mp_alarm.isPlaying()) {
+            Log.d("StudySession", "dismissed alarm");
+            mp_alarm.pause();
+            mp_alarm.seekTo(0);
+        } else {
             Log.d("StudySession", "dismissed notification");
         }
-        else if(type.equals("alarm")){
-            notified = false;
-            missedNotifications = 0;
-            Log.d("StudySession", "dismissed alarm");
-            mp_alarm = Singleton.getInstance().getMp_alarm();
-            if(mp_alarm.isPlaying()) {
-                mp_alarm.stop();
-            }
-        }
+//        }
 
     }
 

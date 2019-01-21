@@ -46,7 +46,7 @@ public class DialogFragment_Notif extends DialogFragment {
         // Add the buttons
         alertDialogBuilder.setPositiveButton(button, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
-                Singleton.getInstance().getCurrUser().getCurrStudySession().dismissWokeNotification(getArguments().getString("type"));
+                Singleton.getInstance().getCurrUser().getCurrStudySession().dismissWokeNotification();
                 DialogFragment_Notif.this.getDialog().dismiss();
             }
         });

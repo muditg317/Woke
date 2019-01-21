@@ -30,6 +30,6 @@ public class MyBroadcastReceiver extends BroadcastReceiver{
 
     private void dismiss(String type){
         Log.d("BroadcastReceiver","dismissing: " + type);
-        Singleton.getInstance().getCurrUser().getCurrStudySession().dismissWokeNotification(type);
+        Singleton.getInstance().getCurrUser().getCurrStudySession().dismissWokeNotification();
     }
 }

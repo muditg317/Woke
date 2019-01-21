@@ -42,6 +42,9 @@ public class Activity_Studying extends AppCompatActivity {
     MediaPlayer mp_notify;
     MediaPlayer mp_alarm;
 
+//    boolean[] first;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,12 +86,15 @@ public class Activity_Studying extends AppCompatActivity {
         });
 
 
+        Log.d("Activity_Studying","study session: " + Singleton.getInstance().getCurrUser().getCurrStudySession());
         if(Singleton.getInstance().getCurrUser().getCurrStudySession() == null) {
+            Log.d("Activity_Studying","creating new study session");
             session = new StudySession(textView_next, textView_time, Singleton.getInstance().getCurrUser().getNotif_interval());
             session.setNotifyCallback(new MyCallback<Boolean>() {
                 @Override
                 public void accept(Boolean alarm) {
 
+                    Log.d("notify callback","study session: " + Singleton.getInstance().getCurrUser().getCurrStudySession());
                     String type;
 
                     if (!alarm) {
@@ -108,9 +114,35 @@ public class Activity_Studying extends AppCompatActivity {
             });
             Singleton.getInstance().getCurrUser().setCurrStudySession(session);
             Singleton.getInstance().getCurrUser().addStudySession(session.getSaveState());
+            Log.d("Activity_Studying","made study session: " + Singleton.getInstance().getCurrUser().getCurrStudySession());
         } else {
+            Log.d("Activity_Studying","loading existing study session");
             session = Singleton.getInstance().getCurrUser().getCurrStudySession();
             session.setViews(textView_next, textView_time);
+            session.setNotifyCallback(new MyCallback<Boolean>() {
+                @Override
+                public void accept(Boolean alarm) {
+
+                    Log.d("notify callback","study session: " + Singleton.getInstance().getCurrUser().getCurrStudySession());
+                    String type;
+
+                    if (!alarm) {
+                        Log.d("notify callback", "creating notify notification");
+                        type = "notify";
+                    } else {
+                        Log.d("notify callback", "creating alarm notification");
+                        type = "alarm";
+                    }
+
+                    if (Utils.isAppRunning(Activity_Studying.this)) {
+                        showAlertDialog(type);
+                    } else {
+                        makeNotification(type);
+                    }
+                }
+            });
+            Log.d("BroadcastReceiver","dismissing");
+            Singleton.getInstance().getCurrUser().getCurrStudySession().dismissWokeNotification();
         }
 
         Uri r_notify = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
@@ -118,23 +150,28 @@ public class Activity_Studying extends AppCompatActivity {
         Uri r_alarm = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
         Singleton.getInstance().setMp_alarm(MediaPlayer.create(getApplicationContext(), r_alarm));
 
+//        first = new boolean[]{true};
         mp_notify = Singleton.getInstance().getMp_notify();
         mp_alarm = Singleton.getInstance().getMp_alarm();
-        mp_alarm.stop();
-
-        mp_alarm.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-            @Override
-            public void onPrepared(MediaPlayer mp) {
-                mp.start();
-            }
-        });
+//        mp_alarm.stop();
+//
+//        mp_alarm.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+//            @Override
+//            public void onPrepared(MediaPlayer mp) {
+//                if(!first[0]) {
+//                    mp.start();
+//                } else {
+//                    first[0] = false;
+//                }
+//            }
+//        });
 
     }
 
     private void makeNotification(String type){
         //tap intent
         Intent intent = new Intent(this, Activity_Studying.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_LAUNCHED_FROM_HISTORY);
         PendingIntent pendingIntent_tap = PendingIntent.getActivity(this, 0, intent, 0);
 
         //action button intent
@@ -152,7 +189,7 @@ public class Activity_Studying extends AppCompatActivity {
             sound = null;
             if(!mp_alarm.isPlaying()) {
                 Log.d("mp_alarm", "start");
-                mp_alarm.prepareAsync();
+                mp_alarm.start();
             }
         }
 
@@ -167,10 +204,12 @@ public class Activity_Studying extends AppCompatActivity {
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .setContentIntent(pendingIntent_tap)
                 .addAction(R.drawable.ic_notification_button, getString(R.string.woke), pendingIntent_button)
+                .setDeleteIntent(pendingIntent_button)
                 .setSound(sound)
                 .setVibrate(new long[]{0, 1000, 500, 1000, 500})
                 .setAutoCancel(autoCancel)
                 .setOngoing(ongoing)
+                .setColorized(true)
                 .setTimeoutAfter(1000);
         // notificationId is a unique int for each notification that you must define
         notificationManager.notify(Constants.wokeNotificationID, mBuilder.build());
@@ -192,7 +231,7 @@ public class Activity_Studying extends AppCompatActivity {
             dialogFragment_alarm.show(fm, "fragment_alarm");
             if(!mp_alarm.isPlaying()) {
                 Log.d("mp_alarm", "start");
-                mp_alarm.prepareAsync();
+                mp_alarm.start();
             }
         }
         //((AlertDialog)(dialogFragment_notif.getDialog())).getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getColor(R.color.colorPrimaryBlue));
