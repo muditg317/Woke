@@ -1,8 +1,5 @@
 package com.pineapple.woke.StudySession;
 
-import android.arch.persistence.room.Entity;
-
-@Entity
 public class SavedSession {
     private String TAG = "SavedSession";
 

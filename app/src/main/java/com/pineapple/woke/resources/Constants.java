@@ -8,15 +8,21 @@ import android.support.annotation.Dimension;
  */
 
 public class Constants {
-
-
     public static final int wokeNotificationID = 123;
     public static final String CHANNEL_ID = "woke notification channel id";
 
     public static final String PACKAGE_NAME = "com.pineapple.woke";
     public static final String ACTION_WOKE = "com.pineapple.woke.ACTION_WOKE";
-    public static final long missedNotificationSeconds = 30;
-    public static final int DEFAULT_NOTIF_INTERVAL = 1;
-    public static final int DEFAULT_NOTIF_FREQUENCY = 1;
-    public static final int DEFAULT_NOTIF_DELAY = 0;
+
+    /**
+    User
+     */
+    public static final double NOTIF_INTERVAL_DEFAULT = 15.0;
+    public static final double NOTIF_INTERVAL_MAX = 60.0;
+    public static final double NOTIF_INTERVAL_MIN = 30.0;
+    public static final int NOTIF_FREQUENCY_DEFAULT = 1;
+    public static final int NOTIF_FREQUENCY_MAX = 3;
+    public static final int NOTIF_FREQUENCY_MIN = 1;
+    public static final int NOTIF_DELAY_DEFAULT = 0;
+    public static final int NOTIF_DELAY_MAX = 60;
 }

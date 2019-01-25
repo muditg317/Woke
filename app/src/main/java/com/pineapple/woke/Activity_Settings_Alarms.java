@@ -8,6 +8,7 @@ import android.widget.ImageButton;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import com.pineapple.woke.resources.Constants;
 import com.pineapple.woke.resources.Singleton;
 
 public class Activity_Settings_Alarms extends AppCompatActivity {
@@ -15,7 +16,6 @@ public class Activity_Settings_Alarms extends AppCompatActivity {
 
     TextView textView_delay_num;
     SeekBar seekBar_delay;
-    private static int MAX_delay = 60;
     int user_delay;
 
     boolean[] first;
@@ -77,7 +77,7 @@ public class Activity_Settings_Alarms extends AppCompatActivity {
         seekBar_delay = findViewById(R.id.seekBar_delay);
         seekBar_delay.setProgress(user_delay);
         seekBar_delay.setOnSeekBarChangeListener(seekBarChangeListener_delay);
-        seekBar_delay.setMax(MAX_delay);
+        seekBar_delay.setMax(Constants.NOTIF_DELAY_MAX);
         Log.d("DELAY", "SetProgress: " + Integer.toString(user_delay));
     }
 }

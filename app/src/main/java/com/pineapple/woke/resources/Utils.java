@@ -1,4 +1,5 @@
-package com.pineapple.woke.resources; /**
+package com.pineapple.woke.resources;
+/**
  * Created by Mudit on 5/30/2018.
  */
 

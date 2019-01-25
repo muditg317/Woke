@@ -8,6 +8,7 @@ import android.widget.ImageButton;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import com.pineapple.woke.resources.Constants;
 import com.pineapple.woke.resources.Singleton;
 
 public class Activity_Settings_Notifications extends AppCompatActivity {
@@ -15,14 +16,10 @@ public class Activity_Settings_Notifications extends AppCompatActivity {
 
     TextView textView_intervals_num;
     SeekBar seekBar_intervals;
-    private static int MAX_intervals = 600;
-    private static int MIN_intervals = 1;
     double user_interval;
 
     TextView textView_frequency_num;
     SeekBar seekBar_frequency;
-    private static int MAX_frequency = 5;
-    private static int MIN_frequency = 1;
     int user_frequency;
 
     boolean[] first;
@@ -65,7 +62,7 @@ public class Activity_Settings_Notifications extends AppCompatActivity {
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 // updated continuously as the user slides the thumb
                 if(!first[0]){
-                    double change = (progress+ MIN_intervals)/10.0;
+                    double change = (progress+(Constants.NOTIF_INTERVAL_MIN *10))/10.0;
                     String str_interval = (change > 1.0? ((int)change+"m"):((int)(change*60)+"s"));
                     textView_intervals_num.setText(str_interval);
                     Log.d("INTERVAL", "NewChange: " + Double.toString(change));
@@ -83,15 +80,15 @@ public class Activity_Settings_Notifications extends AppCompatActivity {
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
                 // called after the user finishes moving the SeekBar
-                Log.d("INTERVAL", "NewStop: " + Double.toString((seekBar.getProgress()+ MIN_intervals)/10.0));
-                Singleton.getInstance().getCurrUser().setNotif_interval(seekBar.getProgress()+ MIN_intervals);
+                Log.d("INTERVAL", "NewStop: " + Double.toString((seekBar.getProgress()+(Constants.NOTIF_INTERVAL_MIN *10))/10.0));
+                Singleton.getInstance().getCurrUser().setNotif_interval((seekBar.getProgress()+(Constants.NOTIF_INTERVAL_MIN *10))/10.0);
             }
         };
 
         seekBar_intervals = findViewById(R.id.seekBar_intervals);
-        seekBar_intervals.setProgress(((int)(user_interval *10))- MIN_intervals);
+        seekBar_intervals.setProgress(((int)(user_interval *10))-(int)(Constants.NOTIF_INTERVAL_MIN *10));
         seekBar_intervals.setOnSeekBarChangeListener(seekBarChangeListener_interval);
-        seekBar_intervals.setMax(MAX_intervals - MIN_intervals);
+        seekBar_intervals.setMax((int)((Constants.NOTIF_INTERVAL_MAX - Constants.NOTIF_INTERVAL_MIN)*10));
         Log.d("INTERVAL", "SetProgress: " + Double.toString(user_interval));
     }
 
@@ -107,7 +104,7 @@ public class Activity_Settings_Notifications extends AppCompatActivity {
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 // updated continuously as the user slides the thumb
                 if(!first[1]){
-                    int change = (progress+MIN_frequency);
+                    int change = (progress+Constants.NOTIF_FREQUENCY_MIN);
                     String str_frequency = Integer.toString(change);
                     textView_frequency_num.setText(str_frequency);
                     Log.d("FREQUENCY", "NewChange: " + Integer.toString(change));
@@ -125,15 +122,15 @@ public class Activity_Settings_Notifications extends AppCompatActivity {
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
                 // called after the user finishes moving the SeekBar
-                Log.d("FREQUENCY", "NewStop: " + Integer.toString(seekBar.getProgress()+MIN_frequency));
-                Singleton.getInstance().getCurrUser().setNotif_frequency(seekBar.getProgress()+MIN_frequency);
+                Log.d("FREQUENCY", "NewStop: " + Integer.toString(seekBar.getProgress()+Constants.NOTIF_FREQUENCY_MIN));
+                Singleton.getInstance().getCurrUser().setNotif_frequency(seekBar.getProgress()+Constants.NOTIF_FREQUENCY_MIN);
             }
         };
 
         seekBar_frequency = findViewById(R.id.seekBar_frequency);
-        seekBar_frequency.setProgress(user_frequency - MIN_frequency);
+        seekBar_frequency.setProgress(user_frequency - Constants.NOTIF_FREQUENCY_MIN);
         seekBar_frequency.setOnSeekBarChangeListener(seekBarChangeListener_frequency);
-        seekBar_frequency.setMax(MAX_frequency - MIN_frequency);
+        seekBar_frequency.setMax(Constants.NOTIF_FREQUENCY_MAX - Constants.NOTIF_FREQUENCY_MIN);
         Log.d("FREQUENCY", "SetProgress: " + Integer.toString(user_frequency));
     }
 }

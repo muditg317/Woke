@@ -3,6 +3,7 @@ package com.pineapple.woke.RoomDatabase;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
+import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.pineapple.woke.StudySession.SavedSession;
@@ -15,9 +16,10 @@ import java.util.ArrayList;
 public class User {
 
     @PrimaryKey
-    private String name;
+    @NonNull
+    private String name = "";
 
-    private int notif_interval;
+    private double notif_interval;
     private int notif_frequency;
     private int notif_delay;
 
@@ -26,14 +28,11 @@ public class User {
     @Ignore
     private StudySession currStudySession;
 
-    @Ignore
-    public User(){ }
-
-    public User(String name){
+    public User(@NonNull String name){
         this.name = name;
-        this.notif_interval = Constants.DEFAULT_NOTIF_INTERVAL;
-        this.notif_frequency = Constants.DEFAULT_NOTIF_FREQUENCY;
-        this.notif_delay = Constants.DEFAULT_NOTIF_DELAY;
+        this.notif_interval = Constants.NOTIF_INTERVAL_DEFAULT;
+        this.notif_frequency = Constants.NOTIF_FREQUENCY_DEFAULT;
+        this.notif_delay = Constants.NOTIF_DELAY_DEFAULT;
         studySessions = new ArrayList<>();
     }
 
@@ -45,9 +44,9 @@ public class User {
     }
 
     public double getNotif_interval() {
-        return notif_interval/10.0;
+        return notif_interval;
     }
-    public void setNotif_interval(int notif_interval) {
+    public void setNotif_interval(double notif_interval) {
         this.notif_interval = notif_interval;
     }
 
@@ -72,6 +71,9 @@ public class User {
         studySessions.add(0,s);
         Log.d("User", "Study Session added to: "+name);
         Log.d("User", "Study Session duration: " + Long.toString(s.getDuration()));
+    }
+    void setStudySessions(ArrayList<SavedSession> studySessions) {
+        this.studySessions = studySessions;
     }
 
     public StudySession getCurrStudySession() {
