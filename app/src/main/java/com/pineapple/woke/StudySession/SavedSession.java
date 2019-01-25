@@ -1,5 +1,8 @@
 package com.pineapple.woke.StudySession;
 
+import android.arch.persistence.room.Entity;
+
+@Entity
 public class SavedSession {
     private String TAG = "SavedSession";
 
@@ -8,7 +11,7 @@ public class SavedSession {
     private long millisElapsed;
     private int wokeNotifs;
 
-    public SavedSession(long millisStartTime,int wokeMillis) {
+    public SavedSession(long millisStartTime, int wokeMillis) {
         this.millisStartTime = millisStartTime;
         this.wokeMillis = wokeMillis;
     }
@@ -36,4 +39,9 @@ public class SavedSession {
     void setWokeNotifs(int wokeNotifs) {
         this.wokeNotifs = wokeNotifs;
     }
+
+    public String toString() {
+        return "oowa";
+    }
+
 }
