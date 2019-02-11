@@ -1,10 +1,7 @@
 package com.pineapple.woke.StudySession;
 
 import android.media.MediaPlayer;
-import android.media.RingtoneManager;
-import android.net.Uri;
 import android.os.CountDownTimer;
-import android.provider.MediaStore;
 import android.util.Log;
 import android.widget.TextView;
 
@@ -38,7 +35,7 @@ public class StudySession extends CountDownTimer {
     private MediaPlayer mp_alarm;
 
     public StudySession(TextView textView_next, TextView textView_time, double wokeMinutes) {
-        super((long)(wokeMinutes*60*1000), 100);
+        super((long)(wokeMinutes*60*1000), Constants.COUNTDOWNINTERVAL);
         wokeMillis = (int)(wokeMinutes*60*1000);
         millisLastUpdate = Calendar.getInstance().getTimeInMillis();
         millisElapsed = 0;
@@ -174,12 +171,6 @@ public class StudySession extends CountDownTimer {
     }
 
     public void dismissWokeNotification() {
-//        if(type.equals("notify")){
-//            notified = false;
-//            missedNotifications = 0;
-//            Log.d("StudySession", "dismissed notification");
-//        }
-//        else if(type.equals("alarm")){
         notified = false;
         missedNotifications = 0;
         mp_alarm = Singleton.getInstance().getMp_alarm();
@@ -190,8 +181,6 @@ public class StudySession extends CountDownTimer {
         } else {
             Log.d("StudySession", "dismissed notification");
         }
-//        }
-
     }
 
 }

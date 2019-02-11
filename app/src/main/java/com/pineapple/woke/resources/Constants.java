@@ -17,12 +17,19 @@ public class Constants {
     /**
     User
      */
-    public static final double NOTIF_INTERVAL_DEFAULT = 15.0;
+    public static final double NOTIF_INTERVAL_DEFAULT = 30.0;
     public static final double NOTIF_INTERVAL_MAX = 60.0;
-    public static final double NOTIF_INTERVAL_MIN = 30.0;
+    public static final double NOTIF_INTERVAL_MIN = 15.0;
     public static final int NOTIF_FREQUENCY_DEFAULT = 1;
     public static final int NOTIF_FREQUENCY_MAX = 3;
     public static final int NOTIF_FREQUENCY_MIN = 1;
     public static final int NOTIF_DELAY_DEFAULT = 0;
     public static final int NOTIF_DELAY_MAX = 60;
+
+    /**
+     * StudySession
+     */
+    public static final int COUNTDOWNINTERVAL = 100;
+    public static final String ALERTTYPE_NOTIFY = "notify";
+    public static final String ALERTTYPE_ALARM = "alarm";
 }

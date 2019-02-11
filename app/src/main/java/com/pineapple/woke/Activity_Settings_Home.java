@@ -9,7 +9,7 @@ import android.widget.ImageButton;
 public class Activity_Settings_Home extends AppCompatActivity {
     ImageButton imgButton_back;
     ImageButton imgButton_notifications;
-    ImageButton imgButton_alarms;
+    //ImageButton imgButton_alarms;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +32,7 @@ public class Activity_Settings_Home extends AppCompatActivity {
             }
         });
 
+        /*
         imgButton_alarms =findViewById(R.id.imageButton_alarm);
         imgButton_alarms.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -39,6 +40,7 @@ public class Activity_Settings_Home extends AppCompatActivity {
                 toAlarms();
             }
         });
+        */
     }
 
     @Override

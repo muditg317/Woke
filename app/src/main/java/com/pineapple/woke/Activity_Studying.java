@@ -99,10 +99,10 @@ public class Activity_Studying extends AppCompatActivity {
 
                     if (!alarm) {
                         Log.d("notify callback", "creating notify notification");
-                        type = "notify";
+                        type = Constants.ALERTTYPE_NOTIFY;
                     } else {
                         Log.d("notify callback", "creating alarm notification");
-                        type = "alarm";
+                        type = Constants.ALERTTYPE_ALARM;
                     }
 
                     if (Utils.isAppRunning(Activity_Studying.this)) {
@@ -128,10 +128,10 @@ public class Activity_Studying extends AppCompatActivity {
 
                     if (!alarm) {
                         Log.d("notify callback", "creating notify notification");
-                        type = "notify";
+                        type = Constants.ALERTTYPE_NOTIFY;
                     } else {
                         Log.d("notify callback", "creating alarm notification");
-                        type = "alarm";
+                        type = Constants.ALERTTYPE_ALARM;
                     }
 
                     if (Utils.isAppRunning(Activity_Studying.this)) {
@@ -183,7 +183,7 @@ public class Activity_Studying extends AppCompatActivity {
         Boolean autoCancel = true;
         Uri sound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
 
-        if(type.equals("alarm")){
+        if(type.equals(Constants.ALERTTYPE_ALARM)){
             ongoing = true;
             autoCancel = false;
             sound = null;
@@ -218,7 +218,7 @@ public class Activity_Studying extends AppCompatActivity {
     private void showAlertDialog(String type) {
         FragmentManager fm = getSupportFragmentManager();
 
-        if(type.equals("notify")){
+        if(type.equals(Constants.ALERTTYPE_ALARM)){
             if(fm.findFragmentByTag("fragment_notify")==null){
                 final DialogFragment_Notif dialogFragment_notify = DialogFragment_Notif.newInstance(getString(R.string.dialog_notify_title), getString(R.string.dialog_notify_message), type);
                 dialogFragment_notify.show(fm, "fragment_notify");
@@ -228,7 +228,7 @@ public class Activity_Studying extends AppCompatActivity {
                 mp_notify.start();
             }
         }
-        else if(type.equals("alarm") && fm.findFragmentByTag("fragment_alarm")==null){
+        else if(type.equals(Constants.ALERTTYPE_ALARM) && fm.findFragmentByTag("fragment_alarm")==null){
             if(fm.findFragmentByTag("fragment_notify")!=null){
                 ((DialogFragment_Notif)fm.findFragmentByTag("fragment_notify")).getDialog().dismiss();
             }
