@@ -42,8 +42,8 @@ public class Activity_Start extends AppCompatActivity {
         setContentView(R.layout.activity_start);
 
         Display screen = getWindowManager().getDefaultDisplay();
-        rectangle_background = (View) findViewById(R.id.rectangle_background);
-        textView_appName = (TextView) findViewById(R.id.textView_appName);
+        rectangle_background = findViewById(R.id.rectangle_background);
+        textView_appName = findViewById(R.id.textView_appName);
         editText_userName = findViewById(R.id.editText_userName);
         imgButton_submit = findViewById(R.id.imageButton_buttonSubmit);
         textView_submit = findViewById(R.id.textView_buttonSubmit);

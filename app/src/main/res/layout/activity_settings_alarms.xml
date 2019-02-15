@@ -23,14 +23,14 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentTop="true"
-        android:text="Alarms"
+        android:text="@string/settings_alarm_title"
         android:textAppearance="@style/header30_bold_black"
         android:layout_marginEnd="20dp"
         android:layout_marginTop="63dp"/>
 
     <ImageButton
         android:id="@+id/imageButton_buttonBack"
-        android:contentDescription="Back"
+        android:contentDescription="@string/button_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/shape_back_def"
@@ -68,7 +68,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_marginTop="8dp"
                 android:layout_marginStart="50dp"
-                android:text="Delay"
+                android:text="@string/settings_alarm_delay_title"
                 android:textAppearance="@style/text18_gray"/>
 
             <TextView
@@ -78,7 +78,7 @@
                 android:layout_below="@+id/textView_delay"
                 android:layout_alignStart="@+id/textView_delay"
                 android:layout_marginEnd="60dp"
-                android:text="@string/notif_delay_desc"
+                android:text="@string/settings_alarm_delay_desc"
                 android:textAppearance="@style/text14_lightgray"/>
 
             <TextView
@@ -89,7 +89,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_marginTop="12dp"
                 android:layout_marginEnd="20dp"
-                android:text="45m"
+                android:text="@string/settings_alarm_delay_value"
                 android:textAppearance="@style/text14_lightgray"/>
 
             <SeekBar
