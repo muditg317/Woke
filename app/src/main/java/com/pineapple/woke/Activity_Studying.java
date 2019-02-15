@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.pineapple.woke.dialogs.DialogFragment_Notif;
 import com.pineapple.woke.resources.Constants;
+import com.pineapple.woke.resources.MyBroadcastReceiver;
 import com.pineapple.woke.resources.MyCallback;
 import com.pineapple.woke.resources.Singleton;
 import com.pineapple.woke.StudySession.StudySession;
@@ -218,10 +219,14 @@ public class Activity_Studying extends AppCompatActivity {
     private void showAlertDialog(String type) {
         FragmentManager fm = getSupportFragmentManager();
 
-        if(type.equals(Constants.ALERTTYPE_ALARM)){
+        if(type.equals(Constants.ALERTTYPE_NOTIFY)){
             if(fm.findFragmentByTag("fragment_notify")==null){
+                Log.d("SHOWALERTDIALOG", "no fragment_notify");
                 final DialogFragment_Notif dialogFragment_notify = DialogFragment_Notif.newInstance(getString(R.string.dialog_notify_title), getString(R.string.dialog_notify_message), type);
                 dialogFragment_notify.show(fm, "fragment_notify");
+            }
+            else{
+                Log.d("SHOWALERTDIALOG", "found fragment_notify");
             }
             if(!mp_notify.isPlaying()) {
                 Log.d("mp_notify", "start");
@@ -231,6 +236,10 @@ public class Activity_Studying extends AppCompatActivity {
         else if(type.equals(Constants.ALERTTYPE_ALARM) && fm.findFragmentByTag("fragment_alarm")==null){
             if(fm.findFragmentByTag("fragment_notify")!=null){
                 ((DialogFragment_Notif)fm.findFragmentByTag("fragment_notify")).getDialog().dismiss();
+                Log.d("SHOWALERTDIALOG", "found and dismissed fragment_notify");
+            }
+            else{
+                Log.d("SHOWALERTDIALOG", "no fragment_notify");
             }
             final DialogFragment_Notif dialogFragment_alarm = DialogFragment_Notif.newInstance(getString(R.string.dialog_alarm_title), getString(R.string.dialog_alarm_message), type);
             dialogFragment_alarm.show(fm, "fragment_alarm");

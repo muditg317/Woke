@@ -1,4 +1,4 @@
-package com.pineapple.woke;
+package com.pineapple.woke.resources;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;

@@ -10,9 +10,6 @@ import com.pineapple.davinci.studentutils.Student;*/
 import android.media.MediaPlayer;
 import android.support.v4.app.NotificationManagerCompat;
 
-import com.pineapple.woke.RoomDatabase.AppDatabase;
-import com.pineapple.woke.RoomDatabase.User;
-
 import java.io.Serializable;
 
 /**
@@ -27,7 +24,6 @@ public class Singleton implements Serializable {
     private NotificationManagerCompat notificationManagerCompat;
     private MediaPlayer mp_notify;
     private MediaPlayer mp_alarm;
-    private AppDatabase appDatabase;
     /*private GoogleSignInClient gsiClient;
     private GoogleApiClient gapiClient;
     private GoogleSignInAccount gsiAccount;
@@ -188,11 +184,4 @@ public class Singleton implements Serializable {
         this.notificationManagerCompat = notificationManagerCompat;
     }
 
-    public AppDatabase getAppDatabase() {
-        return appDatabase;
-    }
-
-    public void setAppDatabase(AppDatabase appDatabase) {
-        this.appDatabase = appDatabase;
-    }
 }

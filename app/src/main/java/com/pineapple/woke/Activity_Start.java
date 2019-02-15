@@ -3,7 +3,6 @@ package com.pineapple.woke;
 import android.animation.ObjectAnimator;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
-import android.arch.persistence.room.Room;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.media.RingtoneManager;
@@ -21,12 +20,10 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.pineapple.woke.RoomDatabase.AppDatabase;
 import com.pineapple.woke.resources.Constants;
 import com.pineapple.woke.resources.Singleton;
-import com.pineapple.woke.RoomDatabase.User;
+import com.pineapple.woke.resources.User;
 
-import java.util.List;
 
 public class Activity_Start extends AppCompatActivity {
 
@@ -133,14 +130,14 @@ public class Activity_Start extends AppCompatActivity {
 
         rectangle_background.startAnimation(alphaAnim_rect1);
 
-        AppDatabase db = Room.databaseBuilder(getApplicationContext(),
+        /*AppDatabase db = Room.databaseBuilder(getApplicationContext(),
                 AppDatabase.class, "database-name").build();
         Singleton.getInstance().setAppDatabase(db);
 
         List<User> users = db.userDao().getAll();
         if(!users.isEmpty()) {
             getStarted(users.get(0));
-        }
+        }*/
 
         // Create the NotificationChannel, but only on API 26+ because
         // the NotificationChannel class is new and not in the support library
@@ -159,10 +156,10 @@ public class Activity_Start extends AppCompatActivity {
         Singleton.getInstance().setNotificationManager(NotificationManagerCompat.from(this));
 
 
-//        Uri r_notify = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-//        Singleton.getInstance().setMp_notify(MediaPlayer.create(getApplicationContext(), r_notify));
-//        Uri r_alarm = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
-//        Singleton.getInstance().setMp_alarm(MediaPlayer.create(getApplicationContext(), r_alarm));
+        Uri r_notify = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+        Singleton.getInstance().setMp_notify(MediaPlayer.create(getApplicationContext(), r_notify));
+        Uri r_alarm = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
+        Singleton.getInstance().setMp_alarm(MediaPlayer.create(getApplicationContext(), r_alarm));
 
     }
 

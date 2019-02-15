@@ -38,7 +38,7 @@
             android:configChanges="orientation"
             android:screenOrientation="portrait" />
 
-        <receiver android:name=".MyBroadcastReceiver">
+        <receiver android:name=".resources.MyBroadcastReceiver">
             <intent-filter>
                 <action android:name="NotificationClicked"></action>
             </intent-filter>
