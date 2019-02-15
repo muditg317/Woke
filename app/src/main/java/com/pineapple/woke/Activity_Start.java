@@ -18,6 +18,7 @@ import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.pineapple.woke.resources.Constants;
@@ -52,7 +53,7 @@ public class Activity_Start extends AppCompatActivity {
         imgButton_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getStarted(new User(editText_userName.getText().toString()));
+                //getStarted(new User(editText_userName.getText().toString()));
             }
         });
 
@@ -94,7 +95,11 @@ public class Activity_Start extends AppCompatActivity {
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        ObjectAnimator transAnim_text1 = ObjectAnimator.ofFloat(textView_appName, "translationY", -160f);
+
+                        getStarted(new User("User"));
+
+                        /*
+                        ObjectAnimator transAnim_text1 = ObjectAnimator.ofFloat(textView_appName, "translationY", -240f);
                         transAnim_text1.setDuration(1200);
                         transAnim_text1.start();
                         Handler handler = new Handler();
@@ -105,6 +110,7 @@ public class Activity_Start extends AppCompatActivity {
                                 editText_userName.startAnimation(alphaAnim_editText1);
                             }
                         }, 600);
+                        */
                     }
                 }, 2000);
             }

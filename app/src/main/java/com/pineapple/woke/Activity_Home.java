@@ -24,7 +24,7 @@ public class Activity_Home extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         textView_welcome = findViewById(R.id.textView_welcome);
-        String welcomeText = "Welcome " + Singleton.getInstance().getCurrUser().getName();
+        String welcomeText = "Welcome " /*+ Singleton.getInstance().getCurrUser().getName()*/;
         Log.d("DEBUG", welcomeText);
         textView_welcome.setText(welcomeText);
 
