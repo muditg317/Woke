@@ -23,14 +23,14 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentTop="true"
-        android:text="Notifications"
+        android:text="@string/settings_notif_title"
         android:textAppearance="@style/header30_bold_black"
         android:layout_marginEnd="20dp"
         android:layout_marginTop="63dp"/>
 
     <ImageButton
         android:id="@+id/imageButton_buttonBack"
-        android:contentDescription="Back"
+        android:contentDescription="@string/button_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/shape_back_def"
@@ -68,7 +68,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_marginTop="8dp"
                 android:layout_marginStart="50dp"
-                android:text="Intervals"
+                android:text="@string/settings_notif_interval_title"
                 android:textAppearance="@style/text18_gray"/>
 
             <TextView
@@ -78,7 +78,7 @@
                 android:layout_below="@+id/textView_intervals"
                 android:layout_alignStart="@+id/textView_intervals"
                 android:layout_marginEnd="60dp"
-                android:text="@string/notif_interval_desc"
+                android:text="@string/settings_notif_interval_desc"
                 android:textAppearance="@style/text14_lightgray"/>
 
             <TextView
@@ -89,7 +89,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_marginTop="12dp"
                 android:layout_marginEnd="20dp"
-                android:text="10m"
+                android:text="@string/settings_notif_interval_value"
                 android:textAppearance="@style/text14_lightgray"/>
 
             <SeekBar
@@ -127,7 +127,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_marginTop="8dp"
                 android:layout_marginStart="50dp"
-                android:text="Frequency"
+                android:text="@string/settings_notif_frequency_title"
                 android:textAppearance="@style/text18_gray"/>
 
             <TextView
@@ -137,7 +137,7 @@
                 android:layout_below="@+id/textView_frequency"
                 android:layout_alignStart="@+id/textView_frequency"
                 android:layout_marginEnd="60dp"
-                android:text="@string/notif_frequency_desc"
+                android:text="@string/settings_notif_frequency_desc"
                 android:textAppearance="@style/text14_lightgray"/>
 
             <TextView
@@ -148,7 +148,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_marginTop="12dp"
                 android:layout_marginEnd="20dp"
-                android:text="2"
+                android:text="@string/settings_notif_interval_value"
                 android:textAppearance="@style/text14_lightgray"/>
 
             <SeekBar

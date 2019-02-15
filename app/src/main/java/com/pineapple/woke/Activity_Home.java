@@ -53,6 +53,7 @@ public class Activity_Home extends AppCompatActivity {
         //finish();
     }
 
+    /*
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -61,6 +62,7 @@ public class Activity_Home extends AppCompatActivity {
             //TODO: update history UI
         }
     }
+    */
 
     private void toSettings(){
         Intent intent = new Intent(this, Activity_Settings_Home.class);

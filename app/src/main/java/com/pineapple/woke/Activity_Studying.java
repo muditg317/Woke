@@ -194,11 +194,11 @@ public class Activity_Studying extends AppCompatActivity {
             }
         }
 
-        String content = getString(R.string.notifContent) + " It's been " + Singleton.getInstance().getCurrUser().getNotif_interval() / 1000 / 60 + " minutes!";
+        String content = getString(R.string.notif_message) + " It's been " + Singleton.getInstance().getCurrUser().getNotif_interval() / 1000 / 60 + " minutes!";
 
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(Activity_Studying.this, Constants.CHANNEL_ID)
                 .setSmallIcon(R.drawable.logo)
-                .setContentTitle(getString(R.string.notifTitle))
+                .setContentTitle(getString(R.string.notif_title))
                 .setContentText(content)
                 .setCategory(NotificationCompat.CATEGORY_REMINDER)
                 //.setDefaults(NotificationCompat.DEFAULT_ALL)
