@@ -1,3 +1,73 @@
 <resources>
+
+    <!-- General -->
     <string name="app_name">Woke</string>
+    <string name="button_back">Back</string>
+
+    <!-- Start -->
+    <string name="editText_hint">Enter your name</string>
+    <string name="button_submit_text">Submit</string>
+
+    <!-- Home -->
+    <string name="home_welcome">Welcome</string>
+    <string name="home_startStudying">Start studying</string>
+    <string name="home_settings_content">Settings</string>
+
+    <!-- Studying -->
+    <string name="studying_currStudying">Currently studying</string>
+    <string name="studying_time">0:00</string>
+    <string name="studying_nextNotif">Next Woke notification in 10 minutes</string>
+    <string name="studying_button_pause_title">Pause</string>
+    <string name="studying_button_pause_content">Pause</string>
+    <string name="studying_button_resume_title">Resume</string>
+    <string name="studying_button_resume_content">Resume</string>
+    <string name="studying_button_stop_title">Stop</string>
+    <string name="studying_button_stop_content">Stop</string>
+
+    <!-- Notifications -->
+    <string name="channel_name">woke notifications</string>
+    <string name="channel_description">notification channel</string>
+    <string name="notif_title">GET WOKE!</string>
+    <string name="notif_message">Wake up!</string>
+    <string name="woke">WOKE</string>
+
+    <!-- Dialogs -->
+    <string name="dialog_notify_title">Are you still awake?</string>
+    <string name="dialog_notify_message">
+        Don\'t let your sleepiness overtake you.
+        Keep pushing on.
+        You are in control of your body and your mind.
+        Get up and stretch.
+        Do some jumping jacks.
+        Get the blood flowing.</string>
+    <string name="dialog_alarm_title">WAKE UP!</string>
+    <string name="dialog_alarm_message">
+        WAKE UP
+        WAKE UP
+        WAKE UP
+        WAKE UP
+        WAKE UP</string>
+
+    <!-- Settings_Home -->
+    <string name="settings_home_title">Settings</string>
+    <string name="settings_home_notif_content">Settings: Notifications</string>
+
+
+    <!-- Settings_Notifications -->
+    <string name="settings_notif_title">Notifications</string>
+    <string name="settings_notif_interval_title">Intervals</string>
+    <string name="settings_notif_interval_desc">Set the time in between Woke notifications</string>
+    <string name="settings_notif_interval_value">10m</string>
+    <string name="settings_notif_frequency_title">Frequency</string>
+    <string name="settings_notif_frequency_desc">Set the number of missed Woke notifications before alarm is triggered</string>
+    <string name="settings_notif_frequency_value">2</string>
+
+    <!-- Settings_Alarms -->
+    <string name="settings_alarm_title">Alarms</string>
+    <string name="settings_alarm_delay_title">Delay</string>
+    <string name="settings_alarm_delay_desc">Set the delay (nap time) before alarm is triggered</string>
+    <string name="settings_alarm_delay_value">45m</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

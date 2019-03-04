@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimaryWhite">#FFFFFF</color>
+    <color name="colorPrimaryBlue">#004CFF</color>
+    <color name="colorSecondaryBlue">#0041DB</color>
+    <color name="colorTertiaryBlue">#006DFF</color>
+    <color name="colorPrimaryDarkGradientEnd">#62A5FF</color>
+    <color name="colorPrimaryGray">#4a4a4a</color>
+    <color name="colorSecondaryGray">#808080</color>
+    <color name="colorAccent">#979797</color>
+    <color name="colorBackground">#FFFFFF</color>
+    <color name="colorShadow">#33000000</color>
+    <color name="colorShadow_letsGoButton">#26000000</color>
+    <color name="colorShadow_addClubButton">#1A000000</color>
 </resources>
