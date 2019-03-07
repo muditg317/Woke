@@ -4,6 +4,9 @@ import android.animation.ObjectAnimator;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Intent;
+import android.media.MediaPlayer;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Handler;
 import android.support.v4.app.NotificationManagerCompat;
@@ -152,10 +155,10 @@ public class Activity_Start extends AppCompatActivity {
         Singleton.getInstance().setNotificationManager(NotificationManagerCompat.from(this));
 
 
-//        Uri r_notify = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-//        Singleton.getInstance().setMp_notify(MediaPlayer.create(getApplicationContext(), r_notify));
-//        Uri r_alarm = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
-//        Singleton.getInstance().setMp_alarm(MediaPlayer.create(getApplicationContext(), r_alarm));
+        Uri r_notify = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+        Singleton.getInstance().setMp_notify(MediaPlayer.create(getApplicationContext(), r_notify));
+        Uri r_alarm = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
+        Singleton.getInstance().setMp_alarm(MediaPlayer.create(getApplicationContext(), r_alarm));
 
     }
 
