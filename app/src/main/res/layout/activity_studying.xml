@@ -37,7 +37,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="93dp"
-        android:text="Currently studying"
+        android:text="@string/studying_currStudying"
         android:textAppearance="@style/header30_bold_white" />
 
     <TextView
@@ -47,7 +47,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="172dp"
-        android:text="0:00"
+        android:text="@string/studying_time"
         android:textAppearance="@style/text60_bold_white" />
 
     <TextView
@@ -57,12 +57,12 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="376dp"
-        android:text="Next Woke notification in 10 minutes"
+        android:text="@string/studying_nextNotif"
         android:textAppearance="@style/text14_white" />
 
     <ImageButton
         android:id="@+id/imageButton_buttonPause"
-        android:contentDescription="Pause"
+        android:contentDescription="@string/studying_button_pause_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/selector_button2"
@@ -80,12 +80,12 @@
         android:layout_alignBottom="@+id/imageButton_buttonPause"
         android:layout_margin="1dp"
         android:gravity="center"
-        android:text="Pause"
+        android:text="@string/studying_button_pause_title"
         android:textAppearance="@style/header20_bold_black"/>
 
     <ImageButton
         android:id="@+id/imageButton_buttonResume"
-        android:contentDescription="Resume"
+        android:contentDescription="@string/studying_button_resume_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/selector_button3"
@@ -103,12 +103,12 @@
         android:layout_alignBottom="@+id/imageButton_buttonResume"
         android:layout_margin="1dp"
         android:gravity="center"
-        android:text="Resume"
+        android:text="@string/studying_button_resume_title"
         android:textAppearance="@style/header20_bold_white"/>
 
     <ImageButton
         android:id="@+id/imageButton_buttonStop"
-        android:contentDescription="Stop"
+        android:contentDescription="@string/studying_button_stop_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/selector_button2"
@@ -126,7 +126,7 @@
         android:layout_alignBottom="@+id/imageButton_buttonStop"
         android:layout_margin="1dp"
         android:gravity="center"
-        android:text="Stop"
+        android:text="@string/studying_button_stop_title"
         android:textAppearance="@style/header20_bold_black"/>
 
 </RelativeLayout>

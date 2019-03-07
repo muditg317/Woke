@@ -24,14 +24,14 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:text="Welcome"
+        android:text="@string/home_welcome"
         android:textAppearance="@style/header30_bold_black"
         android:layout_marginStart="30dp"
         android:layout_marginTop="63dp"/>
 
     <ImageButton
         android:id="@+id/imageButton_buttonSettings"
-        android:contentDescription="Settings"
+        android:contentDescription="@string/home_settings_content"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/shape_settings_def"
@@ -42,7 +42,7 @@
 
     <ImageButton
         android:id="@+id/imageButton_buttonStudy"
-        android:contentDescription="@string/start_studying"
+        android:contentDescription="@string/home_startStudying"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/selector_button1"
@@ -61,7 +61,7 @@
         android:layout_alignBottom="@+id/imageButton_buttonStudy"
         android:layout_margin="1dp"
         android:gravity="center"
-        android:text="@string/start_studying"
+        android:text="@string/home_startStudying"
         android:textAppearance="@style/text20_bold_white"/>
 
 
