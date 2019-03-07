@@ -1,8 +1,8 @@
-package com.pineapple.woke.RoomDatabase;
+package com.pineapple.woke.resources;
 
-import android.arch.persistence.room.Entity;
-import android.arch.persistence.room.Ignore;
-import android.arch.persistence.room.PrimaryKey;
+//import android.arch.persistence.room.Entity;
+//import android.arch.persistence.room.Ignore;
+//import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
@@ -12,11 +12,11 @@ import com.pineapple.woke.resources.Constants;
 
 import java.util.ArrayList;
 
-@Entity
+//@Entity
 public class User {
 
-    @PrimaryKey
-    @NonNull
+//    @PrimaryKey
+//    @NonNull
     private String name = "";
 
     private double notif_interval;
@@ -25,7 +25,7 @@ public class User {
 
     private ArrayList<SavedSession> studySessions;
 
-    @Ignore
+//    @Ignore
     private StudySession currStudySession;
 
     public User(@NonNull String name){
@@ -72,9 +72,9 @@ public class User {
         Log.d("User", "Study Session added to: "+name);
         Log.d("User", "Study Session duration: " + Long.toString(s.getDuration()));
     }
-    void setStudySessions(ArrayList<SavedSession> studySessions) {
-        this.studySessions = studySessions;
-    }
+//    void setStudySessions(ArrayList<SavedSession> studySessions) {
+//        this.studySessions = studySessions;
+//    }
 
     public StudySession getCurrStudySession() {
         return currStudySession;

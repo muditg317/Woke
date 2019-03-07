@@ -3,11 +3,7 @@ package com.pineapple.woke;
 import android.animation.ObjectAnimator;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
-import android.arch.persistence.room.Room;
 import android.content.Intent;
-import android.media.MediaPlayer;
-import android.media.RingtoneManager;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Handler;
 import android.support.v4.app.NotificationManagerCompat;
@@ -21,12 +17,9 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.pineapple.woke.RoomDatabase.AppDatabase;
 import com.pineapple.woke.resources.Constants;
 import com.pineapple.woke.resources.Singleton;
-import com.pineapple.woke.RoomDatabase.User;
-
-import java.util.List;
+import com.pineapple.woke.resources.User;
 
 public class Activity_Start extends AppCompatActivity {
 
@@ -133,14 +126,14 @@ public class Activity_Start extends AppCompatActivity {
 
         rectangle_background.startAnimation(alphaAnim_rect1);
 
-        AppDatabase db = Room.databaseBuilder(getApplicationContext(),
-                AppDatabase.class, "database-name").build();
-        Singleton.getInstance().setAppDatabase(db);
+//        AppDatabase db = Room.databaseBuilder(getApplicationContext(),
+//                AppDatabase.class, "database-name").build();
+//        Singleton.getInstance().setAppDatabase(db);
 
-        List<User> users = db.userDao().getAll();
-        if(!users.isEmpty()) {
-            getStarted(users.get(0));
-        }
+//        List<User> users = db.userDao().getAll();
+//        if(!users.isEmpty()) {
+//            getStarted(users.get(0));
+//        }
 
         // Create the NotificationChannel, but only on API 26+ because
         // the NotificationChannel class is new and not in the support library

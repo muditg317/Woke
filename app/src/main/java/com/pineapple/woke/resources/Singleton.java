@@ -1,6 +1,6 @@
 package com.pineapple.woke.resources;
 
-/**import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+/*import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.firebase.auth.FirebaseUser;
@@ -10,8 +10,7 @@ import com.pineapple.davinci.studentutils.Student;*/
 import android.media.MediaPlayer;
 import android.support.v4.app.NotificationManagerCompat;
 
-import com.pineapple.woke.RoomDatabase.AppDatabase;
-import com.pineapple.woke.RoomDatabase.User;
+//import com.pineapple.woke.RoomDatabase.AppDatabase;
 
 import java.io.Serializable;
 
@@ -27,7 +26,7 @@ public class Singleton implements Serializable {
     private NotificationManagerCompat notificationManagerCompat;
     private MediaPlayer mp_notify;
     private MediaPlayer mp_alarm;
-    private AppDatabase appDatabase;
+//    private AppDatabase appDatabase;
     /*private GoogleSignInClient gsiClient;
     private GoogleApiClient gapiClient;
     private GoogleSignInAccount gsiAccount;
@@ -188,11 +187,11 @@ public class Singleton implements Serializable {
         this.notificationManagerCompat = notificationManagerCompat;
     }
 
-    public AppDatabase getAppDatabase() {
-        return appDatabase;
-    }
-
-    public void setAppDatabase(AppDatabase appDatabase) {
-        this.appDatabase = appDatabase;
-    }
+//    public AppDatabase getAppDatabase() {
+//        return appDatabase;
+//    }
+//
+//    public void setAppDatabase(AppDatabase appDatabase) {
+//        this.appDatabase = appDatabase;
+//    }
 }
