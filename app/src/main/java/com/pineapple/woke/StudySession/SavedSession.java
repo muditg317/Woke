@@ -3,6 +3,7 @@ package com.pineapple.woke.StudySession;
 public class SavedSession {
     private String TAG = "SavedSession";
 
+    private String name;
     private long millisStartTime;
     private int wokeMillis;
     private long millisElapsed;
@@ -39,6 +40,14 @@ public class SavedSession {
 
     public String toString() {
         return "oowa";
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
 }

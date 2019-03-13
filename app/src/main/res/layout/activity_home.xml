@@ -6,63 +6,113 @@
     android:layout_height="wrap_content"
     tools:context=".Activity_Home">
 
-
-    <TextView
-        android:id="@+id/textView_appName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:text="@string/app_name"
-        android:textAppearance="@style/header20_bold_black"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="26dp"/>
-
-    <TextView
-        android:id="@+id/textView_welcome"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:text="@string/home_welcome"
-        android:textAppearance="@style/header30_bold_black"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="63dp"/>
-
-    <ImageButton
-        android:id="@+id/imageButton_buttonSettings"
-        android:contentDescription="@string/home_settings_content"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/shape_settings_def"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginEnd="30dp"
-        android:layout_marginTop="33.5dp"/>
-
-    <ImageButton
-        android:id="@+id/imageButton_buttonStudy"
-        android:contentDescription="@string/home_startStudying"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/selector_button1"
-        android:layout_marginStart="30dp"
-        android:layout_marginEnd="30dp"
-        android:layout_below="@+id/textView_welcome"
-        android:layout_marginTop="10dp"/>
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textView_buttonSubmit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/imageButton_buttonStudy"
-        android:layout_alignTop="@+id/imageButton_buttonStudy"
-        android:layout_alignEnd="@+id/imageButton_buttonStudy"
-        android:layout_alignBottom="@+id/imageButton_buttonStudy"
-        android:layout_margin="1dp"
-        android:gravity="center"
-        android:text="@string/home_startStudying"
-        android:textAppearance="@style/text20_bold_white"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/textView_appName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:text="@string/app_name"
+                    android:textAppearance="@style/header20_bold_black"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="26dp"/>
+
+                <TextView
+                    android:id="@+id/textView_welcome"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:text="@string/home_welcome"
+                    android:textAppearance="@style/header30_bold_black"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="63dp"/>
+
+                <ImageButton
+                    android:id="@+id/imageButton_buttonSettings"
+                    android:contentDescription="@string/home_settings_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/shape_settings_def"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginTop="33.5dp"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+
+                <ImageButton
+                    android:id="@+id/imageButton_buttonStudy"
+                    android:contentDescription="@string/home_startStudying"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/selector_button1"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"/>
+
+                <TextView
+                    android:id="@+id/textView_buttonSubmit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignStart="@+id/imageButton_buttonStudy"
+                    android:layout_alignTop="@+id/imageButton_buttonStudy"
+                    android:layout_alignEnd="@+id/imageButton_buttonStudy"
+                    android:layout_alignBottom="@+id/imageButton_buttonStudy"
+                    android:layout_margin="1dp"
+                    android:gravity="center"
+                    android:text="@string/home_startStudying"
+                    android:textAppearance="@style/text20_bold_white"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp">
+
+                <TextView
+                    android:id="@+id/textView_history"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:text="@string/home_history"
+                    android:textAppearance="@style/header20_bold_black"
+                    android:layout_marginStart="20dp"/>
+
+                <ListView
+                    android:id="@+id/listView_history"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/textView_history"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp">
+
+                </ListView>
+
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
 
 </RelativeLayout>

@@ -72,9 +72,9 @@ public class User {
         Log.d("User", "Study Session added to: "+name);
         Log.d("User", "Study Session duration: " + Long.toString(s.getDuration()));
     }
-//    void setStudySessions(ArrayList<SavedSession> studySessions) {
-//        this.studySessions = studySessions;
-//    }
+    private void setStudySessions(ArrayList<SavedSession> studySessions) {
+        this.studySessions = studySessions;
+    }
 
     public StudySession getCurrStudySession() {
         return currStudySession;

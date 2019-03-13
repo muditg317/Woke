@@ -1,25 +1,35 @@
 package com.pineapple.woke;
 
 import android.content.Intent;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageButton;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.pineapple.woke.StudySession.SavedSession;
 import com.pineapple.woke.resources.Singleton;
+
+import java.util.ArrayList;
 
 public class Activity_Home extends AppCompatActivity {
     ImageButton imgButton_start;
     ImageButton imgButton_settings;
     TextView textView_welcome;
 
+    ArrayList<SavedSession> savedSessions;
+    ListView listView;
+    private static HistoryAdapter adapter;
+
     private final int studySessionRC = 0;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
@@ -41,6 +51,25 @@ public class Activity_Home extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 toSettings();
+            }
+        });
+
+
+        listView=(ListView)findViewById(R.id.listView_history);
+
+        savedSessions = Singleton.getInstance().getCurrUser().getStudySessions();
+
+        adapter= new HistoryAdapter(savedSessions,getApplicationContext());
+
+        listView.setAdapter(adapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                SavedSession savedSession = savedSessions.get(position);
+
+                Snackbar.make(view, savedSession.getName()+"\n"+savedSession.getDuration()+" Woke Notifs: "+savedSession.getWokeNotifs(), Snackbar.LENGTH_LONG)
+                        .setAction("No action", null).show();
             }
         });
     }

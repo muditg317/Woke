@@ -12,6 +12,7 @@
     <string name="home_welcome">Welcome</string>
     <string name="home_startStudying">Start studying</string>
     <string name="home_settings_content">Settings</string>
+    <string name="home_history">History</string>
 
     <!-- Studying -->
     <string name="studying_currStudying">Currently studying</string>
