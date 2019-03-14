@@ -69,6 +69,7 @@ public class User {
     }
     public void addStudySession(SavedSession s){
         studySessions.add(0,s);
+        s.setName("StudySession #" + studySessions.size());
         Log.d("User", "Study Session added to: "+name);
         Log.d("User", "Study Session duration: " + Long.toString(s.getDuration()));
     }

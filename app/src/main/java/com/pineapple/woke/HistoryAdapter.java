@@ -45,7 +45,7 @@ public class HistoryAdapter extends ArrayAdapter<SavedSession> implements View.O
         switch (v.getId())
         {
             case R.id.item_info:
-                Snackbar.make(v, "Duration: " +savedSession.getDuration(), Snackbar.LENGTH_LONG)
+                Snackbar.make(v, "Duration: " +savedSession.getDurationDisplay(), Snackbar.LENGTH_LONG)
                         .setAction("No action", null).show();
                 break;
         }
@@ -85,7 +85,7 @@ public class HistoryAdapter extends ArrayAdapter<SavedSession> implements View.O
         lastPosition = position;
 
         viewHolder.txtName.setText(savedSession.getName());
-        viewHolder.txtDuration.setText(Long.toString(savedSession.getDuration()));
+        viewHolder.txtDuration.setText(savedSession.getDurationDisplay());
         viewHolder.info.setOnClickListener(this);
         viewHolder.info.setTag(position);
         // Return the completed view to render on screen

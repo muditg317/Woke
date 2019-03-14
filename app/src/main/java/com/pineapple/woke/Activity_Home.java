@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.pineapple.woke.StudySession.SavedSession;
+import com.pineapple.woke.resources.ListViewHeightExpander;
 import com.pineapple.woke.resources.Singleton;
 
 import java.util.ArrayList;
@@ -62,13 +63,14 @@ public class Activity_Home extends AppCompatActivity {
         adapter= new HistoryAdapter(savedSessions,getApplicationContext());
 
         listView.setAdapter(adapter);
+        ListViewHeightExpander.setListViewHeightBasedOnChildren(listView);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 SavedSession savedSession = savedSessions.get(position);
 
-                Snackbar.make(view, savedSession.getName()+"\n"+savedSession.getDuration()+" Woke Notifs: "+savedSession.getWokeNotifs(), Snackbar.LENGTH_LONG)
+                Snackbar.make(view, savedSession.getName()+"\n"+savedSession.getDurationDisplay()+" Woke Notifs: "+savedSession.getNumWokeNotifs(), Snackbar.LENGTH_LONG)
                         .setAction("No action", null).show();
             }
         });
