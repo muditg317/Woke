@@ -70,7 +70,7 @@ public class Activity_Home extends AppCompatActivity {
 
                 SavedSession savedSession = savedSessions.get(position);
 
-                Snackbar.make(view, savedSession.getName()+"\n"+savedSession.getDurationDisplay()+" Woke Notifs: "+savedSession.getNumWokeNotifs(), Snackbar.LENGTH_LONG)
+                Snackbar.make(view, savedSession.getName()+"\nDuration: "+savedSession.getDurationDisplay()+" | Woke Notifs: "+savedSession.getNumWokeNotifs(), Snackbar.LENGTH_LONG)
                         .setAction("No action", null).show();
             }
         });
