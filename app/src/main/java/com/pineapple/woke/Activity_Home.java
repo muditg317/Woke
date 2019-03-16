@@ -22,6 +22,8 @@ public class Activity_Home extends AppCompatActivity {
     ImageButton imgButton_start;
     ImageButton imgButton_settings;
     TextView textView_welcome;
+    TextView textView_history;
+    TextView textView_noHistory;
 
     ArrayList<SavedSession> savedSessions;
     ListView listView;
@@ -55,10 +57,21 @@ public class Activity_Home extends AppCompatActivity {
             }
         });
 
+        textView_history = findViewById(R.id.textView_history);
+        textView_noHistory = findViewById(R.id.textView_noHistory);
 
         listView=(ListView)findViewById(R.id.listView_history);
 
         savedSessions = Singleton.getInstance().getCurrUser().getStudySessions();
+
+        if(savedSessions.size() == 0){
+            textView_noHistory.setVisibility(View.VISIBLE);
+            Log.d("DEBUG", "noHistory text enabled");
+        }
+        else{
+            textView_noHistory.setVisibility(View.INVISIBLE);
+            Log.d("DEBUG", "noHistory text disabled");
+        }
 
         adapter= new HistoryAdapter(savedSessions,getApplicationContext());
 

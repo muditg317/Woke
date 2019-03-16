@@ -13,6 +13,7 @@
     <string name="home_startStudying">Start studying</string>
     <string name="home_settings_content">Settings</string>
     <string name="home_history">History</string>
+    <string name="home_noHistory">No Study Sessions yet!\nStart studying to add a Study Session</string>
 
     <!-- Studying -->
     <string name="studying_currStudying">Currently studying</string>

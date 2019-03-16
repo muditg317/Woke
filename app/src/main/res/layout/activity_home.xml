@@ -112,6 +112,17 @@
 
                 </ListView>
 
+                <TextView
+                    android:id="@+id/textView_noHistory"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/textView_history"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/home_noHistory"
+                    android:textAppearance="@style/text16_lightgray"
+                    android:gravity="center"/>
+
             </RelativeLayout>
 
         </LinearLayout>
