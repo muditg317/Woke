@@ -1,5 +1,7 @@
 package com.pineapple.woke.StudySession;
 
+import com.pineapple.woke.resources.Constants;
+
 public class SavedSession {
     private String TAG = "SavedSession";
 
@@ -11,6 +13,13 @@ public class SavedSession {
     public SavedSession(long millisStartTime, int wokeMillis) {
         this.millisStartTime = millisStartTime;
         this.wokeMillis = wokeMillis;
+    }
+
+    public SavedSession(long millisStartTime, int wokeMillis, long millisElapsed, int wokeNotifs) {
+        this.millisStartTime = millisStartTime;
+        this.wokeMillis = wokeMillis;
+        this.millisElapsed = millisElapsed;
+        this.wokeNotifs = wokeNotifs;
     }
 
     public long getStartTime() {
@@ -38,7 +47,11 @@ public class SavedSession {
     }
 
     public String toString() {
-        return "oowa";
+        return "Saved Session at "
+                + Constants.MST + millisStartTime
+                + Constants.WM + wokeMillis
+                + Constants.ME + millisElapsed
+                + Constants.WN + wokeNotifs;
     }
 
 }

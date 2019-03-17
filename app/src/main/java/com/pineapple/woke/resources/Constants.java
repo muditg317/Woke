@@ -1,7 +1,5 @@
 package com.pineapple.woke.resources;
 
-import android.graphics.Color;
-import android.support.annotation.Dimension;
 
 /**
  * Created by Mudit on 6/11/2018.
@@ -32,4 +30,13 @@ public class Constants {
     public static final int COUNTDOWNINTERVAL = 100;
     public static final String ALERTTYPE_NOTIFY = "notify";
     public static final String ALERTTYPE_ALARM = "alarm";
+
+    /**
+     * Saved Session
+     * data labels
+     */
+    public static final String MST = "millisStartTime: ";
+    public static final String WM = "wokeMillis: ";
+    public static final String ME = "millisElapsed: ";
+    public static final String WN = "wokeNotifs: ";
 }

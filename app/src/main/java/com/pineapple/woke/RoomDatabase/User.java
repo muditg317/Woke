@@ -3,6 +3,7 @@ package com.pineapple.woke.RoomDatabase;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
+import android.arch.persistence.room.TypeConverters;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
@@ -23,6 +24,7 @@ public class User {
     private int notif_frequency;
     private int notif_delay;
 
+    @TypeConverters(SessionConverter.class)
     private ArrayList<SavedSession> studySessions;
 
     @Ignore
