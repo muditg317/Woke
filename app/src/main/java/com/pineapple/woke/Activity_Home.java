@@ -55,7 +55,6 @@ public class Activity_Home extends AppCompatActivity {
         });
 
         viewModel = ViewModelProviders.of(this).get(UserViewModel.class);
-
         viewModel.getUserList().observe(Activity_Home.this, new Observer<List<User>>() {
             @Override
             public void onChanged(@Nullable List<User> users) {

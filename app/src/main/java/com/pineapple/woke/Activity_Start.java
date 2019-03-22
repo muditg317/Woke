@@ -3,6 +3,7 @@ package com.pineapple.woke;
 import android.animation.ObjectAnimator;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.arch.lifecycle.ViewModelProviders;
 import android.arch.persistence.room.Room;
 import android.content.Intent;
 import android.media.MediaPlayer;
@@ -22,6 +23,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.pineapple.woke.RoomDatabase.AppDatabase;
+import com.pineapple.woke.RoomDatabase.UserViewModel;
 import com.pineapple.woke.resources.Constants;
 import com.pineapple.woke.resources.Singleton;
 import com.pineapple.woke.RoomDatabase.User;
@@ -35,6 +37,7 @@ public class Activity_Start extends AppCompatActivity {
     EditText editText_userName;
     ImageButton imgButton_submit;
     TextView textView_submit;
+    private UserViewModel viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -133,12 +136,18 @@ public class Activity_Start extends AppCompatActivity {
 
         rectangle_background.startAnimation(alphaAnim_rect1);
 
-        AppDatabase db = Room.databaseBuilder(getApplicationContext(),
-                AppDatabase.class, "database-name").build();
-        Singleton.getInstance().setAppDatabase(db);
+//        AppDatabase db = Room.databaseBuilder(getApplicationContext(),
+//                AppDatabase.class, "database-name").build();
+//        Singleton.getInstance().setAppDatabase(db);
+//
+//        List<User> users = db.userDao().getAll();
+//        if(!users.isEmpty()) {
+//            getStarted(users.get(0));
+//        }
+        viewModel = ViewModelProviders.of(this).get(UserViewModel.class);
 
-        List<User> users = db.userDao().getAll();
-        if(!users.isEmpty()) {
+        List<User> users = viewModel.getUserList().getValue();
+        if(users != null && !users.isEmpty()) {
             getStarted(users.get(0));
         }
 

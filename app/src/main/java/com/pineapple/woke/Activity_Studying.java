@@ -284,9 +284,9 @@ public class Activity_Studying extends AppCompatActivity {
     private void stopStudying() {
         Toast.makeText(getApplicationContext(),"Study session finished",Toast.LENGTH_SHORT).show();
         session.finish();
-        Intent intent = new Intent(this, Activity_Home.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-        startActivity(intent);
+//      Intent intent = new Intent(this, Activity_Home.class);
+//      intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+//      startActivity(intent);
         finish();
     }
 
