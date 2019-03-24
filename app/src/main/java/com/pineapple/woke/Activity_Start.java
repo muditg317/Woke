@@ -39,6 +39,9 @@ public class Activity_Start extends AppCompatActivity {
     TextView textView_submit;
     private UserViewModel viewModel;
 
+    public static final String MyPREFERENCES = "MyPrefs" ;
+    public static final String userName = "key_userName";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,10 +58,19 @@ public class Activity_Start extends AppCompatActivity {
         imgButton_submit.setVisibility(View.INVISIBLE);
         textView_submit.setVisibility(View.INVISIBLE);
 
+        viewModel = ViewModelProviders.of(this).get(UserViewModel.class);
+
+        final List<User> users = viewModel.getUserList().getValue();
+
         imgButton_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getStarted(new User(editText_userName.getText().toString()));
+                User user = new User(editText_userName.getText().toString());
+                Singleton.getInstance().setCurrUser(user);
+
+                viewModel.addUser(user);
+
+                goToHome();
             }
         });
 
@@ -100,19 +112,27 @@ public class Activity_Start extends AppCompatActivity {
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        ObjectAnimator transAnim_text1 = ObjectAnimator.ofFloat(textView_appName, "translationY", -160f);
-                        transAnim_text1.setDuration(1200);
-                        transAnim_text1.start();
-                        Handler handler = new Handler();
-                        handler.postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                editText_userName.setVisibility(View.VISIBLE);
-                                editText_userName.startAnimation(alphaAnim_editText1);
-                            }
-                        }, 600);
+                        if(users == null) {
+                            ObjectAnimator transAnim_text1 = ObjectAnimator.ofFloat(textView_appName, "translationY", -160f);
+                            transAnim_text1.setDuration(1200);
+                            transAnim_text1.start();
+                            Handler handler = new Handler();
+                            handler.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    editText_userName.setVisibility(View.VISIBLE);
+                                    editText_userName.startAnimation(alphaAnim_editText1);
+                                }
+                            }, 600);
+                        }
+                        else{
+                            User user = users.get(0);
+                            Singleton.getInstance().setCurrUser(user);
+
+                            goToHome();
+                        }
                     }
-                }, 2000);
+                }, 1500);
             }
             public void onAnimationRepeat(Animation animation) {}
         });
@@ -144,12 +164,6 @@ public class Activity_Start extends AppCompatActivity {
 //        if(!users.isEmpty()) {
 //            getStarted(users.get(0));
 //        }
-        viewModel = ViewModelProviders.of(this).get(UserViewModel.class);
-
-        List<User> users = viewModel.getUserList().getValue();
-        if(users != null && !users.isEmpty()) {
-            getStarted(users.get(0));
-        }
 
         // Create the NotificationChannel, but only on API 26+ because
         // the NotificationChannel class is new and not in the support library
@@ -175,9 +189,7 @@ public class Activity_Start extends AppCompatActivity {
 
     }
 
-    private void getStarted(User user) {
-        Singleton.getInstance().setCurrUser(user);
-
+    private void goToHome() {
         Intent intent = new Intent(this, Activity_Home.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
         startActivity(intent);
