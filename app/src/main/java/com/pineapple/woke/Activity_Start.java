@@ -39,9 +39,6 @@ public class Activity_Start extends AppCompatActivity {
     TextView textView_submit;
     private UserViewModel viewModel;
 
-    public static final String MyPREFERENCES = "MyPrefs" ;
-    public static final String userName = "key_userName";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
